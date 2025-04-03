@@ -1,10 +1,10 @@
-import SingleProducts from '@/components/SingleProducts/SingleProducts'
+import SignUp from '@/components/SignUp/signUp'
 import React from 'react'
 
 export default function page() {
   return (
     <div>
-      <SingleProducts/>
+      <SignUp/>
     </div>
   )
 }

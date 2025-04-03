@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Brands() {
+export default function AdHeader() {
   return (
     <div>
-      brands page
+      header admin
     </div>
   )
 }
