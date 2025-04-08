@@ -2,6 +2,7 @@ import WebFooter from '@/components/Layout/WebFooter/WebFooter';
 import WebHeader from '@/components/Layout/WebHeader/WebHeader';
 import { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import './globals.css'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,9 +29,9 @@ export default function SiteLayout({
 }) {
   return (
     <html dir='rtl' lang="fa">
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen">
         <WebHeader />
-        <main className="flex-grow p-4">{children}</main>
+        <main>{children}</main>
         <WebFooter />
       </body>
     </html>
