@@ -3,7 +3,7 @@ import React from 'react'
 export default function AdHeader() {
   return (
     <div>
-      header admin
+      admin header
     </div>
   )
 }

@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: sahel;
+  src: url(./../../assets/fonts/Sahel.ttf)
+}
+
+.background {
+    background-image: url(./../../assets/images/background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+

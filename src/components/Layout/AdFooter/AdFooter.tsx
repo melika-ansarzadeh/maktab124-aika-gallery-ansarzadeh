@@ -3,7 +3,7 @@ import React from 'react'
 export default function AdFooter() {
   return (
     <div>
-      footer admin
+      admin footer
     </div>
   )
 }
