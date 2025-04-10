@@ -2,6 +2,7 @@ import AdFooter from '@/components/Layout/AdFooter/AdFooter';
 import AdHeader from '@/components/Layout/AdHeader/AdHeader';
 import { Metadata } from 'next';
 import './globals.css'
+import Sidebar from '@/components/AdPanel/Sidebar/Sidebar';
 
 export const metadata: Metadata = {
   title: 'aika admin',
@@ -17,11 +18,16 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html dir='rtl' lang="fa">
-      <body className="min-h-screen flex flex-col">
-        <AdHeader />
-        <main className="flex-grow p-4">{children}</main>
-        <AdFooter />
+    <html dir="rtl" lang="fa">
+      <body className="grid grid-cols-[10%,90%]">
+        <div>
+          <Sidebar/>
+        </div>
+        <div>
+          <AdHeader />
+          <main className="flex-grow p-4">{children}</main>
+          <AdFooter />
+        </div>
       </body>
     </html>
   );

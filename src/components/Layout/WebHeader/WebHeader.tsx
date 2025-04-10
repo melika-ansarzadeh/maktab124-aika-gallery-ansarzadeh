@@ -31,8 +31,8 @@ export default function WebHeader() {
 
       <div className="flex justify-between items-center my-5">
         <Input
-          className="border w-44 h-7 p-2 text-sm rounded-sm"
-          name="searchInput"
+          className="border-2 w-48 h-8 p-2 text-xs rounded-sm outline-none focus:border-2 focus:rounded-md focus:border-custom-200"
+          name="searchWeb"
           type="search"
           value={searchValue}
           onChange={e => setSearchValue(e.target.value)}

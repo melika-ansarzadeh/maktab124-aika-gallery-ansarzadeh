@@ -1,7 +1,7 @@
 import AdPanel from '@/components/AdPanel/AdPanel'
 import React from 'react'
 
-export default function page() {
+export default function HomeAdPage() {
   return (
     <div>
       <AdPanel/>

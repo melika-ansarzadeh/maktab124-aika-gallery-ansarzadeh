@@ -33,5 +33,6 @@ export const headerlocalization={
   callUs:"تماس با ما",
   blogs:"بلاگ",
   products:"محصولات",
-  search:"جستجوی محصول"
+  searchProducts:"جستجوی محصول",
+  search:"جستجو"
 }

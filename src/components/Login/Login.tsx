@@ -17,7 +17,7 @@ export default function Login() {
             label={loginLocalization.email}
             name="email"
             type="email"
-            className="p-3 w-72 text-xs rounded-md outline-none focus:outline focus:outline-black"
+            className="p-3 w-72 text-xs rounded-md outline-none focus:border-2 focus:border-black"
             value=""
             placeholder={loginLocalization.enterEmail}
           />
@@ -25,7 +25,7 @@ export default function Login() {
             label={loginLocalization.password}
             name="password"
             type="password"
-            className="p-3 w-72 text-xs rounded-md outline-none focus:outline focus:outline-black"
+            className="p-3 w-72 text-xs rounded-md outline-none focus:border-2 focus:border-black"
             value=""
             placeholder={loginLocalization.enterPassword}
           />
@@ -42,7 +42,10 @@ export default function Login() {
             <p className="text-sm font-light">
               {loginLocalization.doYouWantAccount}
             </p>
-            <Link className="text-white text-xs underline font-thin" href="signUp">
+            <Link
+              className="text-white text-xs underline font-thin"
+              href="signUp"
+            >
               {loginLocalization.signUp}
             </Link>
           </div>

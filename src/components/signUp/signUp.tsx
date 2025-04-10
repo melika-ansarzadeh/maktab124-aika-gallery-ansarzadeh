@@ -31,7 +31,7 @@ export default function SignUp() {
             label={signLocalization.email}
             name="email"
             type="email"
-            className="p-3 w-72 text-xs rounded-md outline-none focus:outline focus:outline-black"
+            className="p-3 w-72 text-xs rounded-md outline-none  focus:border-2 focus:border-black"
             value=""
             placeholder={signLocalization.enterEmail}
           />
@@ -39,7 +39,7 @@ export default function SignUp() {
             label={signLocalization.password}
             name="password"
             type="password"
-            className="p-3 w-72 text-xs rounded-md outline-none focus:outline focus:outline-black"
+            className="p-3 w-72 text-xs rounded-md outline-none  focus:border-2 focus:border-black"
             value=""
             placeholder={signLocalization.enterPassword}
           />
@@ -53,7 +53,10 @@ export default function SignUp() {
             <p className="text-sm font-light">
               {signLocalization.doYouWantAccount}
             </p>
-            <Link className="text-white text-xs underline font-thin" href="login">
+            <Link
+              className="text-white text-xs underline font-thin"
+              href="login"
+            >
               {signLocalization.loginAccount}
             </Link>
           </div>
