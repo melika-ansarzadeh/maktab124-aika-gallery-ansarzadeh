@@ -5,9 +5,9 @@ import Button from '@/shared/Button/Button';
 export default function Login() {
   return (
     <div className="relative w-full h-[45.5rem] p-6 font-sahel">
-      <div className="background absolute inset-0 bg-white/30 backdrop-blur-xl -z-10"></div>
+      <div className="background-login absolute inset-0 bg-white/30 backdrop-blur-xl -z-10"></div>
 
-      <div className="relative h-[40rem] mt-5 z-10 bg-black/40 rounded-2xl flex justify-between px-48 items-center">
+      <div className="relative h-[40rem] mt-5 z-10 bg-white/10 rounded-2xl flex justify-between px-24 mx-40 items-center">
         <div className="text-white flex flex-col gap-4 ">
           <p className="text-2xl mb-3 font-semibold">{loginLocalization.shine}✨</p>
           <div className="text-xl font-light">

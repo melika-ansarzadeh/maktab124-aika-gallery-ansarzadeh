@@ -11,6 +11,15 @@ module.exports = {
       fontFamily: {
         sahel: ['Sahel', 'sans-serif'],
       },
+      colors: {
+        custom: {
+          100: '#eee1de',
+          200: '#dccace',
+          300: '#c89cab',
+          400: '#beafb2',
+          500: '#a8999c',
+        },
+      },
     },
   },
   plugins: [],
