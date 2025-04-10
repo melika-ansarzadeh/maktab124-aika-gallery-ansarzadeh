@@ -21,18 +21,12 @@ export default function AdHeader() {
       </div>
 
       <div className="flex flex-row-reverse items-center justify-center text-xl gap-8">
-        <Link href="">
+        <Link href="profile">
           <FaRegUserCircle />
         </Link>
-        <Link href="">
           <BsBell />
-        </Link>
-        <Link href="">
           <IoMoonOutline />
-        </Link>
-        <Link href="">
           <MdLanguage />
-        </Link>
       </div>
     </div>
   );
