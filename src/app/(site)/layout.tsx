@@ -1,18 +1,7 @@
 import WebFooter from '@/components/Layout/WebFooter/WebFooter';
 import WebHeader from '@/components/Layout/WebHeader/WebHeader';
 import { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css'
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: 'aika gallery',
@@ -30,7 +19,7 @@ export default function SiteLayout({
   return (
     <html dir='rtl' lang="fa">
       <body className="min-h-screen">
-        <WebHeader />
+        <WebHeader/>
         <main>{children}</main>
         <WebFooter />
       </body>

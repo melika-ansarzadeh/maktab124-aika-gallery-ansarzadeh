@@ -13,3 +13,12 @@ export const loginLocalization = {
   text3:"جواهرات و اکسسوری هایی که درخشش شما را",
   text4:"جاودانه می کنند.",
 };
+
+export const headerlocalization={
+  brands:"برند ها",
+  aboutUs:"درباره ما",
+  callUs:"تماس با ما",
+  blogs:"بلاگ",
+  products:"محصولات",
+  search:"جستجوی محصول"
+}

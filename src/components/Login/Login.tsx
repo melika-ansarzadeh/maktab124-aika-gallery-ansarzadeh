@@ -1,4 +1,3 @@
-import { IoLogoGoogle } from 'react-icons/io5';
 import { loginLocalization } from '@/constants/localization/localization';
 import Input from '@/shared/Inputs/Inputs';
 import Button from '@/shared/Button/Button';

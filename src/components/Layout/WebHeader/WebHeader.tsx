@@ -1,9 +1,8 @@
-import React from 'react'
+export default function WebHeader() {
 
-export default function webHeader() {
+
   return (
-    <div>
-      web header
+    <div className="w-full px-4 py-2 font-sahel">
     </div>
-  )
+  );
 }
