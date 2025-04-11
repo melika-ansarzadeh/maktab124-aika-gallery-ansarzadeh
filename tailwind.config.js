@@ -13,6 +13,8 @@ module.exports = {
       },
       colors: {
         custom: {
+          50: '#ece6e6',
+          75: '#e7e2e1',
           100: '#eee1de',
           200: '#dccace',
           300: '#c89cab',

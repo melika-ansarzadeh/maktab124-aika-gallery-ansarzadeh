@@ -25,7 +25,7 @@ export default function AdminLayout({
         </div>
         <div>
           <AdHeader />
-          <main className="flex-grow p-4">{children}</main>
+          <main className="flex-grow pl-7 pt-12">{children}</main>
           <AdFooter />
         </div>
       </body>
