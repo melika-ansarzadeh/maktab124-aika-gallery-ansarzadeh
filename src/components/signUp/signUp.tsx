@@ -6,10 +6,10 @@ import React from 'react'
 
 export default function SignUp() {
   return (
-    <div className="relative w-full h-[45.5rem] p-6 font-sahel">
+    <div className="relative w-full h-[45.5rem] overflow-hidden px-6 py-2 font-sahel">
       <div className="background-signUp absolute inset-0 bg-white/30 backdrop-blur-xl -z-10"></div>
 
-      <div className="relative h-[40rem] mt-5 z-10 bg-white/10 rounded-2xl flex justify-between px-24 mx-40 items-center">
+      <div className="relative h-[40rem] mt-9 z-10 bg-white/10 rounded-2xl flex justify-between px-20 mx-20 items-center">
         <div className="text-white flex flex-col gap-4 ">
           <p className="text-2xl mb-3 font-semibold">
             {signLocalization.shine}✨
@@ -23,34 +23,60 @@ export default function SignUp() {
             <p>{signLocalization.text4}</p>
           </div>
         </div>
-        <form className="h-[30rem] w-[24rem] mt-5 z-10 bg-black/10 p-8 backdrop-blur-xl rounded-2xl flex flex-col gap-6 items-center">
+        <form className="h-[33rem] w-[32rem] z-10 bg-black/10 p-8 backdrop-blur-xl rounded-2xl flex flex-col gap-9 justify-center items-center">
           <p className="text-white text-xl font-semibold">
             {signLocalization.signUpAccount}
           </p>
-          <Input
-            label={signLocalization.firstname}
-            name="firstname"
-            type="text"
-            className="p-3 w-72 text-xs rounded-md outline-none  focus:border-2 focus:border-black"
-            value=""
-            placeholder={signLocalization.enterEmail}
-          />
-          <Input
-            label={signLocalization.username}
-            name="email"
-            type="email"
-            className="p-3 w-72 text-xs rounded-md outline-none  focus:border-2 focus:border-black"
-            value=""
-            placeholder={signLocalization.enterEmail}
-          />
-          <Input
-            label={signLocalization.password}
-            name="password"
-            type="password"
-            className="p-3 w-72 text-xs rounded-md outline-none  focus:border-2 focus:border-black"
-            value=""
-            placeholder={signLocalization.enterPassword}
-          />
+          <div className='grid grid-cols-2 gap-x-11 gap-y-8 justify-center items-center'>
+            <Input
+              label={signLocalization.firstname}
+              name="firstname"
+              type="text"
+              className="p-3 w-52 text-xs rounded-md outline-none  focus:border-2 focus:border-black"
+              value=""
+              placeholder={signLocalization.enterFirstname}
+            />
+            <Input
+              label={signLocalization.lastname}
+              name="lastname"
+              type="text"
+              className="p-3 w-52 text-xs rounded-md outline-none  focus:border-2 focus:border-black"
+              value=""
+              placeholder={signLocalization.enterLastname}
+            />
+            <Input
+              label={signLocalization.username}
+              name="email"
+              type="email"
+              className="p-3 w-52 text-xs rounded-md outline-none  focus:border-2 focus:border-black"
+              value=""
+              placeholder={signLocalization.enterUsername}
+            />
+            <Input
+              label={signLocalization.password}
+              name="password"
+              type="password"
+              className="p-3 w-52 text-xs rounded-md outline-none  focus:border-2 focus:border-black"
+              value=""
+              placeholder={signLocalization.enterPassword}
+            />
+            <Input
+              label={signLocalization.phonenumber}
+              name="phoneNumber"
+              type="number"
+              className="p-3 w-52 text-xs rounded-md outline-none  focus:border-2 focus:border-black"
+              value=""
+              placeholder={signLocalization.enterPhoneNumber}
+            />
+            <Input
+              label={signLocalization.address}
+              name="address"
+              type="text"
+              className="p-3 w-52 text-xs rounded-md outline-none  focus:border-2 focus:border-black"
+              value=""
+              placeholder={signLocalization.enterAddress}
+            />
+          </div>
           <Link href="">
             <Button
               className="bg-gray-100 mt-3 text-gray-500 w-24 h-9 pb-1 rounded-lg active:scale-95"

@@ -19,12 +19,18 @@ export const loginLocalization = {
 
 export const signLocalization = {
   signUpAccount: 'ساخت حساب کاربری',
-  firstname:'نام',
-  lastname:'',
-  username: 'ایمیل',
+  firstname: 'نام',
+  lastname: 'نام خانوادگی',
+  username: 'نام کاربری',
   password: 'رمز عبور',
-  enterEmail: 'ایمیل خود را وارد کنید',
+  phonenumber: 'شماره تماس',
+  address: 'آدرس',
+  enterFirstname: 'نام خود را وارد کنید',
+  enterLastname: 'نام خانوادگی خود را وارد کنید',
+  enterUsername: 'نام کاربری خود را وارد کنید',
   enterPassword: 'رمز عبور خود را وارد کنید',
+  enterPhoneNumber: 'شماره تماس خود را وارد کنید',
+  enterAddress:'آدرس خود را وارد کنید',
   login: 'ورود',
   doYouWantAccount: 'آیا قبلا حساب کاربری داشتید؟',
   loginAccount: 'ورود به حساب کاربری',
@@ -32,7 +38,7 @@ export const signLocalization = {
   text1: 'با هر قطعه ای که انتخاب میکنید،داستانی از',
   text2: 'شکوه و زیبایی را روایت کنید.',
   text3: 'جواهرات و اکسسوری هایی که درخشش شما را',
-  text4: 'جاودانه می کنند.'
+  text4: 'جاودانه می کنند.',
 };
 
 
