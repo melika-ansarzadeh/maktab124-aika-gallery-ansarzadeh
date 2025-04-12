@@ -2,8 +2,11 @@ import { loginLocalization } from '@/constants/localization/localization';
 import Input from '@/shared/Inputs/Inputs';
 import Button from '@/shared/Button/Button';
 import Link from 'next/link';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 export default function Login() {
+  
   return (
     <div className="relative w-full h-[45.5rem] p-6 font-sahel">
       <div className="background-login absolute inset-0 bg-white/30 backdrop-blur-xl -z-10"></div>
@@ -14,12 +17,12 @@ export default function Login() {
             {loginLocalization.loginToAccount}
           </p>
           <Input
-            label={loginLocalization.email}
-            name="email"
-            type="email"
+            label={loginLocalization.username}
+            name="username"
+            type="text"
             className="p-3 w-72 text-xs rounded-md outline-none focus:border-2 focus:border-black"
             value=""
-            placeholder={loginLocalization.enterEmail}
+            placeholder={loginLocalization.enterUsername}
           />
           <Input
             label={loginLocalization.password}

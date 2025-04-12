@@ -75,7 +75,9 @@ export default function WebHeader() {
         <div className="flex justify-between text-xl pb-2 items-center gap-8 mr-12">
           <IoMdHeartEmpty className="text-custom-400" />
           <LiaShoppingBagSolid className="text-custom-400" />
-          <FaRegUser className="text-custom-400 font-thin" />
+          <Link href="login">
+            <FaRegUser className="text-custom-400 text-lg" />
+          </Link>
         </div>
       </div>
     </div>

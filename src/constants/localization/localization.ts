@@ -1,14 +1,16 @@
 export const loginLocalization = {
   loginToAccount: 'ورود به حساب کاربری',
-  email: 'ایمیل',
+  username: 'نام کاربری',
   password: 'رمز عبور',
-  enterEmail:'ایمیل خود را وارد کنید',
+  enterUsername:'نام کاربری خود را وارد کنید',
   enterPassword:'رمز عبور خود را وارد کنید',
   fogetPassword: 'فراموشی رمز عبور',
   login: 'ورود',
   loginWithOther: 'ورود با حساب گوگل',
   doYouWantAccount: 'آیا قبلا حساب کاربری نداشتید؟',
   signUp: 'ساخت حساب کاربری',
+  usernameValidate:'نام کاربری الزامی است',
+  passwordriquired:'رمز عبور اجباری است',
 };
 
 export const signLocalization = {
