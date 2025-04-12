@@ -7,8 +7,14 @@
   src: url(./../../assets/fonts/Sahel.ttf)
 }
 
-.background {
-    background-image: url(./../../assets/images/background.png);
+.background-login {
+    background-image: url(./../../assets/images/backgound.login.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.background-signUp {
+    background-image: url(./../../assets/images/background.signup.png);
     background-size: cover;
     background-repeat: no-repeat;
 }

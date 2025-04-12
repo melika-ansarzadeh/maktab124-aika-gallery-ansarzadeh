@@ -1,18 +1,8 @@
 import AdFooter from '@/components/Layout/AdFooter/AdFooter';
 import AdHeader from '@/components/Layout/AdHeader/AdHeader';
 import { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css'
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Sidebar from '@/components/AdPanel/Sidebar/Sidebar';
 
 export const metadata: Metadata = {
   title: 'aika admin',
@@ -28,11 +18,16 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html dir='rtl' lang="fa">
-      <body className="min-h-screen flex flex-col">
-        <AdHeader />
-        <main className="flex-grow p-4">{children}</main>
-        <AdFooter />
+    <html dir="rtl" lang="fa">
+      <body className="grid grid-cols-[10%,90%]">
+        <div>
+          <Sidebar/>
+        </div>
+        <div>
+          <AdHeader />
+          <main className="flex-grow pl-7 pt-12">{children}</main>
+          <AdFooter />
+        </div>
       </body>
     </html>
   );

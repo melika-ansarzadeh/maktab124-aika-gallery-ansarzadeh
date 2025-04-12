@@ -1,4 +1,4 @@
-import { BASE_UEL } from '@/constants/api/api';
+import { BASE_URL } from '@/constants/api/api';
 import axios from 'axios';
 
 interface Ilogin {
@@ -6,12 +6,13 @@ interface Ilogin {
   password: string;
 }
 
-export const LoginUser = async ({username, password }: Ilogin) => {
+export const LoginUser = async ({ username, password }: Ilogin) => {
   try {
-    const response = await axios.post(`${BASE_UEL}/auth/login`, {
+    const response = await axios.post(`${BASE_URL}/api/auth/login`, {
       username,
       password,
     });
+     console.log(response);
     return response;
   } catch (error) {
     console.error(error);
