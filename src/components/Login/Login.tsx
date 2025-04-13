@@ -64,10 +64,10 @@ export default function Login() {
        }
        localStorage.setItem('token', response.data.token.accessToken);
       } else {
-        toast.error(loginLocalization.toasrerror);
+        toast.error(loginLocalization.toasterror);
       }
     } catch (error) {
-      toast.error(loginLocalization.toasrerror);
+      toast.error(loginLocalization.toasterror);
       console.error(error);
     } finally {
       setLoading(false);
@@ -116,7 +116,7 @@ export default function Login() {
             <button
               type="button"
               onClick={() => setShowPassword(prev => !prev)}
-              className="absolute left-3 bottom-1 transform -translate-y-1/2 text-lg text-custom-400"
+              className="absolute left-3 bottom-[2px] transform -translate-y-1/2 text-lg text-custom-400"
             >
               {showPassword ? <FaEye /> : <FaEyeSlash />}
             </button>
@@ -132,7 +132,7 @@ export default function Login() {
           </Link>
 
           <Button
-            type='submit'
+            type="submit"
             className="bg-gray-100 text-gray-500 w-24 h-9 pb-1 rounded-lg active:scale-95"
             children={loginLocalization.login}
           />
@@ -149,9 +149,8 @@ export default function Login() {
             </Link>
           </div>
         </form>
-
-        {loading && <Loading />}
       </div>
+      {loading && <Loading />}
     </div>
   );
 }

@@ -14,7 +14,7 @@ export const loginLocalization = {
   passwordriquired: 'رمز عبور اجباری است',
   passwordvalidate: 'رمز عبور دارای 8 کارکتر و ترکیبی از اعداد و حروف انگلیسی باشد',
   toastsuccess: 'ورود با موفقیت انجام شد',
-  toasrerror: 'ورود موفقیت امیز نبود',
+  toasterror: 'ورود موفقیت امیز نبود',
 };
 
 export const signLocalization = {
@@ -30,7 +30,7 @@ export const signLocalization = {
   enterUsername: 'نام کاربری خود را وارد کنید',
   enterPassword: 'رمز عبور خود را وارد کنید',
   enterPhoneNumber: 'شماره تماس خود را وارد کنید',
-  enterAddress:'آدرس خود را وارد کنید',
+  enterAddress: 'آدرس خود را وارد کنید',
   login: 'ورود',
   doYouWantAccount: 'آیا قبلا حساب کاربری داشتید؟',
   loginAccount: 'ورود به حساب کاربری',
@@ -39,6 +39,18 @@ export const signLocalization = {
   text2: 'شکوه و زیبایی را روایت کنید.',
   text3: 'جواهرات و اکسسوری هایی که درخشش شما را',
   text4: 'جاودانه می کنند.',
+  firstnameriquired: 'نام الزامی است',
+  lastnameriquired: 'نام خانوادگی الزامی است',
+  usernameriquired: 'نام کاربری الزامی است',
+  usernamevalidate:
+    ' نام کاربری بین 3 تا 20 کارکتر و ترکیبی از حروف انگلیسی باشد ',
+  passwordriquired: 'رمز عبور اجباری است',
+  passwordvalidate:
+    'رمز عبور دارای 8 کارکتر و ترکیبی از اعداد و حروف انگلیسی باشد',
+  phoneNumberriquired: 'شماره تماس الزامی است',
+  addressriquired: 'آدرس الزامی است',
+  toastsuccess: 'ثبت نام با موفقیت انجام شد',
+  toasterror: 'ثبت نام موفقیت امیز نبود',
 };
 
 
