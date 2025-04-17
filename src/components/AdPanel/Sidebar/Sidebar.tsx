@@ -12,7 +12,7 @@ import { usePathname } from 'next/navigation';
 export default function Sidebar() {
    const pathname = usePathname();
   return (
-    <div className=" h-screen px-8 py-6 flex flex-col justify-center overflow-hidden ">
+    <div className=" h-screen mr-4 py-6 w-20 flex flex-col justify-center overflow-hidden ">
       <div className="h-screen w-full bg-custom-100 rounded-3xl shadow-xl flex flex-col justify-evenly gap-20 text-2xl items-center ">
         <div className="flex flex-col items-center justify-center gap-10">
           <Link

@@ -1,7 +1,7 @@
 import { BASE_URL } from '@/constants/api/api';
 import axios from 'axios';
 
-interface Iaddproducts {
+export interface Iaddproducts {
   name: string;
   category: string;
   subcategory: string;

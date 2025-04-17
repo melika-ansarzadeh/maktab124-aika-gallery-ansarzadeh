@@ -1,10 +1,10 @@
-'use client'
+'use client';
 import { loginLocalization } from '@/constants/localization/localization';
 import Input from '@/shared/Inputs/Inputs';
 import Button from '@/shared/Button/Button';
 import Link from 'next/link';
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import Loading from '../Loading/Loading';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify';
@@ -57,10 +57,10 @@ export default function Login() {
         toast.success(loginLocalization.toastsuccess);
 
         if (userData.role?.toLowerCase() === 'admin') {
-          router.push('/homeAd'); // هدایت به صفحه ادمین
+          router.push('/homeAd');
           console.log('User data:', userData);
         } else {
-          router.push('/'); // هدایت به صفحه خانگی
+          router.push('/');
         }
         localStorage.setItem('token', response.data.token.accessToken);
       } else {

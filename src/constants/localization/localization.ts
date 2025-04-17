@@ -63,3 +63,27 @@ export const headerlocalization={
   searchProducts:"جستجوی محصول",
   search:"جستجو"
 }
+
+export const addproductlocalization = {
+  name: 'نام محصول',
+  category: 'دسته',
+  subcategory: 'زیر دسته',
+  price: 'قیمت',
+  quantity: 'تعداد',
+  brand: 'برند',
+  description: 'توضیحات',
+  made: 'کشور ساخت',
+  material: 'جنس',
+  decoration: 'تزئینات',
+  stock: 'موجودی',
+  image: 'تصویر',
+};
+
+export const tablelocalization = {
+  sort: 'مرتب سازی بر اساس',
+  newest: 'جدید ترین',
+  cheap: 'ارزان ترین',
+  expensive:'گران ترین',
+  oldest:'قدیمی ترین',
+  addproduct:'افزودن محصول جدید'
+};
