@@ -7,10 +7,17 @@ import { FaUsers } from 'react-icons/fa';
 import { TiDocumentText } from 'react-icons/ti';
 import { MdOutlineLogout } from 'react-icons/md';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import Button from '@/shared/Button/Button';
 
 export default function Sidebar() {
+  const router = useRouter();
    const pathname = usePathname();
+
+   const handleLogout = ()=>{
+    localStorage.removeItem('token')
+    router.push('/login')
+   }
   return (
     <div className=" h-screen mr-4 py-6 w-20 flex flex-col justify-center overflow-hidden ">
       <div className="h-screen w-full bg-custom-100 rounded-3xl shadow-xl flex flex-col justify-evenly gap-20 text-2xl items-center ">
@@ -66,7 +73,7 @@ export default function Sidebar() {
             <FaUsers />
           </Link>
         </div>
-        <MdOutlineLogout />
+        <Button children={<MdOutlineLogout />} onClick={handleLogout}/>
       </div>
     </div>
   );
