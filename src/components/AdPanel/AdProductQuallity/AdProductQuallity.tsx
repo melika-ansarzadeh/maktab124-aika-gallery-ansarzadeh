@@ -13,7 +13,7 @@ type ProductTableProps = {
   rowsPerPage?: number;
 };
 
-export default function ProductTable({ rowsPerPage = 8 }: ProductTableProps) {
+export default function ProductQuallity({ rowsPerPage = 8 }: ProductTableProps) {
   const [data, setData] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
