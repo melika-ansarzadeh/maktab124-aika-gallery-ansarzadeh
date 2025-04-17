@@ -20,7 +20,6 @@ export const SignUser = async ({firstname,lastname,username,password,phoneNumber
       phoneNumber,
       address,
     });
-    console.log(response)
     return response;  
     } catch (error){
         console.log(error)

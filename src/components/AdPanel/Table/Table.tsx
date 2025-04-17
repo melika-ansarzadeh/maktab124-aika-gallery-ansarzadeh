@@ -3,7 +3,10 @@
 import { tablelocalization } from '@/constants/localization/localization';
 import Button from '@/shared/Button/Button';
 import { useState } from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { AiOutlineEdit } from 'react-icons/ai';
+import { CiEdit } from 'react-icons/ci';
+import { FaChevronLeft, FaChevronRight, FaRegTrashAlt } from 'react-icons/fa';
+
 
 type TableProps = {
   columns: {
@@ -29,20 +32,14 @@ export default function Table({
   }
 
   const sortedData = [...data].sort((a, b) => {
-    if (sortOption === 'expensive') {
-      return b.price - a.price;
-    }
-    if (sortOption === 'cheap') {
-      return a.price - b.price;
-    }
-    if (sortOption === 'newest') {
+    if (sortOption === 'expensive') return b.price - a.price;
+    if (sortOption === 'cheap') return a.price - b.price;
+    if (sortOption === 'newest')
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-    }
     return 0;
   });
 
   const totalPages = Math.ceil(sortedData.length / rowsPerPage);
-
   const startIndex = (page - 1) * rowsPerPage;
   const paginatedData = sortedData.slice(startIndex, startIndex + rowsPerPage);
 
@@ -51,21 +48,18 @@ export default function Table({
     const maxPagesToShow = 3;
     let start = Math.max(page - 1, 1);
     let end = Math.min(start + maxPagesToShow - 1, totalPages);
-
     if (end - start < maxPagesToShow - 1) {
       start = Math.max(end - maxPagesToShow + 1, 1);
     }
-
     for (let i = start; i <= end; i++) {
       range.push(i);
     }
-
     return range;
   };
 
   return (
     <div>
-      <div className='flex justify-between pl-2 items-center'>
+      <div className="flex justify-between pl-2 items-center">
         <div className="flex items-center gap-3 -mr-6 mb-5 font-sahel">
           <p>{tablelocalization.sort}:</p>
           <select
@@ -74,15 +68,18 @@ export default function Table({
             className="px-3 py-2 rounded-lg border"
           >
             <option value="newest">{tablelocalization.newest}</option>
-            <option value="oldes">{tablelocalization.oldest}</option>
+            <option value="oldest">{tablelocalization.oldest}</option>
             <option value="expensive">{tablelocalization.expensive}</option>
             <option value="cheap">{tablelocalization.cheap}</option>
           </select>
         </div>
         <div>
-          <Button className='bg-custom-200 rounded-lg p-3 active:scale-95 text-sm font-semibold' children={tablelocalization.addproduct} />
+          <Button className="bg-custom-200 rounded-lg p-3 active:scale-95 text-sm font-semibold">
+            {tablelocalization.addproduct}
+          </Button>
         </div>
       </div>
+
       <div className="overflow-x-auto rounded-[2rem] border border-custom-500 bg-gradient-to-br from-custom-100 via-white to-custom-100 shadow-[0_8px_30px_rgba(0,0,0,0.05)] py-6 px-3 -mr-9 space-y-4 transition-all">
         <div className="overflow-hidden rounded-xl border border-custom-500 shadow-inner backdrop-blur-md">
           <table className="min-w-full text-sm font-medium">
@@ -97,6 +94,9 @@ export default function Table({
                     {col.title}
                   </th>
                 ))}
+                <th className="px-6 py-4 text-center whitespace-nowrap">
+                  عملیات
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-custom-500 bg-white font-sahel text-sm font-medium">
@@ -108,7 +108,7 @@ export default function Table({
                   {columns.map(col => (
                     <td
                       key={col.key}
-                      className="py-4 px-2 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px] transition-all duration-200"
+                      className="py-4 px-1 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px] transition-all duration-200"
                       title={
                         typeof row[col.key] === 'string' ? row[col.key] : ''
                       }
@@ -118,6 +118,19 @@ export default function Table({
                         : row[col.key]}
                     </td>
                   ))}
+                  <td className="py-4 px-1 text-center whitespace-nowrap">
+                    <div className="flex justify-center items-center gap-3">
+                      <button
+                        className="hover:text-blue-600 text-lg transition-all duration-200"
+                        title="ویرایش"
+                      >
+                        <AiOutlineEdit />
+                      </button>
+                      <button className="hover:text-red-600 transition-all duration-200">
+                        <FaRegTrashAlt />
+                      </button>
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>

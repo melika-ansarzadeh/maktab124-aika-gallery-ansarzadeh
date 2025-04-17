@@ -72,7 +72,7 @@ export const addproductlocalization = {
   quantity: 'تعداد',
   brand: 'برند',
   description: 'توضیحات',
-  made: 'کشور ساخت',
+  made: 'ساخت',
   material: 'جنس',
   decoration: 'تزئینات',
   stock: 'موجودی',
@@ -82,8 +82,11 @@ export const addproductlocalization = {
 export const tablelocalization = {
   sort: 'مرتب سازی بر اساس',
   newest: 'جدید ترین',
-  cheap: 'ارزان ترین',
-  expensive:'گران ترین',
+  cheap: 'ارزون ترین',
+  expensive:'گرون ترین',
   oldest:'قدیمی ترین',
-  addproduct:'افزودن محصول جدید'
+  addproduct:'افزودن محصول جدید',
+  delete:'حذف',
+  edit:'ویرایش',
+  save:'ذخیره'
 };

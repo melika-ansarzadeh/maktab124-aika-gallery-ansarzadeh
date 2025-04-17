@@ -5,7 +5,7 @@ import { addproductlocalization } from '@/constants/localization/localization';
 import { GetProducts } from '@/services/getProducts/getProducts';
 import { Iaddproducts } from '@/services/addProduct/addProduct';
 import Table from '../Table/Table';
-import Loading from '@/components/Loading/Loading';
+
 
 export default function AdProduct() {
   const [products, setProducts] = useState<Iaddproducts[]>([]);

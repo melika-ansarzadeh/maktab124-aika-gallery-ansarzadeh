@@ -12,7 +12,6 @@ export const LoginUser = async ({ username, password }: Ilogin) => {
       username,
       password,
     });
-     console.log(response);
     return response;
   } catch (error) {
     console.error(error);
