@@ -17,6 +17,7 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     <html dir="rtl" lang="fa">
       <body className="grid grid-cols-[10%,90%]">
