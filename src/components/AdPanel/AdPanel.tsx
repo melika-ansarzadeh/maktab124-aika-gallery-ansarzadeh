@@ -1,11 +1,14 @@
 import React from 'react'
+import Calendar from './Calendar/Calendar';
 
 export default function AdPanel() {
   return (
-    <div>
-        <h1 className="text-2xl font-bold flex justify-center items-center">
-          home
-        </h1>
+    <div className='flex flex-col'>
+        <div></div>
+        <div>
+          <div></div>
+          <Calendar/>
+        </div>
     </div>
   );
 }
