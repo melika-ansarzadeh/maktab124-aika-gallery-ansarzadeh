@@ -52,13 +52,14 @@ export default function ProductQuallity({ rowsPerPage = 8 }: ProductTableProps) 
         <p className="text-center text-gray-500">در حال بارگذاری...</p>
       ) : (
         <div className="font-sahel">
-          <div className="flex justify-end px-8">
+          <div className="flex justify-between items-center pr-5 pl-8">
+            <p className='font-semibold'>مدیریت موجودی و قیمت</p>
             <Button
               children={tablelocalization.save}
               className="my-3 py-2 px-8 rounded-lg bg-custom-200 active:scale-90"
             />
           </div>
-          <div className="overflow-x-auto rounded-[2rem] border border-custom-500 bg-gradient-to-br from-custom-100 via-white to-custom-100 shadow-[0_8px_30px_rgba(0,0,0,0.05)] py-6 px-3 -mr-9 space-y-4 transition-all">
+          <div className="overflow-x-auto rounded-[2rem] border border-custom-500 bg-gradient-to-br from-custom-100 via-white to-custom-100 shadow-[0_8px_30px_rgba(0,0,0,0.05)] py-6 px-3 -mr-5 space-y-4 transition-all">
             <div className="overflow-hidden rounded-xl border border-custom-500 shadow-inner backdrop-blur-md">
               <table className="min-w-full text-sm font-medium">
                 <thead className="bg-custom-400 text-xs uppercase font-sahel tracking-wider">

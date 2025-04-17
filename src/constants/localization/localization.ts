@@ -98,3 +98,9 @@ export const userlocalization = {
   phoneNumber: 'شماره تماس',
   address: 'آدرس',
 };
+
+export const orderslocalization = {
+  deliveryDate: 'زمان ثبت سفارش',
+
+  
+};
