@@ -1,8 +1,8 @@
-import AdFooter from '@/components/Layout/AdFooter/AdFooter';
 import AdHeader from '@/components/Layout/AdHeader/AdHeader';
 import { Metadata } from 'next';
 import './globals.css'
 import Sidebar from '@/components/AdPanel/Sidebar/Sidebar';
+import ProtectedRoute from '@/components/PrivateRoute/PrivateRoute';
 
 export const metadata: Metadata = {
   title: 'aika admin',
@@ -21,13 +21,15 @@ export default function AdminLayout({
   return (
     <html dir="rtl" lang="fa">
       <body className="grid grid-cols-[10%,90%]">
-        <div>
-          <Sidebar/>
-        </div>
-        <div>
-          <AdHeader />
-          <main className="flex-grow pl-4 -pt-4">{children}</main>
-        </div>
+        <ProtectedRoute>
+          <div>
+            <Sidebar />
+          </div>
+          <div>
+            <AdHeader />
+            <main className="flex-grow pl-4 -pt-4">{children}</main>
+          </div>
+        </ProtectedRoute>
       </body>
     </html>
   );

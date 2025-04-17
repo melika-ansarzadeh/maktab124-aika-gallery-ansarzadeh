@@ -53,16 +53,18 @@ export default function Login() {
 
       if (response?.status === 200) {
         const userData = response.data.data.user;
+        const token = response.data.token.accessToken;
+
+        localStorage.setItem('token', token);
         localStorage.setItem('user', JSON.stringify(userData));
+
         toast.success(loginLocalization.toastsuccess);
 
         if (userData.role?.toLowerCase() === 'admin') {
           router.push('/homeAd');
-          console.log('User data:', userData);
         } else {
           router.push('/');
         }
-        localStorage.setItem('token', response.data.token.accessToken);
       } else {
         toast.error(loginLocalization.toasterror);
       }
@@ -73,6 +75,7 @@ export default function Login() {
       setLoading(false);
     }
   };
+
 
   return (
     <div className="relative w-full h-[45.5rem] p-6 font-sahel">

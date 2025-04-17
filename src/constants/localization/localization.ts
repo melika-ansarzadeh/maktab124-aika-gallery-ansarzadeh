@@ -90,3 +90,11 @@ export const tablelocalization = {
   edit:'ویرایش',
   save:'ذخیره'
 };
+
+export const userlocalization = {
+  name: 'نام',
+  lastname: 'نام خانوادگی',
+  username: 'نام کاربری',
+  phoneNumber: 'شماره تماس',
+  address: 'آدرس',
+};
