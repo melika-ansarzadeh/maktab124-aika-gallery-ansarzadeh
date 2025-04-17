@@ -78,7 +78,6 @@ export default function FancyTable({
         </table>
       </div>
 
-      {/* Pagination */}
       <div className="flex flex-col md:flex-row items-center justify-between text-sm gap-3">
         <span className="text-xs">
           نمایش <b>{startIndex + 1}</b> تا{' '}

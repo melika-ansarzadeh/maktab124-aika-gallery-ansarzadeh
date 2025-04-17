@@ -1,0 +1,12 @@
+import { BASE_URL } from '@/constants/api/api';
+import axios from 'axios';
+
+export const GetProducts = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/api/products`);
+    return response;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
