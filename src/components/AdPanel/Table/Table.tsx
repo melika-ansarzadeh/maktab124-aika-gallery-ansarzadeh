@@ -4,7 +4,6 @@ import { tablelocalization } from '@/constants/localization/localization';
 import Button from '@/shared/Button/Button';
 import { useState } from 'react';
 import { AiOutlineEdit } from 'react-icons/ai';
-import { CiEdit } from 'react-icons/ci';
 import { FaChevronLeft, FaChevronRight, FaRegTrashAlt } from 'react-icons/fa';
 
 
@@ -59,9 +58,9 @@ export default function Table({
 
   return (
     <div>
-      <div className="flex justify-between pl-2 items-center">
-        <div className="flex items-center gap-3 -mr-6 mb-5 font-sahel">
-          <p>{tablelocalization.sort}:</p>
+      <div className="flex justify-between pl-2 font-number items-center">
+        <div className="flex items-center gap-3 -mr-5 mb-5 font-sahel">
+          <p className='font-semibold'>{tablelocalization.sort}:</p>
           <select
             value={sortOption}
             onChange={e => setSortOption(e.target.value)}
@@ -74,7 +73,7 @@ export default function Table({
           </select>
         </div>
         <div>
-          <Button className="bg-custom-200 rounded-lg p-3 active:scale-95 text-sm font-semibold">
+          <Button className="bg-white border border-custom-300 rounded-lg p-3 active:scale-95 text-sm font-semibold">
             {tablelocalization.addproduct}
           </Button>
         </div>
@@ -122,7 +121,6 @@ export default function Table({
                     <div className="flex justify-center items-center gap-3">
                       <button
                         className="hover:text-blue-600 text-lg transition-all duration-200"
-                        title="ویرایش"
                       >
                         <AiOutlineEdit />
                       </button>

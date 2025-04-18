@@ -77,6 +77,8 @@ export const addproductlocalization = {
   decoration: 'تزئینات',
   stock: 'موجودی',
   image: 'تصویر',
+  managmentpricestock: 'مدیریت موجودی و قیمت',
+  toman:'تومان'
 };
 
 export const tablelocalization = {
@@ -97,10 +99,33 @@ export const userlocalization = {
   username: 'نام کاربری',
   phoneNumber: 'شماره تماس',
   address: 'آدرس',
+  list:'لیست کاربران'
+};
+
+export const notfoundlocalization = {
+  notfound: 'صفحه‌ای که دنبالشی پیدا نشد!',
+  goback: '  برو صفحه اصلی',
 };
 
 export const orderslocalization = {
   deliveryDate: 'زمان ثبت سفارش',
+  review: 'بررسی',
+  delivered: 'تحویل داده شده',
+  managmentordr: 'بررسی سفارش',
+  statusdelivered: 'وضعیت تحویل',
+  Dateofregistration : 'تاریخ سفارش',
+  price:'مجموع قیمت',
+  name:'نام کاربر',
+  managment:'مدیریت سفارش ها',
+  all :'همه سفارش ها',
+  notdelivered:'در انتظار تحویل',
 
-  
+};
+
+export const homeadlocalization = {
+  chartorders: ' نمودار وضعیت سفارش‌ها',
+};
+
+export const loadinglocalization = {
+  loading: 'در حال بارگذاری...',
 };

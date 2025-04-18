@@ -5,19 +5,10 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { GetOrders } from '@/services/getOrders/getOrders';
 import {
   addproductlocalization,
+  loadinglocalization,
+  orderslocalization,
   tablelocalization,
 } from '@/constants/localization/localization';
-
-type Order = {
-  _id: string;
-  user: {
-    firstname: string;
-    lastname: string;
-  };
-  totalPrice: number;
-  createdAt: string;
-  deliveryStatus: boolean;
-};
 
 type ProductTableProps = {
   rowsPerPage?: number;
@@ -30,15 +21,23 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
   const [filter, setFilter] = useState<'all' | 'delivered' | 'notDelivered'>(
     'all'
   );
+  const deliveredCount = data.filter(order => order.deliveryStatus).length;
+  const notDeliveredCount = data.filter(order => !order.deliveryStatus).length;
+
+  const chartData = [
+    { name: 'تحویل داده شده', value: deliveredCount },
+    { name: 'در انتظار تحویل', value: notDeliveredCount },
+  ];
+
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       const orders = await GetOrders();
-      console.log('Full orders data:', orders); // چاپ داده‌ها برای بررسی ساختار
-      const orderData = orders; // استفاده مستقیم از orders به جای orders?.data?.data?.orders
+      console.log('Full orders data:', orders);
+      const orderData = orders;
       if (orderData) {
-        console.log('Order data:', orderData); // چاپ داده‌های سفارشات
+        console.log('Order data:', orderData);
         setData(orderData);
       } else {
         console.log('No orders found or invalid data structure');
@@ -79,20 +78,20 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
   return (
     <div>
       {loading ? (
-        <p className="text-center text-gray-500">در حال بارگذاری...</p>
+        <p className="text-center text-gray-500">{loadinglocalization.loading}</p>
       ) : (
         <div className="font-sahel">
           <div className="flex justify-between items-center">
-            <p className='font-semibold'>مدیریت سفارش ها</p>
-            <div className="flex justify-end px-8 gap-4 my-4">
+            <p className='font-semibold'>{orderslocalization.managment}</p>
+            <div className="flex justify-end px-2 gap-4 my-4">
               <select
                 className="border border-custom-300 rounded-md px-3 py-1 text-sm font-sahel"
                 value={filter}
                 onChange={e => setFilter(e.target.value as any)}
               >
-                <option value="all">همه سفارش‌ها</option>
-                <option value="delivered">تحویل داده شده</option>
-                <option value="notDelivered">تحویل نشده</option>
+                <option value="all">{orderslocalization.all}</option>
+                <option value="delivered">{orderslocalization.delivered}</option>
+                <option value="notDelivered">{orderslocalization.notdelivered}</option>
               </select>
             </div>
           </div>
@@ -102,19 +101,19 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
                 <thead className="bg-custom-400 text-xs uppercase font-sahel tracking-wider">
                   <tr className="transition-all duration-300">
                     <th className="px-6 py-4 text-center whitespace-nowrap">
-                      {addproductlocalization.name}
+                      {orderslocalization.name}
+                    </th>
+                    <th className="px-6 py-4 text-center font-number whitespace-nowrap">
+                      {orderslocalization.price}
                     </th>
                     <th className="px-6 py-4 text-center whitespace-nowrap">
-                      {tablelocalization.cheap}
+                      {orderslocalization.Dateofregistration}
                     </th>
                     <th className="px-6 py-4 text-center whitespace-nowrap">
-                      {tablelocalization.cheap}
+                     {orderslocalization.statusdelivered}
                     </th>
                     <th className="px-6 py-4 text-center whitespace-nowrap">
-                      وضعیت تحویل
-                    </th>
-                    <th className="px-6 py-4 text-center whitespace-nowrap">
-                      بررسی سفارش
+                     {orderslocalization.managmentordr}
                     </th>
                   </tr>
                 </thead>
@@ -128,7 +127,7 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
                         {order.user.firstname} {order.user.lastname}
                       </td>
                       <td className="py-4 px-1 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px]">
-                        {order.totalPrice.toLocaleString()} تومان
+                        {order.totalPrice.toLocaleString()} {addproductlocalization.toman}
                       </td>
                       <td className="py-4 px-1 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px]">
                         {new Date(order.createdAt).toLocaleDateString('fa-IR')}
@@ -140,7 +139,7 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
                       </td>
                       <td className="py-4 px-1 text-center whitespace-nowrap">
                         <button className="text-blue-500 hover:underline">
-                          بررسی
+                         {orderslocalization.review}
                         </button>
                       </td>
                     </tr>
@@ -149,7 +148,7 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
               </table>
             </div>
 
-            <div className="flex flex-col md:flex-row items-center justify-between text-sm gap-3">
+            <div className="flex flex-col md:flex-row font-number items-center justify-between text-sm gap-3">
               <span className="text-xs">
                 نمایش <b>{startIndex + 1}</b> تا{' '}
                 <b>

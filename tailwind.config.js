@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sahel: ['Sahel', 'sans-serif'],
+        number: ['number', 'sans-serif'],
       },
       colors: {
         custom: {

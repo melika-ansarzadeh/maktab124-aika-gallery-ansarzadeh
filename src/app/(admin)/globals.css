@@ -6,3 +6,8 @@
   font-family: sahel;
   src: url(./../../assets/fonts/Sahel.ttf)
 }
+
+@font-face {
+  font-family: number;
+  src: url(./../../assets/fonts/Dirooz-FD.woff2);
+}

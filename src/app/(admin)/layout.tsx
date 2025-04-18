@@ -20,7 +20,7 @@ export default function AdminLayout({
 
   return (
     <html dir="rtl" lang="fa">
-      <body className="grid grid-cols-[10%,90%]">
+      <body className="grid grid-cols-[10%,90%] bg-custom-50">
         <ProtectedRoute>
           <div>
             <Sidebar />

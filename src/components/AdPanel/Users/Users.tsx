@@ -1,8 +1,13 @@
-'use client'
+'use client';
 import { useEffect, useState } from 'react';
-
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Button from '@/shared/Button/Button';
+import axios from 'axios';
+import { BASE_URL } from '@/constants/api/api';
+import {
+  loadinglocalization,
+  userlocalization,
+} from '@/constants/localization/localization';
 
 type User = {
   name: string;
@@ -21,17 +26,28 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
 
- useEffect(() => {
-   const fetchData = async () => {
-     const token = localStorage.getItem('access_token'); // or however you're storing the token
-     if (token) {
-       const users = await getAllUsers(token);
-       setUsers(users);
-     }
-   };
-   fetchData();
- }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const res = await axios.get(`${BASE_URL}/api/users`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUsers(res.data);
+        setData(res.data);
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching users:', err);
+        setLoading(false);
+      }
+    };
 
+    fetchData();
+  }, []);
+
+  const token = localStorage.getItem('token');
 
   const totalPages = Math.ceil(data.length / rowsPerPage);
   const startIndex = (page - 1) * rowsPerPage;
@@ -54,16 +70,21 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
   return (
     <div>
       {loading ? (
-        <p className="text-center text-gray-500">در حال بارگذاری...</p>
+        <p className="text-center text-gray-500">
+          {loadinglocalization.loading}
+        </p>
       ) : (
         <div className="font-sahel">
-          <div className="flex justify-end px-8">
-            <Button
-              children="ذخیره"
-              className="my-3 py-2 px-8 rounded-lg bg-custom-200 active:scale-90"
-            />
+          <div className='flex justify-between items-center'>
+            <p className="font-semibold -mr-3">{userlocalization.list}</p>
+            <div className="flex justify-end pl-3">
+              <Button
+                children="ذخیره"
+                className="my-3 py-2 px-8 rounded-lg border bg-white border-custom-200 active:scale-90"
+              />
+            </div>
           </div>
-          <div className="overflow-x-auto rounded-[2rem] border border-custom-500 bg-gradient-to-br from-custom-100 via-white to-custom-100 shadow-[0_8px_30px_rgba(0,0,0,0.05)] py-6 px-3 -mr-9 space-y-4 transition-all">
+          <div className="overflow-x-auto rounded-[2rem] font-number border border-custom-500 bg-gradient-to-br from-custom-100 via-white to-custom-100 shadow-[0_8px_30px_rgba(0,0,0,0.05)] py-6 px-3 -mr-9 space-y-4 transition-all">
             <div className="overflow-hidden rounded-xl border border-custom-500 shadow-inner backdrop-blur-md">
               <table className="min-w-full text-sm font-medium">
                 <thead className="bg-custom-400 text-xs uppercase font-sahel tracking-wider">
@@ -157,11 +178,11 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
     </div>
   );
 }
-function setUsers(users: any) {
-    throw new Error('Function not implemented.');
+
+function GetAllUsers(token: string) {
+  throw new Error('Function not implemented.');
 }
 
-function getAllUsers(token: string) {
-    throw new Error('Function not implemented.');
+function setUsers(users: void) {
+  throw new Error('Function not implemented.');
 }
-

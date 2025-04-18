@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { addproductlocalization } from '@/constants/localization/localization';
+import { addproductlocalization, loadinglocalization } from '@/constants/localization/localization';
 import { GetProducts } from '@/services/getProducts/getProducts';
 import { Iaddproducts } from '@/services/addProduct/addProduct';
 import Table from '../Table/Table';
@@ -75,7 +75,7 @@ export default function AdProduct() {
         return (
           <img
             src={`http://${imageUrl}`}
-            alt="محصول"
+            alt="image"
             className="h-12 w-12 object-cover rounded-lg mx-auto"
           />
         );
@@ -102,7 +102,7 @@ export default function AdProduct() {
   return (
     <div className="p-4">
       {loading ? (
-        <p className="text-center text-gray-500">در حال بارگذاری...</p>
+        <p className="text-center text-gray-500">{loadinglocalization.loading}</p>
       ) : (
         <Table columns={columns} data={products} rowsPerPage={5} />
       )}

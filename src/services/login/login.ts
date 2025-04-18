@@ -12,7 +12,7 @@ export const LoginUser = async ({ username, password }: Ilogin) => {
       username,
       password,
     });
-      localStorage.setItem('adminAccessToken', response.data.token);
+    localStorage.setItem('token', response.data.token);
     return response;
   } catch (error) {
     console.error(error);

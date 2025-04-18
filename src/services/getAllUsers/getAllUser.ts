@@ -1,10 +1,15 @@
 import { BASE_URL } from "@/constants/api/api";
 import axios from "axios";
 
-const GetUsers = async () => {
+export const GetUsers = async (token?: string) => {
   try {
-    const response = await axios.get(`${BASE_URL}/api/users`);
-    console.log('Response:', response.data);
+    const response = await axios.get(`${BASE_URL}/api/users`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
   } catch (error) {
     console.error('Error fetching data:', error);
   }
