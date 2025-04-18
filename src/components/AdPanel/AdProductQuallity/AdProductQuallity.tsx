@@ -50,7 +50,7 @@ export default function ProductQuallity({ rowsPerPage = 8 }: ProductTableProps) 
   return (
     <div>
       {loading ? (
-        <p className="text-center text-gray-500">{loadinglocalization.loading}</p>
+        <p className="text-center font-sahel text-sm text-gray-500">{loadinglocalization.loading}</p>
       ) : (
         <div className="font-sahel">
           <div className="flex justify-between items-center pl-3">

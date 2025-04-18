@@ -102,7 +102,9 @@ export default function AdProduct() {
   return (
     <div className="p-4">
       {loading ? (
-        <p className="text-center text-gray-500">{loadinglocalization.loading}</p>
+        <p className="text-center font-sahel text-xs text-gray-500">
+          {loadinglocalization.loading}
+        </p>
       ) : (
         <Table columns={columns} data={products} rowsPerPage={5} />
       )}

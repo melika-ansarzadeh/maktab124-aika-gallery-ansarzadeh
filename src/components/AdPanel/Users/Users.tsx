@@ -70,12 +70,12 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
   return (
     <div>
       {loading ? (
-        <p className="text-center text-gray-500">
+        <p className="text-center font-sahel text-xs text-gray-500">
           {loadinglocalization.loading}
         </p>
       ) : (
         <div className="font-sahel">
-          <div className='flex justify-between items-center'>
+          <div className="flex justify-between items-center">
             <p className="font-semibold -mr-3">{userlocalization.list}</p>
             <div className="flex justify-end pl-3">
               <Button

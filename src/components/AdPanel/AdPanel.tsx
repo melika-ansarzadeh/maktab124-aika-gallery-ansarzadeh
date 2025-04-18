@@ -31,7 +31,7 @@ export default function AdPanel() {
   return (
     <div className='-mr-3'>
       {loading ? (
-        <p className="text-center text-gray-500">
+        <p className="text-center font-sahel text-xs text-gray-500">
           {loadinglocalization.loading}
         </p>
       ) : (

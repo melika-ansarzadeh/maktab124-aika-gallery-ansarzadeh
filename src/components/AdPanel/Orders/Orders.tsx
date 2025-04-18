@@ -78,11 +78,13 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
   return (
     <div>
       {loading ? (
-        <p className="text-center text-gray-500">{loadinglocalization.loading}</p>
+        <p className="text-center font-sahel text-xs text-gray-500">
+          {loadinglocalization.loading}
+        </p>
       ) : (
         <div className="font-sahel">
           <div className="flex justify-between items-center">
-            <p className='font-semibold'>{orderslocalization.managment}</p>
+            <p className="font-semibold">{orderslocalization.managment}</p>
             <div className="flex justify-end px-2 gap-4 my-4">
               <select
                 className="border border-custom-300 rounded-md px-3 py-1 text-sm font-sahel"
@@ -90,8 +92,12 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
                 onChange={e => setFilter(e.target.value as any)}
               >
                 <option value="all">{orderslocalization.all}</option>
-                <option value="delivered">{orderslocalization.delivered}</option>
-                <option value="notDelivered">{orderslocalization.notdelivered}</option>
+                <option value="delivered">
+                  {orderslocalization.delivered}
+                </option>
+                <option value="notDelivered">
+                  {orderslocalization.notdelivered}
+                </option>
               </select>
             </div>
           </div>
@@ -110,10 +116,10 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
                       {orderslocalization.Dateofregistration}
                     </th>
                     <th className="px-6 py-4 text-center whitespace-nowrap">
-                     {orderslocalization.statusdelivered}
+                      {orderslocalization.statusdelivered}
                     </th>
                     <th className="px-6 py-4 text-center whitespace-nowrap">
-                     {orderslocalization.managmentordr}
+                      {orderslocalization.managmentordr}
                     </th>
                   </tr>
                 </thead>
@@ -127,7 +133,8 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
                         {order.user.firstname} {order.user.lastname}
                       </td>
                       <td className="py-4 px-1 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px]">
-                        {order.totalPrice.toLocaleString()} {addproductlocalization.toman}
+                        {order.totalPrice.toLocaleString()}{' '}
+                        {addproductlocalization.toman}
                       </td>
                       <td className="py-4 px-1 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px]">
                         {new Date(order.createdAt).toLocaleDateString('fa-IR')}
@@ -139,7 +146,7 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
                       </td>
                       <td className="py-4 px-1 text-center whitespace-nowrap">
                         <button className="text-blue-500 hover:underline">
-                         {orderslocalization.review}
+                          {orderslocalization.review}
                         </button>
                       </td>
                     </tr>
