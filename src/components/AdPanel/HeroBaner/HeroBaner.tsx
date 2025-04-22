@@ -36,16 +36,16 @@ export default function HeoBaner() {
           <Image src={chanel} alt="chanel" quality={100} />
         </SwiperSlide>
         <SwiperSlide>
-          <Image src={tiffani} alt="tiffani" quality={100} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={versace} alt="versace" quality={100} />
+          <Image src={cartier} alt="cartier" quality={100} />
         </SwiperSlide>
         <SwiperSlide>
           <Image src={bvlgari} alt="bvlgari" quality={100} />
         </SwiperSlide>
         <SwiperSlide>
-          <Image src={cartier} alt="cartier" quality={100} />
+          <Image src={tiffani} alt="tiffani" quality={100} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image src={versace} alt="versace" quality={100} />
         </SwiperSlide>
       </Swiper>
     </>

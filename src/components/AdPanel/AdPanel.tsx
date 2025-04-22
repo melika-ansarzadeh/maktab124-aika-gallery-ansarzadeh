@@ -35,7 +35,7 @@ export default function AdPanel() {
           {loadinglocalization.loading}
         </p>
       ) : (
-        <div className="h-[14rem] ml-6">
+        <div className="h-[16rem] ml-6">
           <HeoBaner />
           <div className="flex justify-between items-center mt-5 ">
             <OrderPieChart chartData={chartData} />

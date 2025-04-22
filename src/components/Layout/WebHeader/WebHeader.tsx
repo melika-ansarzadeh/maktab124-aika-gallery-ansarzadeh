@@ -65,7 +65,7 @@ export default function WebHeader() {
             <span className="absolute right-0 bottom-0 h-[2px] w-0 bg-custom-400 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
           </Link>
           <Link
-            href="/blogs"
+            href="https://parasteh.com/blog/"
             className="relative inline-block group text-gray-800"
           >
             <span className="relative z-10"> {headerlocalization.blogs}</span>

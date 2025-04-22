@@ -28,11 +28,11 @@ const Calendar = () => {
     setCurrentMonth((prev: { clone: () => { (): any; new(): any; subtract: { (arg0: number, arg1: string): any; new(): any; }; }; }) => prev.clone().subtract(1, 'jMonth'));
 
   return (
-    <div className="w-[30rem] bg-gradient-to-br from-white via-slate-50 to-gray-100 rounded-2xl shadow-lg p-6 text-center font-sans">
+    <div className="w-[30rem] bg-gradient-to-br from-white via-slate-50 to-gray-100 rounded-2xl shadow-lg px-6 py-2 text-center font-sans">
       <div className="flex justify-between items-center mb-5">
         <button
           onClick={prevMonth}
-          className="text-gray-600 hover:text-blue-500 transition"
+          className="text-gray-600 hover:text-blue-500 text-2xl transition"
         >
           ‹
         </button>
@@ -41,7 +41,7 @@ const Calendar = () => {
         </h2>
         <button
           onClick={nextMonth}
-          className="text-gray-600 hover:text-blue-500 transition"
+          className="text-gray-600 hover:text-blue-500 text-2xl transition"
         >
           ›
         </button>

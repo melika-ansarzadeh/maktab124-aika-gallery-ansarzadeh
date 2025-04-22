@@ -1,8 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'leaflet/dist/leaflet.css';
+
 
 @font-face {
   font-family: sahel;
-  src: url(./../../assets/fonts/Sahel.ttf)
+  src: url(./../../assets/fonts/Sahel.ttf);
+}
+
+.suppot-bg {
+  background-image: url(./../../assets/images/support.png);
+  background-size: cover;
+  background-repeat: no-repeat;
 }

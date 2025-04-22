@@ -9,10 +9,12 @@ export const loginLocalization = {
   loginWithOther: 'ورود با حساب گوگل',
   doYouWantAccount: 'آیا قبلا حساب کاربری نداشتید؟',
   signUp: 'ساخت حساب کاربری',
-  usernamevalidate:' نام کاربری بین 3 تا 20 کارکتر و ترکیبی از حروف انگلیسی باشد ',
+  usernamevalidate:
+    ' نام کاربری بین 3 تا 20 کارکتر و ترکیبی از حروف انگلیسی باشد ',
   usernameriquired: 'نام کاربری الزامی است',
   passwordriquired: 'رمز عبور اجباری است',
-  passwordvalidate: 'رمز عبور دارای 8 کارکتر و ترکیبی از اعداد و حروف انگلیسی باشد',
+  passwordvalidate:
+    'رمز عبور دارای 8 کارکتر و ترکیبی از اعداد و حروف انگلیسی باشد',
   toastsuccess: 'ورود با موفقیت انجام شد',
   toasterror: 'ورود موفقیت امیز نبود',
 };
@@ -53,16 +55,15 @@ export const signLocalization = {
   toasterror: 'ثبت نام موفقیت امیز نبود',
 };
 
-
-export const headerlocalization={
-  brands:"برند ها",
-  aboutUs:"درباره ما",
-  callUs:"تماس با ما",
-  blogs:"بلاگ",
-  products:"محصولات",
-  searchProducts:"جستجوی محصول",
-  search:"جستجو"
-}
+export const headerlocalization = {
+  brands: 'برند ها',
+  aboutUs: 'درباره ما',
+  callUs: 'تماس با ما',
+  blogs: 'بلاگ',
+  products: 'محصولات',
+  searchProducts: 'جستجوی محصول',
+  search: 'جستجو',
+};
 
 export const addproductlocalization = {
   name: 'نام محصول',
@@ -78,19 +79,19 @@ export const addproductlocalization = {
   stock: 'موجودی',
   image: 'تصویر',
   managmentpricestock: 'مدیریت موجودی و قیمت',
-  toman:'تومان'
+  toman: 'تومان',
 };
 
 export const tablelocalization = {
   sort: 'مرتب سازی بر اساس',
   newest: 'جدید ترین',
   cheap: 'ارزون ترین',
-  expensive:'گرون ترین',
-  oldest:'قدیمی ترین',
-  addproduct:'افزودن محصول جدید',
-  delete:'حذف',
-  edit:'ویرایش',
-  save:'ذخیره'
+  expensive: 'گرون ترین',
+  oldest: 'قدیمی ترین',
+  addproduct: 'افزودن محصول جدید',
+  delete: 'حذف',
+  edit: 'ویرایش',
+  save: 'ذخیره',
 };
 
 export const userlocalization = {
@@ -99,7 +100,7 @@ export const userlocalization = {
   username: 'نام کاربری',
   phoneNumber: 'شماره تماس',
   address: 'آدرس',
-  list:'لیست کاربران'
+  list: 'لیست کاربران',
 };
 
 export const notfoundlocalization = {
@@ -113,13 +114,12 @@ export const orderslocalization = {
   delivered: 'تحویل داده شده',
   managmentordr: 'بررسی سفارش',
   statusdelivered: 'وضعیت تحویل',
-  Dateofregistration : 'تاریخ سفارش',
-  price:'مجموع قیمت',
-  name:'نام کاربر',
-  managment:'مدیریت سفارش ها',
-  all :'همه سفارش ها',
-  notdelivered:'در انتظار تحویل',
-
+  Dateofregistration: 'تاریخ سفارش',
+  price: 'مجموع قیمت',
+  name: 'نام کاربر',
+  managment: 'مدیریت سفارش ها',
+  all: 'همه سفارش ها',
+  notdelivered: 'در انتظار تحویل',
 };
 
 export const homeadlocalization = {
@@ -128,4 +128,28 @@ export const homeadlocalization = {
 
 export const loadinglocalization = {
   loading: 'در حال بارگذاری...',
+};
+
+export const contactuslocalization = {
+  contact: 'تماس با ما',
+  detailcontact: 'ما همیشه مشتاق شنیدن صدای شما هستیم.',
+  contactdetai2:
+    'ارتباط با شما باعث رشد و پیشرفت ما و آسودگی شما در خرید میشود.',
+  email: 'ایمیل',
+  phonenumber: 'شماره تماس',
+  name: 'نام',
+  message: 'پیام',
+  submit: 'ثبت',
+  toatssuccess: 'اطلاعات با موفقیت ثبت شد',
+  supporttittel: 'اخبار جدید ما',
+  supportp1: 'با پر کردن این فرم از تمامی',
+  supportp2: 'اخبار جدید مجموعه آیکا گالری',
+  supportp3: 'باخبر شوید.',
+  telp1: 'پشتیبانی همه روزه از ساعت 18-9 پاسخگوی',
+  telp2: 'تماس های شما هستیم.',
+  emailp1: 'ارتبط سریع و آسان از',
+  emailp2: 'طریق ایمیل',
+  iran:'در ایران زیبا منتظر هستیم',
+  locationp1:'تجربه ی یک خرید خاص ',
+  locationp2:'برای مراجعه حضوری , اینجاییم.',
 };

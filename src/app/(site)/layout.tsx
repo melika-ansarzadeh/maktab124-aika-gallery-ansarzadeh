@@ -2,6 +2,8 @@ import WebFooter from '@/components/Layout/WebFooter/WebFooter';
 import WebHeader from '@/components/Layout/WebHeader/WebHeader';
 import { Metadata } from 'next';
 import './globals.css'
+import 'leaflet/dist/leaflet.css';
+
 
 export const metadata: Metadata = {
   title: 'aika gallery',
