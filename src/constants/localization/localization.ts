@@ -197,5 +197,6 @@ export const footerlocalization = {
 };
   
 export const ordertracklocalization = {
-  text: 'برای پیگیری کد مرسوله پستی به یکی از شماره های موجود در لینک زیر پیام ارسال کنید.',
+  text: 'برای پیگیری کد مرسوله پستی روی لینک زیر کلیک کنید.',
+  click:'لینک پیگیری مرسولات پستی'
 };
