@@ -1,7 +1,6 @@
 'use client';
 import {
   contactuslocalization,
-  loginLocalization,
 } from '@/constants/localization/localization';
 import Button from '@/shared/Button/Button';
 import Input from '@/shared/Inputs/Inputs';
@@ -63,7 +62,7 @@ export default function Contact() {
           <Button
             className="bg-custom-200 py-2 px-6 rounded-2xl active:scale-95"
             children={contactuslocalization.submit}
-            onClick={() => toast.success(loginLocalization.toastsuccess)}
+            onClick={() => toast.success(contactuslocalization.toatssuccess)}
           />
         </div>
         <div className="suppot-bg h-[18rem] w-[25rem] rounded-xl">
@@ -108,7 +107,6 @@ export default function Contact() {
       <div>
         <Map/>
       </div>
-      <div></div>
     </div>
   );
 }
