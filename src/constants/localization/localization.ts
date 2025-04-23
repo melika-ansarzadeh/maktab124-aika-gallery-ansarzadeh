@@ -200,3 +200,12 @@ export const ordertracklocalization = {
   text: 'برای پیگیری کد مرسوله پستی روی لینک زیر کلیک کنید.',
   click:'لینک پیگیری مرسولات پستی'
 };
+
+export const brandslocalization = {
+  tiffanitext: 'انتخابی به اصالت تیفانی',
+  cartiertext: 'انتخاب از ترند روز جواهرات کارتیر',
+  bvlgaritext: 'برای آن‌هایی که تفاوت را می‌فهمند',
+  diortext: 'درخشش اصالت، از نسلی به نسل دیگر',
+  caneltext: 'وقتی جواهر فقط یک زیور نیست، یک پیام است',
+  versacetext: 'برند برتر برای انتخاب‌های خاص شما',
+};
