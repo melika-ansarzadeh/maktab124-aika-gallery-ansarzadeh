@@ -4,13 +4,28 @@ import { useState } from 'react';
 import { LiaShoppingBagSolid } from 'react-icons/lia';
 import tiffani from '@/assets/images/about3.png';
 import Button from '@/shared/Button/Button';
+import { useRouter } from 'next/navigation';
 
 const CartDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
   const toggleDrawer = () => {
     setIsOpen(!isOpen);
   };
+
+  const router = useRouter();
+
+ const handleGoToCart = () => {
+   setIsClosing(true);
+
+   setTimeout(() => {
+     setIsOpen(false);
+     setIsClosing(false);
+     router.push('/cart');
+   }, 300);
+ };
+
 
   return (
     <div className="relative">
@@ -26,7 +41,7 @@ const CartDrawer = () => {
 
       <div
         className={`fixed top-0 right-0 h-full w-[23rem] bg-white transform transition-all duration-300 z-40 flex flex-col justify-between ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
+          isOpen && !isClosing ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         <div>
@@ -54,23 +69,19 @@ const CartDrawer = () => {
                   <h3 className="text-sm font-semibold">محصول نمونه</h3>
                   <p className="text-gray-600 text-sm">قیمت: 150,000 تومان</p>
                 </div>
-                <button
-                  className="text-2xl pb-16 font-bold"
-                >
-                  ×
-                </button>
+                <button className="text-2xl pb-16 font-bold">×</button>
               </div>
             ))}
           </div>
         </div>
 
-        {/* بخش پایین دراور */}
         <div className="p-4 border-t">
           <div className="flex justify-between items-center mb-4">
             <p>جمع جز:</p>
             <p>300,000 تومان</p>
           </div>
           <Button
+            onClick={handleGoToCart}
             children="مشاهده سبد خرید"
             className="w-full bg-custom-500 text-white p-2 rounded-lg text-base active:scale-95"
           />

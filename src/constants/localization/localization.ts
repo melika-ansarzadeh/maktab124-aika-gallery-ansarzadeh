@@ -231,4 +231,5 @@ export const homelocalization = {
 
 export const cartlocalization = {
   cart:'سبد خرید',
+  cartorder:'جمع کل سبد خرید'
 }

@@ -35,7 +35,6 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
             Authorization: `Bearer ${token}`,
           },
         });
-        setUsers(res.data);
         setData(res.data);
         setLoading(false);
       } catch (err) {
@@ -46,8 +45,6 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
 
     fetchData();
   }, []);
-
-  const token = localStorage.getItem('token');
 
   const totalPages = Math.ceil(data.length / rowsPerPage);
   const startIndex = (page - 1) * rowsPerPage;
