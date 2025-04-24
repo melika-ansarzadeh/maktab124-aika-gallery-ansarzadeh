@@ -228,3 +228,7 @@ export const homelocalization = {
   aika4:
     'از اولین نگاه تا آخرین لمس، هر محصولی که از ما دریافت می‌کنید، حامل پیام ظرافت، کیفیت و انتخابی هوشمندانه است.',
 };
+
+export const cartlocalization = {
+  cart:'سبد خرید',
+}
