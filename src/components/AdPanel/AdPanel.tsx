@@ -5,7 +5,6 @@ import { GetOrders } from '@/services/getOrders/getOrders';
 import OrderPieChart from '@/components/AdPanel/OrderPieChart/OrderPieChart';
 import Calendar from './Calendar/Calendar';
 import { loadinglocalization } from '@/constants/localization/localization';
-import HeoBaner from './HeroBaner/HeroBaner';
 export default function AdPanel() {
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -36,8 +35,7 @@ export default function AdPanel() {
         </p>
       ) : (
         <div className="h-[14rem] ml-6">
-          <HeoBaner />
-          <div className="flex justify-between items-center mt-5 ">
+          <div className="flex justify-between items-center mt-5">
             <OrderPieChart chartData={chartData} />
             <Calendar />
           </div>

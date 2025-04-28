@@ -82,15 +82,23 @@ export const addproductlocalization = {
 };
 
 export const tablelocalization = {
-  sort: 'مرتب سازی بر اساس',
-  newest: 'جدید ترین',
-  cheap: 'ارزون ترین',
-  expensive:'گرون ترین',
-  oldest:'قدیمی ترین',
-  addproduct:'افزودن محصول جدید',
   delete:'حذف',
   edit:'ویرایش',
   save:'ذخیره'
+};
+
+export const swallLocalization = {
+  sure: 'آیا مطمئن هستید؟',
+  warninigText: 'این محصول برای همیشه حذف خواهد شد',
+  okDelete: '!بله، حذف شود',
+  cancle: 'لغو',
+  delete: 'حذف شد',
+  deletedSuccessfully: '.محصول با موفقیت حذف شد',
+  ok: 'باشه',
+  errorHappened: 'مشکلی پیش آمد. دوباره امتحان کنید',
+  error: 'خطا',
+  editedSuccessfully: 'ویرایش موفقیت آمیز بود',
+  errorInEditing: 'خطا در ویرایش محصول',
 };
 
 export const userlocalization = {
@@ -128,4 +136,26 @@ export const homeadlocalization = {
 
 export const loadinglocalization = {
   loading: 'در حال بارگذاری...',
+};
+
+
+export const modaladdlocalization ={
+  instock:'موجود',
+  outofstock:'ناموجود',
+  commingsoon:'به زودی',
+  dior:'دیور',
+  versace:'ورساچه',
+  chanel:'شنل',
+  tiffani:'تیفانی',
+  cartier:'کارتیر',
+  bvlgari:'بولگاری',
+}
+
+export const adproductlocalization = {
+  sort: 'مرتب سازی بر اساس',
+  newest: 'جدید ترین',
+  cheap: 'ارزون ترین',
+  expensive: 'گرون ترین',
+  oldest: 'قدیمی ترین',
+  addproduct: 'افزودن محصول جدید',
 };

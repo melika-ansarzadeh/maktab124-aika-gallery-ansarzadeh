@@ -19,7 +19,7 @@ type ChartData = {
 
 const OrderPieChart = ({ chartData }: { chartData: ChartData[] }) => {
   return (
-    <div className="w-full max-w-xl mx-auto font-number bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6 -mr-1 ">
+    <div className="w-full max-w-xl mx-auto font-number bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6 -mr-1 mt-2 ">
       <h2 className="text-center text-lg font-semibold text-gray-700 dark:text-gray-200 mb-4">
        {homeadlocalization.chartorders}
       </h2>

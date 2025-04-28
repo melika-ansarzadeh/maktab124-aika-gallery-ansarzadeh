@@ -1,5 +1,5 @@
-import { BASE_URL } from "@/constants/api/api";
-import axios from "axios";
+import { BASE_URL } from '@/constants/api/api';
+import axios from 'axios';
 
 export const GetUsers = async (token?: string) => {
   try {

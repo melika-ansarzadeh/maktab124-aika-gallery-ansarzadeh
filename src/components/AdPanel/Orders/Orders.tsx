@@ -34,10 +34,8 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
     const fetchData = async () => {
       setLoading(true);
       const orders = await GetOrders();
-      console.log('Full orders data:', orders);
       const orderData = orders;
       if (orderData) {
-        console.log('Order data:', orderData);
         setData(orderData);
       } else {
         console.log('No orders found or invalid data structure');

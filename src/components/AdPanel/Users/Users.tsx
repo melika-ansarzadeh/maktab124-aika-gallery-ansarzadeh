@@ -29,25 +29,34 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // خواندن توکن از localStorage
         const token = localStorage.getItem('token');
+        console.log('Token:', token); // چاپ توکن برای بررسی
+
+        // بررسی اینکه آیا توکن موجود است
+        if (!token) {
+          console.error('No token found!');
+          return;
+        }
+
+        // ارسال درخواست با توکن
         const res = await axios.get(`${BASE_URL}/api/users`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        setUsers(res.data);
-        setData(res.data);
+
+        console.log('Fetched users:', res.data); // چاپ داده‌های کاربران
+        setData(res.data); // ذخیره داده‌ها در state
         setLoading(false);
       } catch (err) {
-        console.error('Error fetching users:', err);
+        console.error('Error fetching users:', err); // چاپ خطای دریافت داده‌ها
         setLoading(false);
       }
     };
 
     fetchData();
   }, []);
-
-  const token = localStorage.getItem('token');
 
   const totalPages = Math.ceil(data.length / rowsPerPage);
   const startIndex = (page - 1) * rowsPerPage;
@@ -75,7 +84,7 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
         </p>
       ) : (
         <div className="font-sahel">
-          <div className='flex justify-between items-center'>
+          <div className="flex justify-between items-center">
             <p className="font-semibold -mr-3">{userlocalization.list}</p>
             <div className="flex justify-end pl-3">
               <Button
@@ -177,12 +186,4 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
       )}
     </div>
   );
-}
-
-function GetAllUsers(token: string) {
-  throw new Error('Function not implemented.');
-}
-
-function setUsers(users: void) {
-  throw new Error('Function not implemented.');
 }

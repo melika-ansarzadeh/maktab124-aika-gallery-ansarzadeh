@@ -2,11 +2,12 @@ import { BASE_URL } from '@/constants/api/api';
 import axios from 'axios';
 
 export interface Iaddproducts {
+  createdAt: string | number | Date;
   name: string;
   category: string;
   subcategory: string;
-  price: string;
-  quantity: string;
+  price: number;
+  quantity: number;
   brand: string;
   description: string;
   made: string;
