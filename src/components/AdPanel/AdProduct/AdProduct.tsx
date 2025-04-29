@@ -92,8 +92,8 @@ export default function AdProduct() {
   const fetchProductsWithFilter = async (filter: string) => {
     try {
       setLoading(true);
-      const data = await GetProducts(filter); // ارسال فیلتر به API
-      setProducts(data); // به‌روزرسانی وضعیت با داده‌های دریافت شده
+      const data = await GetProducts(filter);
+      setProducts(data);
     } catch (err) {
       console.error('خطا در گرفتن محصولات:', err);
     } finally {
@@ -119,8 +119,8 @@ export default function AdProduct() {
             onChange={e => setSortOption(e.target.value)}
             className="px-3 py-2 rounded-lg border"
           >
-            <option value="createdAt">{adproductlocalization.newest}</option>
-            <option value="-createdAt">{adproductlocalization.oldest}</option>
+            <option value="createdAt">{adproductlocalization.oldest}</option>
+            <option value="-createdAt">{adproductlocalization.newest}</option>
             <option value="-price">{adproductlocalization.expensive}</option>
             <option value="price">{adproductlocalization.cheap}</option>
           </select>

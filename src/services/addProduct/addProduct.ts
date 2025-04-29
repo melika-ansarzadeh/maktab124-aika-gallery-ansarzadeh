@@ -2,61 +2,38 @@ import { BASE_URL } from '@/constants/api/api';
 import axios from 'axios';
 
 export interface Iaddproducts {
-  createdAt: string | number | Date;
   name: string;
+  price: string;
+  quantity: string;
+  material: string;
+  decorations: string;
+  made: string;
+  stock: string;
   category: string;
   subcategory: string;
-  price: number;
-  quantity: number;
   brand: string;
   description: string;
-  made: string;
-  material: string;
-  decoration: string;
-  stock: string;
-  image: string[];
+  images: File | null;
 }
 
-export const AddProduct = async ({
-  name,
-  category,
-  subcategory,
-  price,
-  quantity,
-  brand,
-  description,
-  made,
-  material,
-  decoration,
-  stock,
-  image,
-}: Iaddproducts) => {
+export const AddProduct = async (productData: Iaddproducts) => {
   try {
-    const response = await axios.post(
-      `${BASE_URL}/api/products`,
-      {
-        name,
-        category,
-        subcategory,
-        price,
-        quantity,
-        brand,
-        description,
-        made,
-        material,
-        decoration,
-        stock,
-        image,
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
+    const formData = new FormData();
+
+    Object.entries(productData).forEach(([key, value]) => {
+      if (value !== null && value !== undefined) {
+        formData.append(key, value as any);
       }
-    );
+    });
+
+    const response = await axios.post(`${BASE_URL}/api/products`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    console.log('Product added successfully', response.data);
     return response.data;
   } catch (error) {
-    console.error('Error adding product:', error);
-    throw error;
+    console.error('Unexpected error:', error);
   }
 };

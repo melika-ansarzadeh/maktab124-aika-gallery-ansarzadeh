@@ -50,11 +50,15 @@ export default function ProductQuallity({ rowsPerPage = 8 }: ProductTableProps) 
   return (
     <div>
       {loading ? (
-        <p className="text-center text-gray-500">{loadinglocalization.loading}</p>
+        <p className="text-center text-gray-500">
+          {loadinglocalization.loading}
+        </p>
       ) : (
         <div className="font-sahel">
           <div className="flex justify-between items-center pl-3">
-            <p className='font-semibold'>{addproductlocalization.managmentpricestock}</p>
+            <p className="font-semibold">
+              {addproductlocalization.managmentpricestock}
+            </p>
             <Button
               children={tablelocalization.save}
               className="my-3 py-2 px-8 rounded-lg border bg-white border-custom-300 active:scale-90"
@@ -89,7 +93,8 @@ export default function ProductQuallity({ rowsPerPage = 8 }: ProductTableProps) 
                         {product.quantity}
                       </td>
                       <td className="py-4 px-1 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px]">
-                        {product.price.toLocaleString()} {addproductlocalization.toman}
+                        {product.price.toLocaleString()}{' '}
+                        {addproductlocalization.toman}
                       </td>
                     </tr>
                   ))}
@@ -110,7 +115,7 @@ export default function ProductQuallity({ rowsPerPage = 8 }: ProductTableProps) 
                   disabled={page === 1}
                   className="p-2 rounded-full bg-white border-2 border-custom-500 hover:bg-custom-400 disabled:opacity-40 transition-all duration-300"
                 >
-                  <FaChevronLeft className="w-3 h-3" />
+                  <FaChevronRight className="w-3 h-3" />
                 </button>
 
                 {getPageNumbers().map(pageNum => (
@@ -133,7 +138,7 @@ export default function ProductQuallity({ rowsPerPage = 8 }: ProductTableProps) 
                   disabled={page === totalPages}
                   className="p-2 rounded-full bg-white border-2 border-custom-500 hover:bg-custom-400 disabled:opacity-40 transition-all duration-300"
                 >
-                  <FaChevronRight className="w-3 h-3" />
+                  <FaChevronLeft className="w-3 h-3" />
                 </button>
               </div>
             </div>

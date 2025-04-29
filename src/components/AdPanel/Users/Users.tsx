@@ -155,7 +155,7 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
                   disabled={page === 1}
                   className="p-2 rounded-full bg-white border-2 border-custom-500 hover:bg-custom-400 disabled:opacity-40 transition-all duration-300"
                 >
-                  <FaChevronLeft className="w-3 h-3" />
+                  <FaChevronRight className="w-3 h-3" />
                 </button>
 
                 {getPageNumbers().map(pageNum => (
@@ -177,7 +177,7 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
                   disabled={page === totalPages}
                   className="p-2 rounded-full bg-white border-2 border-custom-500 hover:bg-custom-400 disabled:opacity-40 transition-all duration-300"
                 >
-                  <FaChevronRight className="w-3 h-3" />
+                  <FaChevronLeft className="w-3 h-3" />
                 </button>
               </div>
             </div>

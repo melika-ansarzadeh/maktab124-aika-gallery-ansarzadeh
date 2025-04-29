@@ -8,7 +8,7 @@ export const deleteProduct = async (_id: string) => {
     );
     return response.status === 200;
   } catch (error) {
-   const err = error as AxiosError<any>; // 👈 تایپ کردن به AxiosError
+   const err = error as AxiosError<any>;
     console.error("خطای دقیق:", err.response?.data || err.message);
     throw new Error(err.response?.data?.message || 'مشکلی پیش آمد. دوباره امتحان کنید');
   }

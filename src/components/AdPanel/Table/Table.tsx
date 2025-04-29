@@ -8,6 +8,7 @@ import { deleteProduct } from '@/services/deleteProduct/deleteProduct';
 import { BASE_URL } from '@/constants/api/api';
 import axios from 'axios';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { swallLocalization } from '@/constants/localization/localization';
 
 type TableProps = {
   columns: {
@@ -74,14 +75,14 @@ export default function Table({
   const handleDelete = async (_id: string) => {
     try {
       const result = await Swal.fire({
-        title: 'Are you sure?',
-        text: 'This action will permanently delete the product.',
+        title: swallLocalization.sure,
+        text: swallLocalization.warninigText,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',
         cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Delete',
-        cancelButtonText: 'Cancel',
+        confirmButtonText: swallLocalization.okDelete,
+        cancelButtonText: swallLocalization.cancle,
       });
 
       if (result.isConfirmed) {
@@ -90,10 +91,10 @@ export default function Table({
         if (success) {
           await fetchProducts();
           Swal.fire({
-            title: 'Deleted!',
-            text: 'The product has been deleted.',
+            title: swallLocalization.delete,
+            text: swallLocalization.deletedSuccessfully,
             icon: 'success',
-            confirmButtonText: 'OK',
+            confirmButtonText: 'باشه',
           });
         } else {
           throw new Error('Something went wrong');
@@ -102,8 +103,8 @@ export default function Table({
     } catch (error) {
       console.error('Error:', error);
       Swal.fire(
-        'Error',
-        'An error occurred while deleting the product.',
+        swallLocalization.error,
+        swallLocalization.errorHappened,
         'error'
       );
     }
@@ -183,7 +184,7 @@ export default function Table({
             disabled={page === 1}
             className="p-2 rounded-full bg-white border-2 border-custom-500 hover:bg-custom-400 disabled:opacity-40 transition-all duration-300"
           >
-            <FaChevronLeft className="w-3 h-3" />
+            <FaChevronRight className="w-3 h-3" />
           </button>
 
           {getPageNumbers().map(pageNum => (
@@ -206,7 +207,7 @@ export default function Table({
             disabled={page === totalPages}
             className="p-2 rounded-full bg-white border-2 border-custom-500 hover:bg-custom-400 disabled:opacity-40 transition-all duration-300"
           >
-            <FaChevronRight className="w-3 h-3" />
+            <FaChevronLeft className="w-3 h-3" />
           </button>
         </div>
       </div>

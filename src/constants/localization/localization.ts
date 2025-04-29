@@ -89,7 +89,7 @@ export const tablelocalization = {
 
 export const swallLocalization = {
   sure: 'آیا مطمئن هستید؟',
-  warninigText: 'این محصول برای همیشه حذف خواهد شد',
+  warninigText: 'این محصول برای همیشه حذف خواهد شد.',
   okDelete: '!بله، حذف شود',
   cancle: 'لغو',
   delete: 'حذف شد',
@@ -139,17 +139,29 @@ export const loadinglocalization = {
 };
 
 
-export const modaladdlocalization ={
-  instock:'موجود',
-  outofstock:'ناموجود',
-  commingsoon:'به زودی',
-  dior:'دیور',
-  versace:'ورساچه',
-  chanel:'شنل',
-  tiffani:'تیفانی',
-  cartier:'کارتیر',
-  bvlgari:'بولگاری',
-}
+export const modaladdlocalization = {
+  instock: 'موجود',
+  outofstock: 'ناموجود',
+  commingsoon: 'به زودی',
+  dior: 'دیور',
+  versace: 'ورساچه',
+  chanel: 'شنل',
+  tiffani: 'تیفانی',
+  cartier: 'کارتیر',
+  bvlgari: 'بولگاری',
+  brand: 'برند',
+  category: 'دسته بندی محصول',
+  subcategory: 'زیردسته محصول',
+  ring: 'انگشتر',
+  necklace: 'گردنبند',
+  earrings: 'گوشواره',
+  bracelet: 'دستبند',
+  description: 'توضیحات',
+  addproduct: 'افزودن محصول جدید',
+  add: 'افزودن',
+  toastsucces: 'محصول جدید با موفقیت اضافه شد',
+  toasterror: 'خطا در اضافه کردن محصول',
+};
 
 export const adproductlocalization = {
   sort: 'مرتب سازی بر اساس',
