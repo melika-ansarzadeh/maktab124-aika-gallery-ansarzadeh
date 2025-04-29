@@ -103,7 +103,7 @@ export default function ProductQuallity({ rowsPerPage = 8 }: ProductTableProps) 
             </div>
 
             <div className="flex flex-col md:flex-row items-center justify-between text-sm gap-3">
-              <span className="text-xs">
+              <span className="text-xs px-2">
                 نمایش <b>{startIndex + 1}</b> تا{' '}
                 <b>{Math.min(startIndex + rowsPerPage, data.length)}</b> از{' '}
                 <b>{data.length}</b>

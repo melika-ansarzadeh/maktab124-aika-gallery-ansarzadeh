@@ -147,7 +147,7 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
             </div>
 
             <div className="flex flex-col md:flex-row font-number items-center justify-between text-sm gap-3">
-              <span className="text-xs">
+              <span className="text-xs px-2">
                 نمایش <b>{startIndex + 1}</b> تا{' '}
                 <b>
                   {Math.min(startIndex + rowsPerPage, filteredOrders.length)}

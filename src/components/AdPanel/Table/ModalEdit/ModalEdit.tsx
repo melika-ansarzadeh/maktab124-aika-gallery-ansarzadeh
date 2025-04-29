@@ -1,38 +1,59 @@
 'use client';
 
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 import { addproductlocalization, modaladdlocalization } from '@/constants/localization/localization';
-import { AddProduct } from '@/services/addProduct/addProduct';
-import { toast, ToastContainer } from 'react-toastify';
 
-interface AddProductModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onProductAdded: () => void;
+import { toast, ToastContainer } from 'react-toastify';
+import { editProduct } from '@/services/editProduct/editProduct';
+
+interface Product {
+  _id: string;
+  name: string;
+  price: string;
+  quantity: string;
+  brand: string;
+  description: string;
+  category: string;
+  subcategory: string;
+  material: string;
+  decorations: string;
+  made: string;
+  stock: string;
+  images?: any;
 }
 
-export default function ModalAdd({
+interface EditProductModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  product: Product;
+  onSuccess: () => void;
+  onProductEdited: () => void;
+}
+
+export default function ModalEdit({
   isOpen,
   onClose,
-  onProductAdded,
-}: AddProductModalProps) {
-  const [formData, setFormData] = useState({
-    name: '',
-    price: '',
-    quantity: '',
-    brand: '',
-    description: '',
-    category: '',
-    subcategory: '',
-    material: '',
-    decorations: '',
-    made: '',
-    stock: '',
-    images: null as File | null,
-  });
+  product,
+  onProductEdited,
+}: EditProductModalProps) {
+  const [formData, setFormData] = useState<Product>({ ...product });
+  const [selectedCategory, setSelectedCategory] = useState(product.category || '');
+console.log('Data being sent:', formData);
 
-  const [selectedCategory, setSelectedCategory] = useState('');
+  useEffect(() => {
+    setFormData({ ...product });
+    setSelectedCategory(product.category || '');
+    const selectedCategoryOption = categoryOptions.find(
+      cat => cat._id === product.category
+    );
+    if (selectedCategoryOption) {
+      setFormData(prev => ({
+        ...prev,
+        subcategory: selectedCategoryOption.subcategories[0]._id,
+      }));
+    }
+  }, [product]);
+
 
   const categoryOptions = [
     {
@@ -69,34 +90,44 @@ export default function ModalAdd({
     },
   ];
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
-  ) => {
-    const { name, value, files } = e.target as any;
-    setFormData(prev => ({
-      ...prev,
-      [name]: files ? files[0] : value,
-    }));
-    if (name === 'category') {
-      setSelectedCategory(value);
+const handleChange = (
+  e: React.ChangeEvent<
+    HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+  >
+) => {
+  const { name, value, files } = e.target as any;
+  const newValue = files ? files[0] : value;
+  setFormData(prev => ({
+    ...prev,
+    [name]: newValue,
+  }));
+  if (name === 'category') {
+    setSelectedCategory(value);
+    const selectedCategoryOption = categoryOptions.find(
+      cat => cat._id === value
+    );
+    if (selectedCategoryOption) {
+      setFormData(prev => ({
+        ...prev,
+        subcategory: selectedCategoryOption.subcategories[0]._id, 
+      }));
     }
-  };
-
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  try {
-    await AddProduct(formData);
-    toast.success('محصول با موفقیت اضافه شد');
-    onProductAdded();
-    onClose();
-  } catch (error) {
-    console.error(error);
-      toast.error('خطا در افزودن محصول');
   }
 };
 
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await editProduct(product._id, formData);
+      toast.success('محصول با موفقیت ویرایش شد');
+      onProductEdited();
+      onClose();
+    } catch (err:any) {
+      console.error(err);
+    toast.error(err.response?.data?.message || "خطا در ویرایش محصول");
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -107,9 +138,7 @@ const handleSubmit = async (e: React.FormEvent) => {
         <button onClick={onClose} className="pr-[28rem] text-3xl block">
           ×
         </button>
-        <h2 className="text-xl font-bold mb-4">
-          {modaladdlocalization.addproduct}
-        </h2>
+        <h2 className="text-xl font-bold mb-4">ویرایش محصول</h2>
         <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
           {[
             ['name', 'نام محصول'],
@@ -121,10 +150,11 @@ const handleSubmit = async (e: React.FormEvent) => {
           ].map(([name, placeholder]) => (
             <input
               key={name}
-              type={name === 'price' || name === 'quantity' ? 'number' : 'text'}
               name={name}
               placeholder={placeholder}
+              value={(formData as any)[name] || ''}
               onChange={handleChange}
+              type={name === 'price' || name === 'quantity' ? 'number' : 'text'}
               className="p-3 border-2 text-sm border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
               required={['name', 'price', 'quantity'].includes(name)}
             />
@@ -132,6 +162,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
           <select
             name="stock"
+            value={formData.stock}
             onChange={handleChange}
             className="p-3 text-sm border-2 border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
             required
@@ -145,6 +176,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
           <select
             name="brand"
+            value={formData.brand}
             onChange={handleChange}
             className="p-3 text-sm border-2 border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
             required
@@ -160,6 +192,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
           <select
             name="category"
+            value={formData.category}
             onChange={handleChange}
             className="p-3 text-sm border-2 border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
             required
@@ -174,6 +207,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
           <select
             name="subcategory"
+            value={formData.subcategory}
             onChange={handleChange}
             className="p-3 text-sm border-2 border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
             required
@@ -191,6 +225,7 @@ const handleSubmit = async (e: React.FormEvent) => {
           <textarea
             name="description"
             placeholder={addproductlocalization.description}
+            value={formData.description}
             onChange={handleChange}
             className="col-span-2 p-3 text-sm border-2 border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
           />
@@ -205,9 +240,9 @@ const handleSubmit = async (e: React.FormEvent) => {
 
           <button
             type="submit"
-            className="col-span-2 bg-custom-400 active:scale-95 text-white p-2 rounded"
+            className="col-span-2 bg-custom-400 active:scale-95 text-white p-3 rounded"
           >
-            {modaladdlocalization.add}
+            ویرایش محصول
           </button>
         </form>
       </div>
