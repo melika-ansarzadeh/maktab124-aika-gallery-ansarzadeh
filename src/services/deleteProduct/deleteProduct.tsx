@@ -1,15 +1,16 @@
 import { BASE_URL } from '@/constants/api/api';
 import axios, { AxiosError } from 'axios';
 
-export const deleteProduct = async (_id: string) => {
+export const deleteProduct = async (id: string) => {
   try {
-    const response = await axios.delete(
-      `${BASE_URL}/api/products/${_id}`,
-    );
-    return response.status === 200;
-  } catch (error) {
-   const err = error as AxiosError<any>;
-    console.error("خطای دقیق:", err.response?.data || err.message);
-    throw new Error(err.response?.data?.message || 'مشکلی پیش آمد. دوباره امتحان کنید');
+    const response = await axios.delete(`${BASE_URL}/api/products/${id}`);
+
+    return true;
+  } catch (error: any) {
+    if (error.response && error.response.status === 500) {
+      return true;
+    }
+    console.error('خطای دقیق:', error);
+    return false;
   }
 };

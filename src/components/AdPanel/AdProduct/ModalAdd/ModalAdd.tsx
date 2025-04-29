@@ -84,17 +84,19 @@ export default function ModalAdd({
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      await AddProduct(formData);
-      onProductAdded();
-      onClose();
-      toast.success(modaladdlocalization.toastsucces)
-    } catch (error) {
-      toast.error(modaladdlocalization.toasterror);
-    }
-  };
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  try {
+    await AddProduct(formData);
+    onProductAdded();
+    toast.success(modaladdlocalization.toastsucces);
+    onClose();
+  } catch (error) {
+    console.error(error);
+    toast.error(modaladdlocalization.toasterror);
+  }
+};
+
 
   if (!isOpen) return null;
 
@@ -116,7 +118,6 @@ export default function ModalAdd({
             ['material', 'جنس'],
             ['decorations', 'تزئینات'],
             ['made', 'ساخت کشور'],
-            ['stock', 'وضعیت موجودی'],
           ].map(([name, placeholder]) => (
             <input
               key={name}
@@ -128,6 +129,19 @@ export default function ModalAdd({
               required={['name', 'price', 'quantity'].includes(name)}
             />
           ))}
+
+          <select
+            name="stock"
+            onChange={handleChange}
+            className="p-3 text-sm border-2 border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
+            required
+          >
+            <option value="">{modaladdlocalization.stock}</option>
+            <option value="موجود">{modaladdlocalization.instock}</option>
+            <option value="نا موجود">{modaladdlocalization.outofstock}</option>
+            <option value="به زودی">{modaladdlocalization.commingsoon}</option>
+            <option value="متوقف شده">{modaladdlocalization.stopped}</option>
+          </select>
 
           <select
             name="brand"

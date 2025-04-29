@@ -129,7 +129,7 @@ export default function AdProduct() {
           onClick={() => setIsModalOpen(true)}
           className="bg-white text-sm border-2 border-custom-400 px-6 py-3 rounded-lg active:scale-95"
         >
-        {adproductlocalization.addproduct}
+          {adproductlocalization.addproduct}
         </button>
         <ModalAdd
           isOpen={isModalOpen}

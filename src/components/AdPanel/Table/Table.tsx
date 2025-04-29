@@ -4,10 +4,12 @@ import { useState, useEffect } from 'react';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { FaChevronLeft, FaChevronRight, FaRegTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
-import { deleteProduct } from '@/services/deleteProduct/deleteProduct';
-import { BASE_URL } from '@/constants/api/api';
 import axios from 'axios';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { ToastContainer } from 'react-toastify';
+
+import { deleteProduct } from '@/services/deleteProduct/deleteProduct';
+import { BASE_URL } from '@/constants/api/api';
 import { swallLocalization } from '@/constants/localization/localization';
 
 type TableProps = {
@@ -38,30 +40,6 @@ export default function Table({
     }
   }, [searchParams]);
 
-  if (!Array.isArray(data)) {
-    return <div>Invalid data format</div>;
-  }
-
-  const sortedData = [...products];
-
-  const totalPages = Math.ceil(sortedData.length / rowsPerPage);
-  const startIndex = (page - 1) * rowsPerPage;
-  const paginatedData = sortedData.slice(startIndex, startIndex + rowsPerPage);
-
-  const getPageNumbers = () => {
-    const range = [];
-    const maxPagesToShow = 3;
-    let start = Math.max(page - 1, 1);
-    let end = Math.min(start + maxPagesToShow - 1, totalPages);
-    if (end - start < maxPagesToShow - 1) {
-      start = Math.max(end - maxPagesToShow + 1, 1);
-    }
-    for (let i = start; i <= end; i++) {
-      range.push(i);
-    }
-    return range;
-  };
-
   const fetchProducts = async () => {
     try {
       const response = await axios.get(`${BASE_URL}/api/products`);
@@ -87,17 +65,20 @@ export default function Table({
 
       if (result.isConfirmed) {
         const success = await deleteProduct(_id);
-
         if (success) {
           await fetchProducts();
           Swal.fire({
             title: swallLocalization.delete,
             text: swallLocalization.deletedSuccessfully,
             icon: 'success',
-            confirmButtonText: 'باشه',
+            confirmButtonText: swallLocalization.ok,
           });
         } else {
-          throw new Error('Something went wrong');
+          Swal.fire(
+            swallLocalization.error,
+            swallLocalization.errorHappened,
+            'error'
+          );
         }
       }
     } catch (error) {
@@ -117,8 +98,35 @@ export default function Table({
     router.push(`?${params.toString()}`);
   };
 
+  const sortedData = [...products];
+  const totalPages = Math.ceil(sortedData.length / rowsPerPage);
+  const startIndex = (page - 1) * rowsPerPage;
+  const paginatedData = sortedData.slice(startIndex, startIndex + rowsPerPage);
+
+  const getPageNumbers = () => {
+    const range = [];
+    const maxPagesToShow = 3;
+    let start = Math.max(page - 1, 1);
+    let end = Math.min(start + maxPagesToShow - 1, totalPages);
+    if (end - start < maxPagesToShow - 1) {
+      start = Math.max(end - maxPagesToShow + 1, 1);
+    }
+    for (let i = start; i <= end; i++) {
+      range.push(i);
+    }
+    return range;
+  };
+
+  const getRowColor = (row: any) => {
+    if (row.stock ==='نا موجود') return 'bg-red-100';
+    if (row.stock === 'به زودی') return 'bg-yellow-100';
+    if (row.stock === 'متوقف شده') return 'bg-slate-200';
+    return '';
+  };
+
   return (
     <div className="overflow-x-auto rounded-[2rem] border border-custom-500 bg-gradient-to-br from-custom-100 via-white to-custom-100 shadow-[0_8px_30px_rgba(0,0,0,0.05)] py-6 px-3 -mr-9 space-y-4 transition-all">
+      <ToastContainer />
       <div className="overflow-hidden rounded-xl border border-custom-500 shadow-inner backdrop-blur-md">
         <table className="min-w-full text-sm font-medium">
           <thead className="bg-custom-400 text-xs uppercase font-sahel tracking-wider">
@@ -141,7 +149,9 @@ export default function Table({
             {paginatedData.map((row, i) => (
               <tr
                 key={i}
-                className="hover:bg-gradient-to-r hover:from-white hover:to-custom-50 transition-colors duration-300 ease-in-out hover:shadow-sm"
+                className={`${getRowColor(
+                  row
+                )} hover:bg-gradient-to-r hover:from-white hover:to-custom-50 transition-colors duration-300 ease-in-out hover:shadow-sm`}
               >
                 {columns.map(col => (
                   <td
@@ -192,11 +202,11 @@ export default function Table({
               key={pageNum}
               onClick={() => handleChangePage(pageNum)}
               className={`px-3 py-1.5 rounded-xl border-2 text-xs font-semibold shadow-md transition-all duration-300 ease-in-out
-              ${
-                page === pageNum
-                  ? 'bg-custom-400 text-white border-custom-500 scale-105'
-                  : 'bg-white border-custom-500 hover:bg-custom-200 hover:scale-[1.05]'
-              }`}
+                ${
+                  page === pageNum
+                    ? 'bg-custom-400 text-white border-custom-500 scale-105'
+                    : 'bg-white border-custom-500 hover:bg-custom-200 hover:scale-[1.05]'
+                }`}
             >
               {pageNum}
             </button>

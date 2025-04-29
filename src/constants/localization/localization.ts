@@ -140,9 +140,11 @@ export const loadinglocalization = {
 
 
 export const modaladdlocalization = {
+  stock:'وضعیت موجودی',
   instock: 'موجود',
   outofstock: 'ناموجود',
   commingsoon: 'به زودی',
+  stopped:'متوقف شده',
   dior: 'دیور',
   versace: 'ورساچه',
   chanel: 'شنل',

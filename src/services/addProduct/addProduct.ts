@@ -31,9 +31,8 @@ export const AddProduct = async (productData: Iaddproducts) => {
         'Content-Type': 'multipart/form-data',
       },
     });
-    console.log('Product added successfully', response.data);
     return response.data;
   } catch (error) {
-    console.error('Unexpected error:', error);
+    console.error('خطا:', error);
   }
 };
