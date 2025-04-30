@@ -69,8 +69,8 @@ export default function Home() {
   return (
     <div className="font-sahel">
       <BrandSwiper images={images} />
-      <section className="py-16 px-4 bg-white rounded-2xl max-w-6xl mx-auto">
-        <h2 className="text-2xl font-bold text-center mb-14">
+      <section className="pt-16 px-4 bg-white rounded-2xl max-w-6xl mx-auto">
+        <h2 className="text-2xl font-bold text-center mb-8">
           {homelocalization.whyus}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -94,8 +94,8 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <BrandSwiper containerClassName="h-[15rem]" images={brands} />
-      <div className="flex justify-center items-center gap-20 px-56 py-10">
+      <BrandSwiper containerClassName="h-[5rem]" images={brands} />
+      <div className="flex justify-center items-center gap-20 px-56 py-14 ">
         <div className=" leading-relaxed">
           <h2 className="font-semibold text-2xl mb-7">
             {homelocalization.aika1}
