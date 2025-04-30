@@ -1,20 +1,20 @@
+import { IoCartOutline, IoHeartOutline } from "react-icons/io5";
+
 export default function ProductCard() {
   return (
-    <div className="bg-[#F7F4EF] border border-[#EDE6DD] rounded-md p-4 text-center hover:shadow-lg transition">
-      <div className="w-full h-40 bg-white mb-4 rounded-md">
-        <img
-          className=" w-32 rounded-md"
-          src=""
-          alt=""
-        />
+    <div className="bg-custom-50 border border-custom-200 px-4 py-8 text-center hover:shadow-lg hover:scale-105 transition font-number">
+      <div className="w-full h-48 bg-white border border-custom-200 mb-4">
+        <img className=" w-32 rounded-md" src="" alt="" />
       </div>
-      <h4 className="text-sm font-serif text-[#3D2B1F] mb-1">
-        نام محصول
-      </h4>
-      <p className="text-[#A98B65] text-xs mb-2">130,000</p>
-      <div className="flex justify-center gap-3 text-[#D6B98C] text-sm">
-        <button title="Add to Wishlist">♥</button>
-        <button title="Add to Cart"></button>
+      <h4 className="font-sahel text-sm mb-2">نام محصول</h4>
+      <p className="text-custom-500 font-medium text-sm mb-3 font-number">130,000</p>
+      <div className="flex justify-center gap-3 text-lg">
+        <button>
+          <IoHeartOutline />
+        </button>
+        <button>
+          <IoCartOutline />
+        </button>
       </div>
     </div>
   );
