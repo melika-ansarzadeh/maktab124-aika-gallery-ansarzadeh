@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import ProductCard from './ProductCard/ProductCard';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import FilterProduct from './FilterProducts/FilterProducts';
 
 export default function Product() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -14,11 +15,16 @@ export default function Product() {
     }
   };
 
+  
+
   return (
-    <div className="px-6 py-10 font-sahel">
-      <h1 className='text-xl font-bold'>محصولات</h1>
-      <div className="grid grid-cols-1 gap-8 px-52">
+    <div className="p-6 font-sahel grid grid-cols-[17%,80%]">
+      <aside className="md:col-span-1">
+        <FilterProduct />
+      </aside>
+      <div className="grid grid-cols-1 gap-8 pr-12 ">
         <section className="md:col-span-3 flex flex-col gap-10">
+        <h1 className="text-2xl font-bold">محصولات</h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.from({ length: 6 }).map((_, i) => (
               <ProductCard key={i + currentPage * 10} />
@@ -26,9 +32,7 @@ export default function Product() {
           </div>
 
           <div className="flex items-center justify-center gap-2">
-            <button
-              onClick={() => handlePageChange(currentPage - 1)}
-            >
+            <button onClick={() => handlePageChange(currentPage - 1)}>
               <FaChevronRight />
             </button>
 
@@ -50,9 +54,7 @@ export default function Product() {
               );
             })}
 
-            <button
-              onClick={() => handlePageChange(currentPage + 1)}
-            >
+            <button onClick={() => handlePageChange(currentPage + 1)}>
               <FaChevronLeft />
             </button>
           </div>

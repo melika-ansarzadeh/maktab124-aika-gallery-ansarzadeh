@@ -2,8 +2,8 @@ import { IoCartOutline, IoHeartOutline } from "react-icons/io5";
 
 export default function ProductCard() {
   return (
-    <div className="bg-custom-50 border border-custom-200 px-4 py-8 text-center hover:shadow-lg hover:scale-105 transition font-number">
-      <div className="w-full h-48 bg-white border border-custom-200 mb-4">
+    <div className="bg-custom-50 border border-custom-200 px-6 pt-6 pb-10 text-center hover:shadow-lg hover:scale-105 transition font-number">
+      <div className="w-full h-56 bg-white border border-custom-200 mb-4">
         <img className=" w-32 rounded-md" src="" alt="" />
       </div>
       <h4 className="font-sahel text-sm mb-2">نام محصول</h4>

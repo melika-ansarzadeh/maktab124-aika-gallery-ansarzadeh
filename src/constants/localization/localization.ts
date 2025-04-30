@@ -232,3 +232,21 @@ export const homelocalization = {
 export const productcardlocalization = {
 
 }
+
+export const filterlocalization ={
+  category:'دسته بندی',
+  brand:'برند',
+  necklace:'گردنبند', 
+  earings:'گوشواره',
+  ring: 'انگشتر',
+  bracelet: 'دستبند',
+  tifany:'تیفانی',
+  bvlgari:'بولگاری',
+  chanel:'شنل',
+  versace:'ورساچه',
+  cartier:'کارتیر',
+  dior:'دیور',
+  price:'قیمت',
+  cheap:'ارزان ترین',
+  expensive:'گران ترین',
+}
