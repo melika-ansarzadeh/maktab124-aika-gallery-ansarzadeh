@@ -12,10 +12,12 @@ import Table from '../Table/Table';
 import ModalAdd from './ModalAdd/ModalAdd';
 
 export default function AdProduct() {
+  // const [products, setProducts] = useState<any[]>([]);
   const [products, setProducts] = useState<Iaddproducts[]>([]);
   const [loading, setLoading] = useState(true);
   const [sortOption, setSortOption] = useState<string>('newest');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
 
   const columns = [
     {
@@ -142,7 +144,11 @@ export default function AdProduct() {
           {loadinglocalization.loading}
         </p>
       ) : (
-        <Table columns={columns} data={products} rowsPerPage={5} />
+        <Table
+            columns={columns}
+            products={products}
+            setProducts={setProducts}
+            rowsPerPage={5} isDelete={isDelete} setIsDelete={setIsDelete}        />
       )}
     </div>
   );

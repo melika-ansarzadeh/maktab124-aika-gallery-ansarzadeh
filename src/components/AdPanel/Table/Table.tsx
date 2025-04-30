@@ -13,26 +13,27 @@ import { BASE_URL } from '@/constants/api/api';
 import { swallLocalization } from '@/constants/localization/localization';
 import ModalEdit from './ModalEdit/ModalEdit';
 
-
 type TableProps = {
-  columns: {
-    key: string;
-    title: string;
-    width?: string;
-    render?: (value: any, row: any) => React.ReactNode;
-  }[];
-  data: any[];
-  rowsPerPage?: number;
+columns: {
+key: string;
+title: string;
+width?: string;
+render?: (value: any, row: any) => React.ReactNode;
+}[];
+products: any[];
+setProducts: any;
+rowsPerPage?: number;
 };
 
 export default function Table({
-  columns,
-  data = [],
-  rowsPerPage = 10,
+columns,
+products,
+rowsPerPage = 10,
+setProducts,
 }: TableProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [products, setProducts] = useState<any[]>([]);
+
   const [page, setPage] = useState(1);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
@@ -48,12 +49,10 @@ export default function Table({
   };
 
   useEffect(() => {
-    if (Array.isArray(data)) {
-      setProducts(data);
-    } else {
-      console.error('Table data is not an array', data);
+    if (!Array.isArray(products)) {
+      console.error('Table data is not an array', products);
     }
-  }, [data]);
+  }, [products]);
 
   const handleDelete = async (_id: string) => {
     try {
@@ -103,7 +102,7 @@ export default function Table({
     router.push(`?${params.toString()}`);
   };
 
-  const sortedData = [...products];
+  const sortedData = Array.isArray(products) ? [...products] : [];
   const totalPages = Math.ceil(sortedData.length / rowsPerPage);
   const startIndex = (page - 1) * rowsPerPage;
   const paginatedData = sortedData.slice(startIndex, startIndex + rowsPerPage);
@@ -128,7 +127,6 @@ export default function Table({
     if (row.stock === 'متوقف شده') return 'bg-slate-200';
     return '';
   };
-
   return (
     <div className="overflow-x-auto rounded-[2rem] border border-custom-500 bg-gradient-to-br from-custom-100 via-white to-custom-100 shadow-[0_8px_30px_rgba(0,0,0,0.05)] py-4 px-3 -mr-9 space-y-4 transition-all">
       <ToastContainer />
@@ -196,8 +194,8 @@ export default function Table({
       <div className="flex flex-col md:flex-row items-center justify-between text-sm gap-3">
         <span className="text-xs px-2">
           نمایش <b>{startIndex + 1}</b> تا{' '}
-          <b>{Math.min(startIndex + rowsPerPage, products.length)}</b> از{' '}
-          <b>{products.length}</b>
+          <b>{Math.min(startIndex + rowsPerPage, products?.length)}</b> از{' '}
+          <b>{products?.length}</b>
         </span>
 
         <div className="flex items-center gap-2">
@@ -231,6 +229,7 @@ export default function Table({
             <FaChevronLeft className="w-3 h-3" />
           </button>
         </div>
+
         {isEditOpen && selectedProduct && (
           <ModalEdit
             isOpen={isEditOpen}
@@ -249,3 +248,4 @@ export default function Table({
     </div>
   );
 }
+
