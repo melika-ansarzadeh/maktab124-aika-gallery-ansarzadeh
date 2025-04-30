@@ -73,7 +73,7 @@ export default function Home() {
         <h2 className="text-2xl font-bold text-center mb-8">
           {homelocalization.whyus}
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-5 gap-10">
           {reasons.map((item, index) => (
             <div
               key={index}

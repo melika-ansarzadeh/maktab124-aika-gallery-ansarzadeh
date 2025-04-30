@@ -1,13 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProductCard from './ProductCard/ProductCard';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import FilterProduct from './FilterProducts/FilterProducts';
+import { GetProducts } from '@/services/getProducts/getProducts';
+import { Iaddproducts } from '@/services/addProduct/addProduct';
 
 export default function Product() {
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 4;
+  const [products, setProducts] = useState<Iaddproducts[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const itemsPerPage = 6;
+  const totalPages = Math.ceil(products.length / itemsPerPage);
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
@@ -15,23 +21,47 @@ export default function Product() {
     }
   };
 
-  
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const data = await GetProducts();
+        setProducts(data);
+        console.log(data);
+      } catch (err) {
+        console.error('خطا در گرفتن محصولات:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getProducts();
+  }, []);
 
   return (
     <div className="p-6 font-sahel grid grid-cols-[17%,80%]">
       <aside className="md:col-span-1">
         <FilterProduct />
       </aside>
-      <div className="grid grid-cols-1 gap-8 pr-12 ">
+      <div className="grid grid-cols-1 gap-8 pr-12">
         <section className="md:col-span-3 flex flex-col gap-10">
-        <h1 className="text-2xl font-bold">محصولات</h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <ProductCard key={i + currentPage * 10} />
-            ))}
-          </div>
+          <h1 className="text-2xl font-bold">محصولات</h1>
 
-          <div className="flex items-center justify-center gap-2">
+          {loading ? (
+            <p className='text-center'>در حال بارگذاری...</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {products
+                .slice(
+                  (currentPage - 1) * itemsPerPage,
+                  currentPage * itemsPerPage
+                )
+                .map(product => (
+                  <ProductCard key={product._id} data={product} />
+                ))}
+            </div>
+          )}
+
+          <div className="flex items-center justify-center gap-2 pl-64 ">
             <button onClick={() => handlePageChange(currentPage - 1)}>
               <FaChevronRight />
             </button>
