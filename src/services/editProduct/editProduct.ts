@@ -30,11 +30,7 @@ export const editProduct = async (id: string, formData: any) => {
       }
     });
 
-    const response = await axios.patch(`${BASE_URL}/api/products/${id}`, data, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    const response = await axios.patch(`${BASE_URL}/api/products/${id}`, data);
 
     return response.data;
   } catch (error: any) {
