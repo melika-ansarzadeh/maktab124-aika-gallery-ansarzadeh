@@ -2,6 +2,7 @@ import { BASE_URL } from '@/constants/api/api';
 import axios from 'axios';
 
 export interface Iaddproducts {
+  images: any;
   _id: Key | null | undefined;
   name: string;
   category: string;
