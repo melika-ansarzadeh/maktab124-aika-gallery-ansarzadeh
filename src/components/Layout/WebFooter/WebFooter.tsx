@@ -12,7 +12,7 @@ export default function WebFooter() {
         <p className="text-4xl pb-1 font-serif text-white">Aika gallery</p>
       </div>
       <div className="flex justify-center items-start gap-48">
-        <div className="text-white mt-10 leading-loose text-sm">
+        <div className="text-white mt-1 leading-loose text-sm">
           <p>{footerlocalization.text1}</p>
           <p>{footerlocalization.text2}</p>
           <p>{footerlocalization.text3}</p>
@@ -23,7 +23,7 @@ export default function WebFooter() {
           <p>{footerlocalization.text8}</p>
         </div>
         <div className="text-white flex flex-col text-sm gap-2">
-          <h1 className="font-bold text-xl mb-2">
+          <h1 className="font-bold text-xl mb-1">
             {footerlocalization.quiklyaccess}
           </h1>
           <Link href="/about">{footerlocalization.aboutus}</Link>
@@ -32,7 +32,7 @@ export default function WebFooter() {
           <Link href="/orderTrack">{footerlocalization.Ordertracking}</Link>
         </div>
         <div className="text-white flex flex-col text-sm gap-2">
-          <h1 className="font-bold text-xl mb-1 mt-1">
+          <h1 className="font-bold text-xl mb-1 ">
             {footerlocalization.conect}
           </h1>
           <p>{footerlocalization.address}</p>
