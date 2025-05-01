@@ -70,7 +70,7 @@ export default function Home() {
     },
   ];
 
-  const articles = [
+  const famouse = [
     {
       id: 1,
       title: homelocalization.bracelet,
@@ -91,7 +91,7 @@ export default function Home() {
     },
   ];
 
-  const famouse = [
+  const articles = [
     {
       id: 1,
       title: homelocalization.size,
@@ -144,7 +144,7 @@ export default function Home() {
           {homelocalization.famuous}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {articles.map(famouse => (
+          {famouse.map(famouse => (
             <Link
               key={famouse.id}
               href={famouse.link}
