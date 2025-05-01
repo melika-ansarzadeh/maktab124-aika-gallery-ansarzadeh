@@ -250,3 +250,15 @@ export const filterlocalization ={
   cheap:'ارزان ترین',
   expensive:'گران ترین',
 }
+
+export const singlelocalization = {
+  materia: 'ترکیب متریال',
+  decoration: 'آراسته به',
+  brand: 'برند',
+  category: 'دسته',
+  subcategory: 'زیر دسته',
+  addtocart: 'افزودن به سبد خرید',
+  addtofavorit: 'افزودن به علاقه‌مندی',
+  loading: 'در حال بارگذاری...',
+  notfound: 'محصولی یافت نشد.',
+};

@@ -1,11 +1,10 @@
 import Link from 'next/link';
 import { IoCartOutline, IoHeartOutline } from 'react-icons/io5';
 import { Iaddproducts } from '@/services/addProduct/addProduct';
-import { BASE_URL } from '@/constants/api/api';
 
 export default function ProductCard({ data }: { data: Iaddproducts }) {
   return (
-    <Link href={`/singleProduct/${data._id}`}>
+    <Link href={`/products/${data._id}`}>
       <div className="bg-custom-50 border px-6 pt-6 pb-10 text-center hover:shadow-lg hover:scale-105 transition font-number">
         <div className="w-full h-56 border mb-4 flex items-center justify-center">
           <img
