@@ -7,7 +7,6 @@ import {
   addproductlocalization,
   loadinglocalization,
   orderslocalization,
-  tablelocalization,
 } from '@/constants/localization/localization';
 
 type ProductTableProps = {
@@ -25,8 +24,8 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
   const notDeliveredCount = data.filter(order => !order.deliveryStatus).length;
 
   const chartData = [
-    { name: 'تحویل داده شده', value: deliveredCount },
-    { name: 'در انتظار تحویل', value: notDeliveredCount },
+    { name: orderslocalization.delivered , value: deliveredCount },
+    { name: orderslocalization.notdelivered, value: notDeliveredCount },
   ];
 
 
@@ -148,11 +147,11 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
 
             <div className="flex flex-col md:flex-row font-number items-center justify-between text-sm gap-3">
               <span className="text-xs px-2">
-                نمایش <b>{startIndex + 1}</b> تا{' '}
+          {orderslocalization.showorder} <b>{startIndex + 1}</b> تا{' '}
                 <b>
                   {Math.min(startIndex + rowsPerPage, filteredOrders.length)}
                 </b>{' '}
-                از <b>{filteredOrders.length}</b>
+              
               </span>
 
               <div className="flex items-center gap-2">

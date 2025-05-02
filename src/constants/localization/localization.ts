@@ -129,7 +129,7 @@ export const orderslocalization = {
   managment:'مدیریت سفارش ها',
   all :'همه سفارش ها',
   notdelivered:'در انتظار تحویل',
-
+  showorder:'نمایش سفارش'
 };
 
 export const homeadlocalization = {
