@@ -237,3 +237,33 @@ export const homelocalization = {
   necklace: 'گردنبند Crystal Butterflies از برند ورساچه',
   ring: 'انگشتر B.zero1 از برند بولگاری'
 };
+
+export const filterlocalization ={
+  category:'دسته بندی',
+  brand:'برند',
+  necklace:'گردنبند', 
+  earings:'گوشواره',
+  ring: 'انگشتر',
+  bracelet: 'دستبند',
+  tifany:'تیفانی',
+  bvlgari:'بولگاری',
+  chanel:'شنل',
+  versace:'ورساچه',
+  cartier:'کارتیر',
+  dior:'دیور',
+  price:'قیمت',
+  cheap:'ارزان ترین',
+  expensive:'گران ترین',
+}
+
+export const singlelocalization = {
+  materia: 'ترکیب متریال',
+  decoration: 'آراسته به',
+  brand: 'برند',
+  category: 'دسته',
+  subcategory: 'زیر دسته',
+  addtocart: 'افزودن به سبد خرید',
+  addtofavorit: 'افزودن به علاقه‌مندی',
+  loading: 'در حال بارگذاری...',
+  notfound: 'محصولی یافت نشد.',
+};
