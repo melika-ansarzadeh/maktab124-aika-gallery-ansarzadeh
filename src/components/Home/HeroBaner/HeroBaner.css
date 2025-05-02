@@ -44,7 +44,7 @@ body {
 .swiper-slide img {
   width: 100%;
   margin: auto;
-  padding: 0;
+  padding: 3rem;
   border-radius: 8px;
 }
 
