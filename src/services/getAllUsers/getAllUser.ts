@@ -8,8 +8,8 @@ export const GetUsers = async (token?: string) => {
         Authorization: `Bearer ${token}`,
       },
     });
-
-    return response.data;
+      console.log(response.data)
+    return response.data.data.users;
   } catch (error) {
     console.error('Error fetching data:', error);
   }

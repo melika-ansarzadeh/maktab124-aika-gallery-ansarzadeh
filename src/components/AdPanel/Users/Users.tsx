@@ -1,7 +1,6 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import Button from '@/shared/Button/Button';
 import axios from 'axios';
 import { BASE_URL } from '@/constants/api/api';
 import {
@@ -10,6 +9,7 @@ import {
 } from '@/constants/localization/localization';
 
 type User = {
+  firstname: ReactNode;
   name: string;
   lastname: string;
   username: string;
@@ -29,28 +29,25 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // خواندن توکن از localStorage
         const token = localStorage.getItem('token');
-        console.log('Token:', token); // چاپ توکن برای بررسی
+        console.log('Token:', token);
 
-        // بررسی اینکه آیا توکن موجود است
         if (!token) {
           console.error('No token found!');
           return;
         }
 
-        // ارسال درخواست با توکن
         const res = await axios.get(`${BASE_URL}/api/users`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
-        console.log('Fetched users:', res.data); // چاپ داده‌های کاربران
-        setData(res.data); // ذخیره داده‌ها در state
+        console.log('Fetched users:', res.data);
+        setData(res.data.data.users);
         setLoading(false);
       } catch (err) {
-        console.error('Error fetching users:', err); // چاپ خطای دریافت داده‌ها
+        console.error('Error fetching users:', err);
         setLoading(false);
       }
     };
@@ -86,14 +83,8 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
         <div className="font-sahel">
           <div className="flex justify-between items-center">
             <p className="font-semibold -mr-3">{userlocalization.list}</p>
-            <div className="flex justify-end pl-3">
-              <Button
-                children="ذخیره"
-                className="my-3 py-2 px-8 rounded-lg border bg-white border-custom-200 active:scale-90"
-              />
-            </div>
           </div>
-          <div className="overflow-x-auto rounded-[2rem] font-number border border-custom-500 bg-gradient-to-br from-custom-100 via-white to-custom-100 shadow-[0_8px_30px_rgba(0,0,0,0.05)] py-6 px-3 -mr-9 space-y-4 transition-all">
+          <div className="overflow-x-auto rounded-[2rem] mt-10 border border-custom-500 bg-gradient-to-br from-custom-100 via-white to-custom-100 shadow-[0_8px_30px_rgba(0,0,0,0.05)] py-6 px-3 -mr-9 space-y-4 transition-all">
             <div className="overflow-hidden rounded-xl border border-custom-500 shadow-inner backdrop-blur-md">
               <table className="min-w-full text-sm font-medium">
                 <thead className="bg-custom-400 text-xs uppercase font-sahel tracking-wider">
@@ -116,25 +107,25 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-custom-500 bg-white font-sahel text-sm font-medium">
-                  {paginatedData.map((user, i) => (
+                  {paginatedData.map((data, i) => (
                     <tr
                       key={i}
                       className="hover:bg-gradient-to-r hover:from-white hover:to-custom-50 transition-colors duration-300 ease-in-out hover:shadow-sm"
                     >
                       <td className="py-4 px-1 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px]">
-                        {user.name}
+                        {data.firstname}
                       </td>
                       <td className="py-4 px-1 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px]">
-                        {user.lastname}
+                        {data.lastname}
                       </td>
                       <td className="py-4 px-1 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px]">
-                        {user.username}
+                        {data.username}
+                      </td>
+                      <td className="py-4 px-1 font-number text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px]">
+                        {data.phoneNumber}
                       </td>
                       <td className="py-4 px-1 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px]">
-                        {user.phoneNumber}
-                      </td>
-                      <td className="py-4 px-1 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px]">
-                        {user.address}
+                        {data.address}
                       </td>
                     </tr>
                   ))}
@@ -142,11 +133,11 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
               </table>
             </div>
 
-            <div className="flex flex-col md:flex-row items-center justify-between text-sm gap-3">
+            <div className="flex flex-col md:flex-row items-center font-number pr-2 justify-between text-sm gap-3">
               <span className="text-xs">
-                نمایش <b>{startIndex + 1}</b> تا{' '}
-                <b>{Math.min(startIndex + rowsPerPage, data.length)}</b> از{' '}
-                <b>{data.length}</b>
+                نمایش کاربر <b>{startIndex + 1} </b> تا{' '}
+                <b>{Math.min(startIndex + rowsPerPage, data.length)}</b>{' '}
+                
               </span>
 
               <div className="flex items-center gap-2">
