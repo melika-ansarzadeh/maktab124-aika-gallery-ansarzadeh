@@ -1,12 +1,11 @@
 'use client';
 import { ReactNode, useEffect, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import axios from 'axios';
-import { BASE_URL } from '@/constants/api/api';
 import {
   loadinglocalization,
   userlocalization,
 } from '@/constants/localization/localization';
+import { GetUsers } from '@/services/getAllUsers/getAllUser';
 
 type User = {
   firstname: ReactNode;
@@ -26,34 +25,27 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
+    useEffect(() => {
+      const fetchUsers = async () => {
         const token = localStorage.getItem('token');
-        console.log('Token:', token);
-
         if (!token) {
           console.error('No token found!');
+          setLoading(false);
           return;
         }
 
-        const res = await axios.get(`${BASE_URL}/api/users`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        try {
+          const users = await GetUsers(token);
+          setData(users || []);
+        } catch (error) {
+          console.error('Failed to fetch users:', error);
+        } finally {
+          setLoading(false);
+        }
+      };
 
-        console.log('Fetched users:', res.data);
-        setData(res.data.data.users);
-        setLoading(false);
-      } catch (err) {
-        console.error('Error fetching users:', err);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+      fetchUsers();
+    }, []);
 
   const totalPages = Math.ceil(data.length / rowsPerPage);
   const startIndex = (page - 1) * rowsPerPage;
@@ -90,19 +82,19 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
                 <thead className="bg-custom-400 text-xs uppercase font-sahel tracking-wider">
                   <tr className="transition-all duration-300">
                     <th className="px-6 py-4 text-center whitespace-nowrap">
-                      نام
+                      {userlocalization.name}
                     </th>
                     <th className="px-6 py-4 text-center whitespace-nowrap">
-                      نام خانوادگی
+                     {userlocalization.lastname}
                     </th>
                     <th className="px-6 py-4 text-center whitespace-nowrap">
-                      نام کاربری
+                      {userlocalization.username}
                     </th>
                     <th className="px-6 py-4 text-center whitespace-nowrap">
-                      شماره تلفن
+                      {userlocalization.phoneNumber}
                     </th>
                     <th className="px-6 py-4 text-center whitespace-nowrap">
-                      آدرس
+                    {userlocalization.address}
                     </th>
                   </tr>
                 </thead>
@@ -135,7 +127,7 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
 
             <div className="flex flex-col md:flex-row items-center font-number pr-2 justify-between text-sm gap-3">
               <span className="text-xs">
-                نمایش کاربر <b>{startIndex + 1} </b> تا{' '}
+                {userlocalization.showuser}<b>{startIndex + 1} </b> تا{' '}
                 <b>{Math.min(startIndex + rowsPerPage, data.length)}</b>{' '}
                 
               </span>

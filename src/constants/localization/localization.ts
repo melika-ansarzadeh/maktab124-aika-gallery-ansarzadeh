@@ -107,7 +107,8 @@ export const userlocalization = {
   username: 'نام کاربری',
   phoneNumber: 'شماره تماس',
   address: 'آدرس',
-  list:'لیست کاربران'
+  list:'لیست کاربران',
+  showuser:'نمایش کاربر'
 };
 
 export const notfoundlocalization = {
