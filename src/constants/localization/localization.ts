@@ -78,7 +78,8 @@ export const addproductlocalization = {
   stock: 'موجودی',
   image: 'تصویر',
   managmentpricestock: 'مدیریت موجودی و قیمت',
-  toman:'تومان'
+  toman:'تومان',
+  showproduct:'نمایش محصول شماره'
 };
 
 export const tablelocalization = {
@@ -174,3 +175,8 @@ export const adproductlocalization = {
   oldest: 'قدیمی ترین',
   addproduct: 'افزودن محصول جدید',
 };
+
+export const editlocalization = {
+  successedit:'ویرایش محصول موفقیت ',
+  erroredit:''
+}

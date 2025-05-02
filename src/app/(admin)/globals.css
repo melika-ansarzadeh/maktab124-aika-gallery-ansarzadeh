@@ -12,6 +12,6 @@
   src: url(./../../assets/fonts/Dirooz-FD.woff2);
 }
   
-.font-number {
+*{
   font-family: number;
 }

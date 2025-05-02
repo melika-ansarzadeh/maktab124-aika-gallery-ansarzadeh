@@ -5,10 +5,12 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import {
   addproductlocalization,
   loadinglocalization,
+  swallLocalization,
   tablelocalization,
 } from '@/constants/localization/localization';
 import Button from '@/shared/Button/Button';
 import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { GetProducts } from '@/services/getProducts/getProducts';
 import { editProduct } from '@/services/editProduct/editProduct';
 
@@ -96,7 +98,7 @@ export default function ProductQuallity({
         await editProduct(id, { [field]: value });
       }
 
-      toast.success('All changes saved!');
+      toast.success(swallLocalization.editedSuccessfully);
       setChangedCells({});
       setEditingCell(null);
       setEditedValue({});
@@ -104,19 +106,19 @@ export default function ProductQuallity({
       await fetchData(); 
     } catch (error) {
       console.error('Failed to save all changes', error);
-      toast.error('Failed to save changes.');
+      toast.error(swallLocalization.errorInEditing);
     }
   };
 
   return (
     <div>
+      <ToastContainer />
       {loading ? (
         <p className="text-center text-gray-500">
           {loadinglocalization.loading}
         </p>
       ) : (
         <div className="font-sahel">
-          <ToastContainer />
           <div className="flex justify-between items-center pl-3">
             <p className="font-semibold">
               {addproductlocalization.managmentpricestock}
@@ -135,10 +137,10 @@ export default function ProductQuallity({
                     <th className="px-6 py-4 text-center whitespace-nowrap">
                       {addproductlocalization.name}
                     </th>
-                    <th className="px-6 py-4 text-center font-number whitespace-nowrap">
+                    <th className="px-6 py-4 text-center font-num whitespace-nowrap">
                       {addproductlocalization.quantity}
                     </th>
-                    <th className="px-6 py-4 text-center font-number whitespace-nowrap">
+                    <th className="px-6 py-4 text-center font-num whitespace-nowrap">
                       {addproductlocalization.price}
                     </th>
                   </tr>
@@ -170,7 +172,7 @@ export default function ProductQuallity({
                         editingCell.field === 'quantity' ? (
                           <input
                             type="text"
-                            className="w-16 py-1 text-center border border-gray-300 rounded"
+                            className="w-20 py-1 text-center border border-gray-300 rounded"
                             value={
                               editedValue[`${product._id}-quantity`] ??
                               product.quantity
@@ -178,6 +180,7 @@ export default function ProductQuallity({
                             onChange={handleChange}
                           />
                         ) : (
+                          editedValue[`${product._id}-quantity`] ??
                           product.quantity
                         )}
                       </td>
@@ -205,7 +208,10 @@ export default function ProductQuallity({
                           />
                         ) : (
                           <>
-                            {product.price.toLocaleString()}{' '}
+                            {(
+                              editedValue[`${product._id}-price`] ??
+                              product.price
+                            ).toLocaleString()}{' '}
                             {addproductlocalization.toman}
                           </>
                         )}
@@ -218,9 +224,8 @@ export default function ProductQuallity({
 
             <div className="flex flex-col md:flex-row items-center justify-between text-sm gap-3">
               <span className="text-xs px-2">
-                نمایش <b>{startIndex + 1}</b> تا{' '}
-                <b>{Math.min(startIndex + rowsPerPage, data.length)}</b> از{' '}
-                <b>{data.length}</b>
+                {addproductlocalization.showproduct} <b>{startIndex + 1}</b>تا{' '}
+                <b>{Math.min(startIndex + rowsPerPage, data.length)}</b>{' '}
               </span>
 
               <div className="flex items-center gap-2">
