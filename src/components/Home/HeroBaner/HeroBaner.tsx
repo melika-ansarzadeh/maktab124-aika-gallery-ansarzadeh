@@ -8,7 +8,6 @@ import 'swiper/css/navigation';
 import './HeroBaner.css';
 import { Pagination, Navigation } from 'swiper/modules';
 import Image from 'next/image';
-import Link from 'next/link';
 
 interface SwiperProps {
   images: {
@@ -25,6 +24,7 @@ export default function BrandSwiper({
 }: SwiperProps) {
   return (
     <Swiper
+      style={{ height: '33rem' }}
       slidesPerView={1}
       spaceBetween={30}
       loop={true}
@@ -38,20 +38,20 @@ export default function BrandSwiper({
       {images.map((image, index) => (
         <SwiperSlide key={index}>
           {image.link ? (
-            <Link href={image.link}>
+            <div className="w-full h-[38rem] relative">
               <Image
                 src={image.src}
                 alt={image.alt}
-                quality={100}
-                className="w-full h-auto object-cover"
+                fill
+                className="object-cover rounded-lg"
               />
-            </Link>
+            </div>
           ) : (
             <Image
               src={image.src}
               alt={image.alt}
               quality={100}
-              className="w-full h-auto object-cover"
+              className="object-cover"
             />
           )}
         </SwiperSlide>

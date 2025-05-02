@@ -75,19 +75,19 @@ export default function Home() {
       id: 1,
       title: homelocalization.bracelet,
       image: wishper,
-      link: 'https://parasteh.com/blog/size-of-ring-necklace-bracelet/',
+      link: 'http://localhost:3000/products/67ff4ddaeada4d94453a7a66',
     },
     {
       id: 2,
       title: homelocalization.necklace,
       image: necklace,
-      link: 'https://parasteh.com/blog/jewelry-according-face-shape/',
+      link: 'http://localhost:3000/products/67ffef94eada4d94453a7b3b',
     },
     {
       id: 3,
       title: homelocalization.ring,
       image: coco,
-      link: 'https://parasteh.com/blog/what-skin-tone-goes-with-gold/',
+      link: 'http://localhost:3000/products/67fea70425dce380f3dc193f',
     },
   ];
 
