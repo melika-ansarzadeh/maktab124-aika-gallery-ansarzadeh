@@ -14,7 +14,7 @@ interface Subcategory {
 export interface Iaddproducts {
   decorations: ReactNode;
   images: any;
-  _id: Key | null | undefined;
+  _id: React.Key | null | undefined;
   name: string;
   category?: Category;
   subcategory?: Subcategory;

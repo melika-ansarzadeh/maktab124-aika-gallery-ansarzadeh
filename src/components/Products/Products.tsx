@@ -11,6 +11,8 @@ export default function Product() {
   const [currentPage, setCurrentPage] = useState(1);
   const [products, setProducts] = useState<Iaddproducts[]>([]);
   const [loading, setLoading] = useState(true);
+  const [filters, setFilters] = useState({});
+
 
   const itemsPerPage = 6;
   const totalPages = Math.ceil(products.length / itemsPerPage);
@@ -21,33 +23,35 @@ export default function Product() {
     }
   };
 
-  useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const data = await GetProducts();
-        setProducts(data);
-        console.log(data);
-      } catch (err) {
-        console.error('خطا در گرفتن محصولات:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
+ useEffect(() => {
+   const getProducts = async () => {
+     setLoading(true);
+     try {
+       const data = await GetProducts(filters); // فیلترها اینجا استفاده می‌شن
+       setProducts(data);
+       setCurrentPage(1); // با هر فیلتر صفحه ۱ نمایش داده شود
+     } catch (err) {
+       console.error('خطا در گرفتن محصولات:', err);
+     } finally {
+       setLoading(false);
+     }
+   };
 
-    getProducts();
-  }, []);
+   getProducts();
+ }, [filters]);
+
 
   return (
     <div className="p-6 font-sahel grid grid-cols-[17%,80%]">
       <aside className="md:col-span-1">
-        <FilterProduct />
+        <FilterProduct setFilters={setFilters} />
       </aside>
       <div className="grid grid-cols-1 gap-8 pr-12">
         <section className="md:col-span-3 flex flex-col gap-10">
           <h1 className="text-2xl font-bold">محصولات</h1>
 
           {loading ? (
-            <p className='text-center'>در حال بارگذاری...</p>
+            <p className="text-center">در حال بارگذاری...</p>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {products
