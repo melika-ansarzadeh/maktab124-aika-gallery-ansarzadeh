@@ -1,5 +1,3 @@
-import Products from "@/components/Products/Products";
-
 export const loginLocalization = {
   loginToAccount: 'ورود به حساب کاربری',
   username: 'نام کاربری',

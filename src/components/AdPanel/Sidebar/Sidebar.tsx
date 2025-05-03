@@ -16,7 +16,7 @@ export default function Sidebar() {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    router.push('/login');
+    router.push('/');
   };
 
   return (
@@ -88,7 +88,8 @@ export default function Sidebar() {
             }`}
             title="کاربران"
           >
-            <FaUsers />
+            <FaUsers
+            className='focus:text-red-500' />
             <span className="absolute left-1/2 transform -translate-x-1/2 mt-1 px-2 py-1 bg-white text-black text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               کاربران
             </span>
