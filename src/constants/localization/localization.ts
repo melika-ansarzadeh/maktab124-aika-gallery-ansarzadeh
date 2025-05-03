@@ -1,3 +1,5 @@
+import Products from "@/components/Products/Products";
+
 export const loginLocalization = {
   loginToAccount: 'ورود به حساب کاربری',
   username: 'نام کاربری',
@@ -176,7 +178,11 @@ export const adproductlocalization = {
   addproduct: 'افزودن محصول جدید',
 };
 
-export const editlocalization = {
-  successedit:'ویرایش محصول موفقیت ',
-  erroredit:''
+export const adpanellocalization = {
+  orders:'تعداد کل سفارشات',
+  users:'تعداد کل کاربران',
+  products:'تعداد کل محصولات',
+  order:'سفارش',
+  user:'کاربر',
+  product:'محصول'
 }
