@@ -87,7 +87,8 @@ export const addproductlocalization = {
 export const tablelocalization = {
   delete:'حذف',
   edit:'ویرایش',
-  save:'ذخیره'
+  save:'ذخیره',
+  show:'نمایش محصول شماره'
 };
 
 export const swallLocalization = {

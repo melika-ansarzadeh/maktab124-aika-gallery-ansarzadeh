@@ -10,7 +10,7 @@ import { ToastContainer } from 'react-toastify';
 
 import { deleteProduct } from '@/services/deleteProduct/deleteProduct';
 import { BASE_URL } from '@/constants/api/api';
-import { swallLocalization } from '@/constants/localization/localization';
+import { swallLocalization, tablelocalization } from '@/constants/localization/localization';
 import ModalEdit from './ModalEdit/ModalEdit';
 
 type TableProps = {
@@ -193,9 +193,9 @@ setProducts,
 
       <div className="flex flex-col md:flex-row items-center justify-between text-sm gap-3">
         <span className="text-xs px-2">
-          نمایش <b>{startIndex + 1}</b> تا{' '}
-          <b>{Math.min(startIndex + rowsPerPage, products?.length)}</b> از{' '}
-          <b>{products?.length}</b>
+      {tablelocalization.show} <b>{startIndex + 1}</b> تا{' '}
+          <b>{Math.min(startIndex + rowsPerPage, products?.length)}</b>{' '}
+
         </span>
 
         <div className="flex items-center gap-2">
