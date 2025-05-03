@@ -92,6 +92,22 @@ export const tablelocalization = {
   delete: 'حذف',
   edit: 'ویرایش',
   save: 'ذخیره',
+  toman:'تومان',
+  show:'نمایش محصول شماره'
+};
+
+export const swallLocalization = {
+  sure: 'آیا مطمئن هستید؟',
+  warninigText: 'این محصول برای همیشه حذف خواهد شد.',
+  okDelete: '!بله، حذف شود',
+  cancle: 'لغو',
+  delete: 'حذف شد',
+  deletedSuccessfully: '.محصول با موفقیت حذف شد',
+  ok: 'باشه',
+  errorHappened: 'مشکلی پیش آمد. دوباره امتحان کنید',
+  error: 'خطا',
+  editedSuccessfully: 'ویرایش موفقیت آمیز بود',
+  errorInEditing: 'خطا در ویرایش محصول',
 };
 
 export const userlocalization = {
@@ -101,6 +117,7 @@ export const userlocalization = {
   phoneNumber: 'شماره تماس',
   address: 'آدرس',
   list: 'لیست کاربران',
+  showuser:'نمایش کاربر'
 };
 
 export const notfoundlocalization = {
@@ -115,11 +132,12 @@ export const orderslocalization = {
   managmentordr: 'بررسی سفارش',
   statusdelivered: 'وضعیت تحویل',
   Dateofregistration: 'تاریخ سفارش',
-  price: 'مجموع قیمت',
-  name: 'نام کاربر',
-  managment: 'مدیریت سفارش ها',
-  all: 'همه سفارش ها',
-  notdelivered: 'در انتظار تحویل',
+  price:'مجموع قیمت',
+  name:'نام کاربر',
+  managment:'مدیریت سفارش ها',
+  all :'همه سفارش ها',
+  notdelivered:'در انتظار تحویل',
+  showorder:'نمایش سفارش'
 };
 
 export const homeadlocalization = {
@@ -267,3 +285,47 @@ export const singlelocalization = {
   loading: 'در حال بارگذاری...',
   notfound: 'محصولی یافت نشد.',
 };
+
+export const modaladdlocalization = {
+  stock:'وضعیت موجودی',
+  instock: 'موجود',
+  outofstock: 'ناموجود',
+  commingsoon: 'به زودی',
+  stopped:'متوقف شده',
+  dior: 'دیور',
+  versace: 'ورساچه',
+  chanel: 'شنل',
+  tiffani: 'تیفانی',
+  cartier: 'کارتیر',
+  bvlgari: 'بولگاری',
+  brand: 'برند',
+  category: 'دسته بندی محصول',
+  subcategory: 'زیردسته محصول',
+  ring: 'انگشتر',
+  necklace: 'گردنبند',
+  earrings: 'گوشواره',
+  bracelet: 'دستبند',
+  description: 'توضیحات',
+  addproduct: 'افزودن محصول جدید',
+  add: 'افزودن',
+  toastsucces: 'محصول جدید با موفقیت اضافه شد',
+  toasterror: 'خطا در اضافه کردن محصول',
+};
+
+export const adproductlocalization = {
+  sort: 'مرتب سازی بر اساس',
+  newest: 'جدید ترین',
+  cheap: 'ارزون ترین',
+  expensive: 'گرون ترین',
+  oldest: 'قدیمی ترین',
+  addproduct: 'افزودن محصول جدید',
+};
+
+export const adpanellocalization = {
+  orders:'تعداد کل سفارشات',
+  users:'تعداد کل کاربران',
+  products:'تعداد کل محصولات',
+  order:'سفارش',
+  user:'کاربر',
+  product:'محصول'
+}

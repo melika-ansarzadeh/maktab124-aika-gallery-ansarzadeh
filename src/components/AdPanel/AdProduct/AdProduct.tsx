@@ -1,15 +1,23 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { addproductlocalization, loadinglocalization } from '@/constants/localization/localization';
-import { GetProducts } from '@/services/getProducts/getProducts';
+import {
+  addproductlocalization,
+  adproductlocalization,
+  loadinglocalization,
+} from '@/constants/localization/localization';
+import { GetProducts, ProductFilters } from '@/services/getProducts/getProducts';
 import { Iaddproducts } from '@/services/addProduct/addProduct';
 import Table from '../Table/Table';
-
+import ModalAdd from './ModalAdd/ModalAdd';
 
 export default function AdProduct() {
+  // const [products, setProducts] = useState<any[]>([]);
   const [products, setProducts] = useState<Iaddproducts[]>([]);
   const [loading, setLoading] = useState(true);
+  const [sortOption, setSortOption] = useState<string>('newest');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
 
   const columns = [
     {
@@ -83,30 +91,64 @@ export default function AdProduct() {
     },
   ];
 
-  useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const data = await GetProducts();
-        setProducts(data);
-        console.log(data);
-      } catch (err) {
-        console.error('خطا در گرفتن محصولات:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchProductsWithFilter = async (filters:ProductFilters) => {
+    try {
+      setLoading(true);
+      const data = await GetProducts(filters);
+      setProducts(data);
+    } catch (err) {
+      console.error('خطا در گرفتن محصولات:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    getProducts();
-  }, []);
+  useEffect(() => {
+    fetchProductsWithFilter({ sort: sortOption }); 
+  }, [sortOption]);
+
+  const handleProductAdded = () => {
+    fetchProductsWithFilter({ sort: sortOption });
+  };
 
   return (
     <div className="p-4">
+      <div className="flex justify-between pl-2 font-number items-center">
+        <div className="flex items-center gap-3 -mr-5 mb-5 font-sahel">
+          <p className="font-semibold">{adproductlocalization.sort}:</p>
+          <select
+            value={sortOption}
+            onChange={e => setSortOption(e.target.value)}
+            className="px-3 py-2 rounded-lg border"
+          >
+            <option value="createdAt">{adproductlocalization.oldest}</option>
+            <option value="-createdAt">{adproductlocalization.newest}</option>
+            <option value="-price">{adproductlocalization.expensive}</option>
+            <option value="price">{adproductlocalization.cheap}</option>
+          </select>
+        </div>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="bg-white text-sm border-2 border-custom-400 px-6 py-3 rounded-lg active:scale-95"
+        >
+          {adproductlocalization.addproduct}
+        </button>
+        <ModalAdd
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onProductAdded={handleProductAdded}
+        />
+      </div>
       {loading ? (
         <p className="text-center font-sahel text-xs text-gray-500">
           {loadinglocalization.loading}
         </p>
       ) : (
-        <Table columns={columns} data={products} rowsPerPage={5} />
+        <Table
+            columns={columns}
+            products={products}
+            setProducts={setProducts}
+            rowsPerPage={5} isDelete={isDelete} setIsDelete={setIsDelete}        />
       )}
     </div>
   );

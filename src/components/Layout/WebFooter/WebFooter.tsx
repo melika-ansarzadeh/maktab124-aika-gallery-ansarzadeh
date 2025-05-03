@@ -39,7 +39,7 @@ export default function WebFooter() {
           <p>{footerlocalization.address1}</p>
           <p>{footerlocalization.supporttime}</p>
           <p>{footerlocalization.time}</p>
-          <p>6789 345 912 (+98)</p>
+          <p>6789 345 912 (98+)</p>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import { BASE_URL } from '@/constants/api/api';
 import axios from 'axios';
 import { Iaddproducts } from '../addProduct/addProduct';
 
-interface ProductFilters {
+export interface ProductFilters {
   sort?: string;
   brand?: string;
   category?: string;
@@ -21,7 +21,7 @@ export const GetProducts = async (
     } = filters;
 
     const response = await axios.get(
-      `${BASE_URL}/api/products?limit=all&sort=${sort}&brand=${brand}&category=${category}`
+      `${BASE_URL}/api/products?limit=all&sort=${sort}`
     );
     return response.data.data.products;
   } catch (error) {

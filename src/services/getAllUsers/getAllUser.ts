@@ -1,5 +1,5 @@
-import { BASE_URL } from "@/constants/api/api";
-import axios from "axios";
+import { BASE_URL } from '@/constants/api/api';
+import axios from 'axios';
 
 export const GetUsers = async (token?: string) => {
   try {
@@ -8,8 +8,7 @@ export const GetUsers = async (token?: string) => {
         Authorization: `Bearer ${token}`,
       },
     });
-
-    return response.data;
+    return response.data.data.users;
   } catch (error) {
     console.error('Error fetching data:', error);
   }

@@ -11,34 +11,112 @@ export default function FilterProduct({ setFilters }: FilterProductProps) {
         {filterlocalization.category}:
       </h3>
       <div className="flex flex-col gap-3 items-start text-sm">
-        <button onClick={() => setFilters((prev: any) => ({ ...prev, category: 'necklace' }))}>
+        <button
+          onClick={() =>
+            setFilters((prev: any) => ({
+              ...prev,
+              category: '67fdfc76079f27c844bfb86e',
+            }))
+          }
+        >
           {filterlocalization.necklace}
         </button>
-        <button onClick={() => setFilters((prev: any) => ({ ...prev, category: 'earrings' }))}>
+        <button
+          onClick={() =>
+            setFilters((prev: any) => ({
+              ...prev,
+              category: '67fdfc90079f27c844bfb872',
+            }))
+          }
+        >
           {filterlocalization.earings}
         </button>
-        <button onClick={() => setFilters((prev: any) => ({ ...prev, category: 'ring' }))}>{filterlocalization.ring}</button>
-        <button onClick={() => setFilters((prev: any) => ({ ...prev, category: 'bracelet' }))}>
+        <button
+          onClick={() =>
+            setFilters((prev: any) => ({
+              ...prev,
+              category: '67fdfc52079f27c844bfb86a',
+            }))
+          }
+        >
+          {filterlocalization.ring}
+        </button>
+        <button
+          onClick={() =>
+            setFilters((prev: any) => ({
+              ...prev,
+              category: '67fdfcac079f27c844bfb876',
+            }))
+          }
+        >
           {filterlocalization.bracelet}
         </button>
       </div>
 
-      <h3 className="text-lg text-[#663819] font-medium mb-3 mt-7">{filterlocalization.brand}:</h3>
+      <h3 className="text-lg text-[#663819] font-medium mb-3 mt-7">
+        {filterlocalization.brand}:
+      </h3>
       <div className="flex flex-col gap-3 items-start text-sm">
-        <button onClick={() => setFilters((prev: any) => ({ ...prev, brand: 'Bvlgari' }))}>{filterlocalization.bvlgari}</button>
-        <button onClick={() => setFilters((prev: any) => ({ ...prev, brand: 'Tiffany' }))}>{filterlocalization.tifany}</button>
-        <button onClick={() => setFilters((prev: any) => ({ ...prev, brand: 'Cartier' }))}>{filterlocalization.cartier}</button>
-        <button onClick={() => setFilters((prev: any) => ({ ...prev, brand: 'Versace' }))}>{filterlocalization.versace}</button>
-        <button onClick={() => setFilters((prev: any) => ({ ...prev, brand: 'Dior' }))}>{filterlocalization.dior}</button>
-        <button onClick={() => setFilters((prev: any) => ({ ...prev, brand: 'Chanel' }))}>{filterlocalization.chanel}</button>
+        <button
+          onClick={() =>
+            setFilters((prev: any) => ({ ...prev, brand: 'Bvlgari' }))
+          }
+        >
+          {filterlocalization.bvlgari}
+        </button>
+        <button
+          onClick={() =>
+            setFilters((prev: any) => ({ ...prev, brand: 'Tiffany' }))
+          }
+        >
+          {filterlocalization.tifany}
+        </button>
+        <button
+          onClick={() =>
+            setFilters((prev: any) => ({ ...prev, brand: 'Cartier' }))
+          }
+        >
+          {filterlocalization.cartier}
+        </button>
+        <button
+          onClick={() =>
+            setFilters((prev: any) => ({ ...prev, brand: 'Versace' }))
+          }
+        >
+          {filterlocalization.versace}
+        </button>
+        <button
+          onClick={() =>
+            setFilters((prev: any) => ({ ...prev, brand: 'Dior' }))
+          }
+        >
+          {filterlocalization.dior}
+        </button>
+        <button
+          onClick={() =>
+            setFilters((prev: any) => ({ ...prev, brand: 'Chanel' }))
+          }
+        >
+          {filterlocalization.chanel}
+        </button>
       </div>
 
-      <h3 className="text-lg text-[#663819] font-medium mb-3 mt-7">{filterlocalization.price}:</h3>
+      <h3 className="text-lg text-[#663819] font-medium mb-3 mt-7">
+        {filterlocalization.price}:
+      </h3>
       <div className="flex flex-col gap-3 items-start text-sm">
-        <button onClick={() => setFilters((prev: any) => ({ ...prev, sort: '-price' }))}>
-         {filterlocalization.expensive}
+        <button
+          onClick={() =>
+            setFilters((prev: any) => ({ ...prev, sort: '-price' }))
+          }
+        >
+          {filterlocalization.expensive}
         </button>
-        <button onClick={() => setFilters((prev: any) => ({ ...prev, sort: 'price' }))}>
+        <button
+          onClick={() =>
+            setFilters((prev: any) => ({ ...prev, sort: 'price' }))
+          }
+        >
           {filterlocalization.cheap}
         </button>
       </div>

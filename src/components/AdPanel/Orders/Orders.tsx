@@ -7,7 +7,6 @@ import {
   addproductlocalization,
   loadinglocalization,
   orderslocalization,
-  tablelocalization,
 } from '@/constants/localization/localization';
 
 type ProductTableProps = {
@@ -25,8 +24,8 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
   const notDeliveredCount = data.filter(order => !order.deliveryStatus).length;
 
   const chartData = [
-    { name: 'تحویل داده شده', value: deliveredCount },
-    { name: 'در انتظار تحویل', value: notDeliveredCount },
+    { name: orderslocalization.delivered , value: deliveredCount },
+    { name: orderslocalization.notdelivered, value: notDeliveredCount },
   ];
 
 
@@ -34,10 +33,8 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
     const fetchData = async () => {
       setLoading(true);
       const orders = await GetOrders();
-      console.log('Full orders data:', orders);
       const orderData = orders;
       if (orderData) {
-        console.log('Order data:', orderData);
         setData(orderData);
       } else {
         console.log('No orders found or invalid data structure');
@@ -156,12 +153,12 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
             </div>
 
             <div className="flex flex-col md:flex-row font-number items-center justify-between text-sm gap-3">
-              <span className="text-xs">
-                نمایش <b>{startIndex + 1}</b> تا{' '}
+              <span className="text-xs px-2">
+          {orderslocalization.showorder} <b>{startIndex + 1}</b> تا{' '}
                 <b>
                   {Math.min(startIndex + rowsPerPage, filteredOrders.length)}
                 </b>{' '}
-                از <b>{filteredOrders.length}</b>
+              
               </span>
 
               <div className="flex items-center gap-2">
@@ -170,7 +167,7 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
                   disabled={page === 1}
                   className="p-2 rounded-full bg-white border-2 border-custom-500 hover:bg-custom-400 disabled:opacity-40 transition-all duration-300"
                 >
-                  <FaChevronLeft className="w-3 h-3" />
+                  <FaChevronRight className="w-3 h-3" />
                 </button>
 
                 {getPageNumbers().map(pageNum => (
@@ -193,7 +190,7 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
                   disabled={page === totalPages}
                   className="p-2 rounded-full bg-white border-2 border-custom-500 hover:bg-custom-400 disabled:opacity-40 transition-all duration-300"
                 >
-                  <FaChevronRight className="w-3 h-3" />
+                  <FaChevronLeft className="w-3 h-3" />
                 </button>
               </div>
             </div>
