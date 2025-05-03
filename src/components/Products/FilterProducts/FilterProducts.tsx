@@ -97,7 +97,7 @@ export default function FilterProduct({ setFilters }: FilterProductProps) {
             setFilters((prev: any) => ({ ...prev, brand: 'Chanel' }))
           }
         >
-          {filterlocalization.chanel}
+          {filterlocalization.chanel} 
         </button>
       </div>
 

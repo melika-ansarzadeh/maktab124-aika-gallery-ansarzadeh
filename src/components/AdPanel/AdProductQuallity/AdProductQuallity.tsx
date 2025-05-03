@@ -36,7 +36,7 @@ export default function ProductQuallity({
 
  const fetchData = async (sortOption = '') => {
    setLoading(true);
-   const products = await GetProducts(sortOption);
+   const products = await GetProducts({ sort: sortOption });
    setData(products);
    setLoading(false);
  };
@@ -223,7 +223,7 @@ export default function ProductQuallity({
 
             <div className="flex flex-col md:flex-row items-center justify-between text-sm gap-3">
               <span className="text-xs px-2">
-                {addproductlocalization.showproduct} <b>{startIndex + 1}</b>تا{' '}
+                {addproductlocalization.show} <b>{startIndex + 1}</b>تا{' '}
                 <b>{Math.min(startIndex + rowsPerPage, data.length)}</b>{' '}
               </span>
 

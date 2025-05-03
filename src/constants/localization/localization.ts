@@ -80,6 +80,7 @@ export const addproductlocalization = {
   image: 'تصویر',
   managmentpricestock: 'مدیریت موجودی و قیمت',
   toman: 'تومان',
+  show: 'نمایش محصول شماره',
 };
 
 export const tablelocalization = {

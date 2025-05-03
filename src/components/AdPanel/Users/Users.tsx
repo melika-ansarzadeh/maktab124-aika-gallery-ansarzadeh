@@ -36,7 +36,8 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
 
         try {
           const users = await GetUsers(token);
-          setData(users || []);
+          setData(users);
+          console.log(users)
         } catch (error) {
           console.error('Failed to fetch users:', error);
         } finally {
@@ -68,7 +69,7 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
   return (
     <div>
       {loading ? (
-        <p className="text-center font-sahel text-xs text-gray-500">
+        <p className="text-center text-gray-500">
           {loadinglocalization.loading}
         </p>
       ) : (

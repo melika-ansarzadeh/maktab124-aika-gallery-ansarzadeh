@@ -43,7 +43,7 @@ const ReusableSwiper = ({ slides }: Props) => {
       >
         {slides.map(item => (
           <SwiperSlide key={item.id}>
-            <Link href={item.link}>
+            <Link href={item.link}> 
               <div className="rounded overflow-hidden m-auto mt-8 transition">
                 <Image
                   src={item.image}

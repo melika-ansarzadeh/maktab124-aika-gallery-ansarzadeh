@@ -3,29 +3,29 @@ import axios from 'axios';
 import { Iaddproducts } from '../addProduct/addProduct';
 
 export interface ProductFilters {
-  sort?: string;
-  brand?: string;
-  category?: string;
-  price?: string;
-  limit?: string;
+sort?: string;
+brand?: string;
+category?: string;
+price?: string;
+limit?: string;
 }
 
 export const GetProducts = async (
-  filters: ProductFilters
+filters: ProductFilters
 ): Promise<Iaddproducts[]> => {
-  try {
-    const {
-      sort = '',
-      brand = '',
-      category = '',
-    } = filters;
+try {
+const { sort, brand, category, limit = 'all' } = filters;
 
-    const response = await axios.get(
-      `${BASE_URL}/api/products?limit=all&sort=${sort}`
-    );
-    return response.data.data.products;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+let url = `${BASE_URL}/api/products?limit=${limit}`;
+if (sort) url += `&sort=${sort}`;
+if (brand) url += `&brand=${brand}`;
+if (category) url += `&category=${category}`;
+
+console.log(url)
+const response = await axios.get(url);
+return response.data.data.products;
+} catch (error) {
+console.error(error);
+throw error;
+}
 };

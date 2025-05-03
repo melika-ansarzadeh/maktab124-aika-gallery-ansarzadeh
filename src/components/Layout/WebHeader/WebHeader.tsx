@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { IoMdHeartEmpty } from 'react-icons/io';
@@ -11,10 +11,25 @@ import logo from '@/assets/images/logo.png';
 import { headerlocalization } from '@/constants/localization/localization';
 import Input from '@/shared/Inputs/Inputs';
 import Link from 'next/link';
+// import jwt_decode from 'jwt-decode';
+
 
 export default function WebHeader() {
   const [searchValue, setSearchValue] = useState('');
   const pathname = usePathname();
+   const [username, setUsername] = useState<string | null>(null);
+  
+    //  useEffect(() => {
+    //   const token = localStorage.getItem('token');
+    //   if (token) {
+    //     try {
+    //       const decodedToken: any = jwt_decode(token);
+    //       setUsername(decodedToken.username);
+    //     } catch (error) {
+    //       console.error('Error decoding token:', error);
+    //     }
+    //   }
+    // }, []);
 
   return (
     <div className="w-full px-4 py-2 font-sahel">
@@ -131,6 +146,12 @@ export default function WebHeader() {
           <LiaShoppingBagSolid className="text-custom-400" />
           <Link href="/login">
             <FaRegUser className="text-custom-400 text-lg" />
+            {/* {username ? (
+                    <p className="text-xl font-semibold">Welcome, {username}!</p>
+                  ) : (
+                    <p>Loading user information...</p>
+                  )}
+             */}
           </Link>
         </div>
       </div>

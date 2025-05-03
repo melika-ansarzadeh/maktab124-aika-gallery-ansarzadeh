@@ -30,7 +30,6 @@ export default function Sidebar() {
                 ? 'bg-white rounded-full font-bold'
                 : ''
             }`}
-            title="خانه"
           >
             <AiOutlineHome />
             <span className="absolute left-1/2 transform -translate-x-1/2 mt-1 px-2 py-1 bg-white text-black text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -44,7 +43,6 @@ export default function Sidebar() {
                 ? 'bg-white rounded-full '
                 : ''
             }`}
-            title="محصولات"
           >
             <AiOutlineProduct />
             <span className="absolute left-1/2 transform -translate-x-1/2 mt-1 px-2 py-1 bg-white text-black text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -58,7 +56,6 @@ export default function Sidebar() {
                 ? 'bg-white rounded-full font-bold'
                 : ''
             }`}
-            title="موجودی و قیمت"
           >
             <TiDocumentText />
             <span className="absolute left-1/2 transform -translate-x-1/2 mt-1 px-2 py-1 bg-white text-black text-xs text-nowrap rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -72,7 +69,6 @@ export default function Sidebar() {
                 ? 'bg-white rounded-full font-bold'
                 : ''
             }`}
-            title="سفارشات"
           >
             <HiOutlineClipboardDocumentList />
             <span className="absolute left-1/2 transform -translate-x-1/2 mt-1 px-2 py-1 bg-white text-black text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -86,7 +82,6 @@ export default function Sidebar() {
                 ? 'bg-white rounded-full font-bold'
                 : ''
             }`}
-            title="کاربران"
           >
             <FaUsers
             className='focus:text-red-500' />

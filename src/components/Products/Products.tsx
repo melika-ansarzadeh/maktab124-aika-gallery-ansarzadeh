@@ -27,9 +27,9 @@ export default function Product() {
    const getProducts = async () => {
      setLoading(true);
      try {
-       const data = await GetProducts(filters); // فیلترها اینجا استفاده می‌شن
+       const data = await GetProducts(filters);
        setProducts(data);
-       setCurrentPage(1); // با هر فیلتر صفحه ۱ نمایش داده شود
+       setCurrentPage(1); 
      } catch (err) {
        console.error('خطا در گرفتن محصولات:', err);
      } finally {
