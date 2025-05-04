@@ -6,12 +6,24 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import FilterProduct from './FilterProducts/FilterProducts';
 import { GetProducts } from '@/services/getProducts/getProducts';
 import { Iaddproducts } from '@/services/addProduct/addProduct';
+import { useSearchParams } from 'next/navigation';
+
 
 export default function Product() {
   const [currentPage, setCurrentPage] = useState(1);
   const [products, setProducts] = useState<Iaddproducts[]>([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({});
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const queryFilters: Record<string, string> = {};
+    searchParams.forEach((value, key) => {
+      queryFilters[key] = value;
+    });
+    setFilters(queryFilters);
+  }, [searchParams]);
+
 
 
   const itemsPerPage = 6;

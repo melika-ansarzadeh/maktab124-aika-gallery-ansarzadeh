@@ -102,10 +102,10 @@ const handleSubmit = async (e: React.FormEvent) => {
   try {
     await AddProduct(formData);
     onProductAdded();
+     setTimeout(() => {
+       toast.success('محصول با موفقیت اضافه شد');
+     }, 100);
     onClose();
-    setTimeout(() => {
-      toast.success('محصول با موفقیت اضافه شد');
-    }, 100);
   } catch (error) {
     console.error(error);
     toast.error('خطا در افزودن محصول');

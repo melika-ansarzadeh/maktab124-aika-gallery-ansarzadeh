@@ -38,12 +38,48 @@ export default function Home() {
   ];
 
   const brands = [
-    { id: 1, image: cartier, title: 'cartier', alt: 'cartier', link: '/' },
-    { id: 2, image: bvlgari, title: 'bvlgari', alt: 'bvlgari', link: '/' },
-    { id: 3, image: tiffani, title: 'tiffani', alt: 'tiffani', link: '/' },
-    { id: 4, image: versace, title: 'versace', alt: 'versace', link: '/' },
-    { id: 5, image: dior, title: 'dior', alt: 'dior', link: '/' },
-    { id: 6, image: chanel, title: 'chanel', alt: 'chanel', link: '/' },
+    {
+      id: 1,
+      image: cartier,
+      title: 'cartier',
+      alt: 'cartier',
+      link: 'http://localhost:3000/products?brand=Cartier',
+    },
+    {
+      id: 2,
+      image: bvlgari,
+      title: 'bvlgari',
+      alt: 'bvlgari',
+      link: 'http://localhost:3000/products?brand=Bvlgari',
+    },
+    {
+      id: 3,
+      image: tiffani,
+      title: 'tiffani',
+      alt: 'tiffani',
+      link: 'http://localhost:3000/products?brand=Tiffany',
+    },
+    {
+      id: 4,
+      image: versace,
+      title: 'versace',
+      alt: 'versace',
+      link: 'http://localhost:3000/products?brand=Versace',
+    },
+    {
+      id: 5,
+      image: dior,
+      title: 'dior',
+      alt: 'dior',
+      link: 'http://localhost:3000/products?brand=Dior',
+    },
+    {
+      id: 6,
+      image: chanel,
+      title: 'chanel',
+      alt: 'chanel',
+      link: 'http://localhost:3000/products?brand=Chanel',
+    },
   ];
 
   const reasons = [

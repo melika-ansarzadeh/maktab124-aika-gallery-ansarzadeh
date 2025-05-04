@@ -1,15 +1,15 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import {
   addproductlocalization,
   adproductlocalization,
   loadinglocalization,
 } from '@/constants/localization/localization';
 import { GetProducts, ProductFilters } from '@/services/getProducts/getProducts';
+import { useEffect, useState } from 'react';
 import { Iaddproducts } from '@/services/addProduct/addProduct';
-import Table from '../Table/Table';
 import ModalAdd from './ModalAdd/ModalAdd';
+import Table from '../Table/Table';
 
 export default function AdProduct() {
   // const [products, setProducts] = useState<any[]>([]);
@@ -145,10 +145,13 @@ export default function AdProduct() {
         </p>
       ) : (
         <Table
-            columns={columns}
-            products={products}
-            setProducts={setProducts}
-            rowsPerPage={5} isDelete={isDelete} setIsDelete={setIsDelete}        />
+          columns={columns}
+          products={products}
+          setProducts={setProducts}
+          rowsPerPage={5}
+          isDelete={isDelete}
+          setIsDelete={setIsDelete}
+        />
       )}
     </div>
   );

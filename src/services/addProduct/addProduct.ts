@@ -11,8 +11,8 @@ interface Subcategory {
 }
 
 export interface Iaddproducts {
-  _id: Key | null | undefined;
   decorations: ReactNode;
+  _id?: string;
   name: string;
   category?: Category | string;
   subcategory?: Subcategory | string;
@@ -23,7 +23,7 @@ export interface Iaddproducts {
   stock: string;
   brand: string;
   description: string;
-  images: File | null;
+  images?: File | null;
 }
 
 export const AddProduct = async (productData: Iaddproducts) => {

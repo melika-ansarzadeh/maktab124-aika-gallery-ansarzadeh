@@ -1,9 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { addproductlocalization, modaladdlocalization } from '@/constants/localization/localization';
-
 import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {
+  addproductlocalization,
+  modaladdlocalization,
+} from '@/constants/localization/localization';
+import { useEffect, useState } from 'react';
+
 import { editProduct } from '@/services/editProduct/editProduct';
 
 interface Product {
@@ -27,7 +31,7 @@ interface EditProductModalProps {
   onClose: () => void;
   product: Product;
   onSuccess: () => void;
-  onProductEdited: () => void;
+  onProductEdited: (updatedProduct: Product) => void;
 }
 
 export default function ModalEdit({
@@ -37,22 +41,31 @@ export default function ModalEdit({
   onProductEdited,
 }: EditProductModalProps) {
   const [formData, setFormData] = useState<Product>({ ...product });
-  const [selectedCategory, setSelectedCategory] = useState(product.category || '');
-console.log('Data being sent:', formData);
+  const [selectedCategory, setSelectedCategory] = useState(
+    product.category || ''
+  );
+  console.log('Data being sent:', formData);
 
-  useEffect(() => {
-    setFormData({ ...product });
-    setSelectedCategory(product.category || '');
-    const selectedCategoryOption = categoryOptions.find(
-      cat => cat._id === product.category
+useEffect(() => {
+  setFormData({ ...product });
+  setSelectedCategory(product.category || '');
+
+  const selectedCategoryOption = categoryOptions.find(
+    cat => cat._id === product.category
+  );
+
+  if (selectedCategoryOption) {
+    const foundSub = selectedCategoryOption.subcategories.find(
+      sub => sub._id === product.subcategory
     );
-    if (selectedCategoryOption) {
-      setFormData(prev => ({
-        ...prev,
-        subcategory: selectedCategoryOption.subcategories[0]._id,
-      }));
-    }
-  }, [product]);
+
+    setFormData(prev => ({
+      ...prev,
+      subcategory: foundSub?._id || selectedCategoryOption.subcategories[0]._id,
+    }));
+  }
+}, [product]);
+
 
 
   const categoryOptions = [
@@ -90,44 +103,64 @@ console.log('Data being sent:', formData);
     },
   ];
 
-const handleChange = (
-  e: React.ChangeEvent<
-    HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-  >
-) => {
-  const { name, value, files } = e.target as any;
-  const newValue = files ? files[0] : value;
-  setFormData(prev => ({
-    ...prev,
-    [name]: newValue,
-  }));
-  if (name === 'category') {
-    setSelectedCategory(value);
-    const selectedCategoryOption = categoryOptions.find(
-      cat => cat._id === value
-    );
-    if (selectedCategoryOption) {
-      setFormData(prev => ({
-        ...prev,
-        subcategory: selectedCategoryOption.subcategories[0]._id, 
-      }));
-    }
-  }
-};
+ const handleChange = (
+   e: React.ChangeEvent<
+     HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+   >
+ ) => {
+   const { name, value, files } = e.target as any;
+   const newValue = files ? files[0] : value;
+
+   if (name === 'category') {
+     setSelectedCategory(value);
+     const selectedCategoryOption = categoryOptions.find(
+       cat => cat._id === value
+     );
+     setFormData(prev => ({
+       ...prev,
+       category: value,
+       subcategory: selectedCategoryOption?.subcategories[0]._id || '',
+     }));
+   } else {
+     setFormData(prev => ({
+       ...prev,
+       [name]: newValue,
+     }));
+   }
+ };
 
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      await editProduct(product._id, formData);
-      toast.success('محصول با موفقیت ویرایش شد');
-      onProductEdited();
-      onClose();
-    } catch (err:any) {
-      console.error(err);
-    toast.error(err.response?.data?.message || "خطا در ویرایش محصول");
-    }
-  };
+ const handleSubmit = async (e: React.FormEvent) => {
+   e.preventDefault();
+   try {
+     await editProduct(product._id, formData);
+
+     toast.success('محصول با موفقیت ویرایش شد');
+
+     onProductEdited(formData);
+
+     setTimeout(() => {
+       onClose();
+     }, 500);
+   } catch (err: any) {
+     console.error(err);
+     toast.error(err.response?.data?.message || 'خطا در ویرایش محصول');
+   }
+ };
+
+ useEffect(() => {
+   if (formData.category) {
+     setSelectedCategory(formData.category);
+   }
+ }, [formData.category]);
+
+ useEffect(() => {
+   if (isOpen) {
+     setFormData({ ...product });
+     setSelectedCategory(product.category || '');
+   }
+ }, [isOpen, product]);
+
 
   if (!isOpen) return null;
 
@@ -205,22 +238,31 @@ const handleChange = (
             ))}
           </select>
 
-          <select
-            name="subcategory"
-            value={formData.subcategory}
-            onChange={handleChange}
-            className="p-3 text-sm border-2 border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
-            required
-          >
-            <option value="">{modaladdlocalization.subcategory}</option>
-            {categoryOptions
-              .find(cat => cat._id === selectedCategory)
-              ?.subcategories.map(sub => (
-                <option key={sub._id} value={sub._id}>
-                  {sub.label}
-                </option>
-              ))}
-          </select>
+          {selectedCategory ? (
+            <select
+              name="subcategory"
+              value={formData.subcategory}
+              onChange={handleChange}
+              className="p-3 text-sm border-2 border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
+              required
+            >
+              <option value="">{modaladdlocalization.subcategory}</option>
+              {categoryOptions
+                .find(cat => cat._id === selectedCategory)
+                ?.subcategories.map(sub => (
+                  <option key={sub._id} value={sub._id}>
+                    {sub.label}
+                  </option>
+                ))}
+            </select>
+          ) : (
+            <select
+              disabled
+              className="p-3 text-sm border-2 border-custom-200 outline-none bg-gray-100 text-gray-400"
+            >
+              <option>{modaladdlocalization.subcategory}</option>
+            </select>
+          )}
 
           <textarea
             name="description"

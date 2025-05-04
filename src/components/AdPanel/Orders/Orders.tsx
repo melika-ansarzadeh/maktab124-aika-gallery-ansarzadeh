@@ -8,6 +8,7 @@ import {
   loadinglocalization,
   orderslocalization,
 } from '@/constants/localization/localization';
+import ModalOrders, { Iorders } from './ModalOrders/ModalOrders';
 
 type ProductTableProps = {
   rowsPerPage?: number;
@@ -20,6 +21,10 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
   const [filter, setFilter] = useState<'all' | 'delivered' | 'notDelivered'>(
     'all'
   );
+   const [isModalOpen, setIsModalOpen] = useState(false);
+   const [selectedOrder, setSelectedOrder] = useState<Iorders | null>(null);
+
+
   const deliveredCount = data.filter(order => order.deliveryStatus).length;
   const notDeliveredCount = data.filter(order => !order.deliveryStatus).length;
 
@@ -44,6 +49,7 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
     fetchData();
   }, []);
 
+
   const totalPages = Math.ceil(data.length / rowsPerPage);
   const startIndex = (page - 1) * rowsPerPage;
 
@@ -57,6 +63,13 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
     startIndex,
     startIndex + rowsPerPage
   );
+
+  
+ const handleOpenModal = (order: Iorders) => {
+   setSelectedOrder(order);
+   setIsModalOpen(true);
+ };
+
 
   const getPageNumbers = () => {
     const range = [];
@@ -142,7 +155,10 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
                           : 'در انتظار تحویل'}
                       </td>
                       <td className="py-4 px-1 text-center whitespace-nowrap">
-                        <button className="text-blue-500 hover:underline">
+                        <button
+                          onClick={() => handleOpenModal(order)}
+                          className="text-blue-500 hover:underline"
+                        >
                           {orderslocalization.review}
                         </button>
                       </td>
@@ -154,11 +170,10 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
 
             <div className="flex flex-col md:flex-row font-number items-center justify-between text-sm gap-3">
               <span className="text-xs px-2">
-          {orderslocalization.showorder} <b>{startIndex + 1}</b> تا{' '}
+                {orderslocalization.showorder} <b>{startIndex + 1}</b> تا{' '}
                 <b>
                   {Math.min(startIndex + rowsPerPage, filteredOrders.length)}
                 </b>{' '}
-              
               </span>
 
               <div className="flex items-center gap-2">
@@ -196,6 +211,16 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
             </div>
           </div>
         </div>
+      )}
+      {selectedOrder && (
+        <ModalOrders
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          order={selectedOrder}
+          onSuccess={() => {
+            setIsModalOpen(false);
+          }}
+        />
       )}
     </div>
   );

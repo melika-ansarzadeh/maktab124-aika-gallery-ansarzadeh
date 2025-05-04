@@ -273,6 +273,7 @@ export const filterlocalization ={
   price:'قیمت',
   cheap:'ارزان ترین',
   expensive:'گران ترین',
+  reset:'ریست کردن مقدار'
 }
 
 export const singlelocalization = {
