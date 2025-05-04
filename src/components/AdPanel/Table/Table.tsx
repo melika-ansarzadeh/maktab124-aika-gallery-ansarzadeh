@@ -152,7 +152,7 @@ setProducts,
           <tbody className="divide-y divide-custom-500 bg-white font-sahel text-sm font-medium">
             {paginatedData.map((row, i) => (
               <tr
-                key={i}
+                key={row._id}
                 className={`${getRowColor(
                   row
                 )} hover:bg-gradient-to-r hover:from-white hover:to-custom-50 transition-colors duration-300`}

@@ -8,6 +8,7 @@ import {
   loadinglocalization,
   orderslocalization,
 } from '@/constants/localization/localization';
+import ModalOrders, { Iorders } from './ModalOrders/ModalOrders';
 
 type ProductTableProps = {
   rowsPerPage?: number;
@@ -20,6 +21,10 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
   const [filter, setFilter] = useState<'all' | 'delivered' | 'notDelivered'>(
     'all'
   );
+   const [isModalOpen, setIsModalOpen] = useState(false);
+   const [selectedOrder, setSelectedOrder] = useState<Iorders | null>(null);
+
+
   const deliveredCount = data.filter(order => order.deliveryStatus).length;
   const notDeliveredCount = data.filter(order => !order.deliveryStatus).length;
 
@@ -58,6 +63,13 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
     startIndex + rowsPerPage
   );
 
+  
+ const handleOpenModal = (order: Iorders) => {
+   setSelectedOrder(order);
+   setIsModalOpen(true);
+ };
+
+
   const getPageNumbers = () => {
     const range = [];
     const maxPagesToShow = 3;
@@ -75,11 +87,13 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
   return (
     <div>
       {loading ? (
-        <p className="text-center text-gray-500">{loadinglocalization.loading}</p>
+        <p className="text-center text-gray-500">
+          {loadinglocalization.loading}
+        </p>
       ) : (
         <div className="font-sahel">
           <div className="flex justify-between items-center">
-            <p className='font-semibold'>{orderslocalization.managment}</p>
+            <p className="font-semibold">{orderslocalization.managment}</p>
             <div className="flex justify-end px-2 gap-4 my-4">
               <select
                 className="border border-custom-300 rounded-md px-3 py-1 text-sm font-sahel"
@@ -87,8 +101,12 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
                 onChange={e => setFilter(e.target.value as any)}
               >
                 <option value="all">{orderslocalization.all}</option>
-                <option value="delivered">{orderslocalization.delivered}</option>
-                <option value="notDelivered">{orderslocalization.notdelivered}</option>
+                <option value="delivered">
+                  {orderslocalization.delivered}
+                </option>
+                <option value="notDelivered">
+                  {orderslocalization.notdelivered}
+                </option>
               </select>
             </div>
           </div>
@@ -107,10 +125,10 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
                       {orderslocalization.Dateofregistration}
                     </th>
                     <th className="px-6 py-4 text-center whitespace-nowrap">
-                     {orderslocalization.statusdelivered}
+                      {orderslocalization.statusdelivered}
                     </th>
                     <th className="px-6 py-4 text-center whitespace-nowrap">
-                     {orderslocalization.managmentordr}
+                      {orderslocalization.managmentordr}
                     </th>
                   </tr>
                 </thead>
@@ -124,7 +142,8 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
                         {order.user.firstname} {order.user.lastname}
                       </td>
                       <td className="py-4 px-1 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px]">
-                        {order.totalPrice.toLocaleString()} {addproductlocalization.toman}
+                        {order.totalPrice.toLocaleString()}{' '}
+                        {addproductlocalization.toman}
                       </td>
                       <td className="py-4 px-1 text-center whitespace-nowrap overflow-hidden text-ellipsis max-w-[200px]">
                         {new Date(order.createdAt).toLocaleDateString('fa-IR')}
@@ -135,8 +154,11 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
                           : 'در انتظار تحویل'}
                       </td>
                       <td className="py-4 px-1 text-center whitespace-nowrap">
-                        <button className="text-blue-500 hover:underline">
-                         {orderslocalization.review}
+                        <button
+                          onClick={() => handleOpenModal(order)}
+                          className="text-blue-500 hover:underline"
+                        >
+                          {orderslocalization.review}
                         </button>
                       </td>
                     </tr>
@@ -147,11 +169,10 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
 
             <div className="flex flex-col md:flex-row font-number items-center justify-between text-sm gap-3">
               <span className="text-xs px-2">
-          {orderslocalization.showorder} <b>{startIndex + 1}</b> تا{' '}
+                {orderslocalization.showorder} <b>{startIndex + 1}</b> تا{' '}
                 <b>
                   {Math.min(startIndex + rowsPerPage, filteredOrders.length)}
                 </b>{' '}
-              
               </span>
 
               <div className="flex items-center gap-2">
@@ -189,6 +210,16 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
             </div>
           </div>
         </div>
+      )}
+      {selectedOrder && (
+        <ModalOrders
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          order={selectedOrder}
+          onSuccess={() => {
+            setIsModalOpen(false);
+          }}
+        />
       )}
     </div>
   );
