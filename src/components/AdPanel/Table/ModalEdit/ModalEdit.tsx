@@ -1,9 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { addproductlocalization, modaladdlocalization } from '@/constants/localization/localization';
+import { ToastContainer, toast } from 'react-toastify';
+import {
+  addproductlocalization,
+  modaladdlocalization,
+} from '@/constants/localization/localization';
+import { useEffect, useState } from 'react';
 
-import { toast, ToastContainer } from 'react-toastify';
 import { editProduct } from '@/services/editProduct/editProduct';
 
 interface Product {
@@ -27,7 +30,7 @@ interface EditProductModalProps {
   onClose: () => void;
   product: Product;
   onSuccess: () => void;
-  onProductEdited: () => void;
+  onProductEdited: (updatedProduct: Product) => void;
 }
 
 export default function ModalEdit({
@@ -37,22 +40,32 @@ export default function ModalEdit({
   onProductEdited,
 }: EditProductModalProps) {
   const [formData, setFormData] = useState<Product>({ ...product });
-  const [selectedCategory, setSelectedCategory] = useState(product.category || '');
-console.log('Data being sent:', formData);
+  const [selectedCategory, setSelectedCategory] = useState(
+    product.category || ''
+  );
+  console.log('Data being sent:', formData);
 
-  useEffect(() => {
-    setFormData({ ...product });
-    setSelectedCategory(product.category || '');
-    const selectedCategoryOption = categoryOptions.find(
-      cat => cat._id === product.category
+useEffect(() => {
+  setFormData({ ...product });
+  setSelectedCategory(product.category || '');
+
+  const selectedCategoryOption = categoryOptions.find(
+    cat => cat._id === product.category
+  );
+
+  if (selectedCategoryOption) {
+    const foundSub = selectedCategoryOption.subcategories.find(
+      sub => sub._id === product.subcategory
     );
-    if (selectedCategoryOption) {
-      setFormData(prev => ({
-        ...prev,
-        subcategory: selectedCategoryOption.subcategories[0]._id,
-      }));
-    }
-  }, [product]);
+
+    // اگه محصول ساب کتگوری نداره یا اشتباهه، اولین گزینه رو انتخاب کن
+    setFormData(prev => ({
+      ...prev,
+      subcategory: foundSub?._id || selectedCategoryOption.subcategories[0]._id,
+    }));
+  }
+}, [product]);
+
 
 
   const categoryOptions = [
@@ -90,30 +103,31 @@ console.log('Data being sent:', formData);
     },
   ];
 
-const handleChange = (
-  e: React.ChangeEvent<
-    HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-  >
-) => {
-  const { name, value, files } = e.target as any;
-  const newValue = files ? files[0] : value;
-  setFormData(prev => ({
-    ...prev,
-    [name]: newValue,
-  }));
-  if (name === 'category') {
-    setSelectedCategory(value);
-    const selectedCategoryOption = categoryOptions.find(
-      cat => cat._id === value
-    );
-    if (selectedCategoryOption) {
-      setFormData(prev => ({
-        ...prev,
-        subcategory: selectedCategoryOption.subcategories[0]._id, 
-      }));
-    }
-  }
-};
+ const handleChange = (
+   e: React.ChangeEvent<
+     HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+   >
+ ) => {
+   const { name, value, files } = e.target as any;
+   const newValue = files ? files[0] : value;
+
+   if (name === 'category') {
+     setSelectedCategory(value);
+     const selectedCategoryOption = categoryOptions.find(
+       cat => cat._id === value
+     );
+     setFormData(prev => ({
+       ...prev,
+       category: value,
+       subcategory: selectedCategoryOption?.subcategories[0]._id || '',
+     }));
+   } else {
+     setFormData(prev => ({
+       ...prev,
+       [name]: newValue,
+     }));
+   }
+ };
 
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -121,11 +135,11 @@ const handleChange = (
     try {
       await editProduct(product._id, formData);
       toast.success('محصول با موفقیت ویرایش شد');
-      onProductEdited();
+      onProductEdited(formData);
       onClose();
-    } catch (err:any) {
+    } catch (err: any) {
       console.error(err);
-    toast.error(err.response?.data?.message || "خطا در ویرایش محصول");
+      toast.error(err.response?.data?.message || 'خطا در ویرایش محصول');
     }
   };
 

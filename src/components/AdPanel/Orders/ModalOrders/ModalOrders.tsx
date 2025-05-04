@@ -1,8 +1,8 @@
-'use client';
-
 import { useState, useEffect, JSX } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { GetOrders } from '@/services/getOrders/getOrders';
+import axios from 'axios';
+import { BASE_URL } from '@/constants/api/api';
 
 type User = {
   firstname: string;
@@ -16,7 +16,7 @@ type User = {
 };
 
 type ProductItem = {
-  map(arg0: (item: ProductItem) => JSX.Element): import("react").ReactNode;
+  map(arg0: (item: ProductItem) => JSX.Element): import('react').ReactNode;
   _id: string;
   product: {
     name: string;
@@ -31,6 +31,8 @@ export interface Iorders {
   createdAt: string;
   totalPrice: number;
   user: User;
+  deliveryStatus: boolean; // اضافه کردن `deliveryStatus`
+  _id: string; // اضافه کردن `_id`
 }
 
 interface OrdersModalProps {
@@ -44,29 +46,58 @@ export default function ModalOrders({
   isOpen,
   onClose,
   order,
+  onSuccess,
 }: OrdersModalProps) {
-  const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [status, setStatus] = useState('');
+  const [orders, setOrders] = useState<Iorders[]>([]);
+  const [status, setStatus] = useState(order.deliveryStatus ? 'true' : 'false');
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
+  // تابع برای بارگذاری داده‌های سفارشات
+  const fetchData = async () => {
+    try {
       setLoading(true);
       const orders = await GetOrders();
-      const orderData = orders;
-      if (orderData) {
-        setOrders(orderData);
-      } else {
-        console.log('No orders found or invalid data structure');
-      }
+      setOrders(orders);
+    } catch (error) {
+      console.log('Error fetching orders', error);
+    } finally {
       setLoading(false);
-    };
-    fetchData();
-  }, []);
+    }
+  };
+
+  // تابع برای به‌روزرسانی وضعیت تحویل سفارش
+  const updateDeliveryStatus = async (newStatus: string) => {
+    try {
+      setLoading(true);
+      const response = await axios.patch(
+        `${BASE_URL}/api/orders/${order._id}`,
+        {
+          deliveryStatus: newStatus === 'true',
+        }
+      );
+
+      if (response.status === 200) {
+        // تغییر وضعیت محلی
+        setStatus(newStatus);
+        toast.success('وضعیت تحویل با موفقیت تغییر کرد!');
+        onSuccess(); // callback برای انجام کارهای بعدی
+        fetchData(); // لیست سفارشات را دوباره بارگذاری می‌کنیم
+      }
+    } catch (error) {
+      toast.error('خطا در تغییر وضعیت تحویل');
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    setStatus('');
-  }, [order]);
+    fetchData(); // هنگام بارگذاری کامپوننت، سفارشات را بارگذاری می‌کنیم
+  }, []); // این useEffect باید فقط یک بار اجرا شود، هنگام بارگذاری کامپوننت
+
+  useEffect(() => {
+    setStatus(order.deliveryStatus ? 'true' : 'false');
+  }, [order]); // فقط وقتی که `order` تغییر می‌کند وضعیت را به‌روزرسانی می‌کنیم
 
   if (!isOpen) return null;
 
@@ -93,33 +124,37 @@ export default function ModalOrders({
           </p>
           <p>قیمت کل : {order.totalPrice.toLocaleString()} </p>
         </div>
-        <div className=" mt-12 ">
+        <div className=" mt-12 text-center">
           {order.products.map((item: ProductItem) => (
             <div
               key={item._id}
-              className="flex justify-between items-center px-20"
+              className="flex justify-between items-center text-center px-20"
             >
-              <p>نام محصول : </p>
-              <p>{item.product.name}</p>
+              <p>نام محصول :</p>
+              <p className="w-40">{item.product.name}</p>
             </div>
           ))}
           <div className="h-[1px] bg-black m-5"></div>
           {order.products.map((item: ProductItem) => (
             <div
               key={item._id}
-              className="flex justify-between items-center px-20"
+              className="flex justify-between items-start text-end px-20"
             >
-              <p>تعداد محصول: </p>
-              <p className='pl-2'>{item.count} عدد</p>
+              <p>تعداد محصول :</p>
+              <p className="text-start">{item.count} عدد</p>
             </div>
           ))}
         </div>
         <select
           value={status}
-          onChange={e => setStatus(e.target.value)}
+          onChange={e => {
+            const newStatus = e.target.value;
+            setStatus(newStatus); // بروزرسانی وضعیت
+            updateDeliveryStatus(newStatus); // ارسال تغییر وضعیت
+          }}
           className="w-full p-2 border rounded appearance-none mt-5 text-center"
+          disabled={loading} // غیر فعال کردن انتخاب در هنگام بارگذاری
         >
-          <option value="">تغییر وضعیت سفارش</option>
           <option value="false">در انتظار تحویل</option>
           <option value="true">تحویل داده شده</option>
         </select>

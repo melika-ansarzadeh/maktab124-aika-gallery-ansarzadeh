@@ -2,6 +2,7 @@ import { BASE_URL } from '@/constants/api/api';
 import axios from 'axios';
 
 export interface Iaddproducts {
+  _id: string;
   name: string;
   price: string;
   quantity: string;
@@ -13,7 +14,7 @@ export interface Iaddproducts {
   subcategory: string;
   brand: string;
   description: string;
-  images: File | null;
+  images?: File | null;
 }
 
 export const AddProduct = async (productData: Iaddproducts) => {

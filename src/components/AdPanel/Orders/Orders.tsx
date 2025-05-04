@@ -49,6 +49,7 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
     fetchData();
   }, []);
 
+
   const totalPages = Math.ceil(data.length / rowsPerPage);
   const startIndex = (page - 1) * rowsPerPage;
 
