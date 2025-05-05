@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import BrandSwiper from './HeroBaner/HeroBaner';
 import banbvlgari from '@/assets/images/banerbvlgari.png';
 import bantiffani from '@/assets/images/banertiffani.png';
@@ -7,30 +7,19 @@ import banchanel from '@/assets/images/banerchanel.png';
 import banversace from '@/assets/images/banerversace.png';
 import bancartier from '@/assets/images//banercartier.png';
 import Image from 'next/image';
-import { aboutlocalization, homelocalization } from '@/constants/localization/localization';
-import express from '@/assets/images/express.png';
-import payment from '@/assets/images/safepayment.png';
-import support from '@/assets/images/support2.png';
-import quality from '@/assets/images/quality.png';
+import {homelocalization } from '@/constants/localization/localization';
 import tiffani from '@/assets/images/tiffany.png';
 import cartier from '@/assets/images/cartier.png';
 import chanel from '@/assets/images/chanel.png';
 import bvlgari from '@/assets/images/bvlgari.png';
 import versace from '@/assets/images/versace.png';
 import dior from '@/assets/images/dior.png';
-import Link from 'next/link';
 import ReusableSwiper from './Swiper/Swiper';
-import siz from '@/assets/images/size-of-ring-necklace-bracelet.png';
-import color from '@/assets/images/whatcolor.png';
-import jewerly from '@/assets/images/whatjewerly.png';
-import wishper from '@/assets/images/wishper.png';
-import coco from '@/assets/images/cococrushdiamond.png';
-import necklace from '@/assets/images/crystalbutterflies.png';
-import bracelet from './../../assets/images/bracelet.png';
-import necklace1 from './../../assets/images/necklace.png';
-import ring from './../../assets/images/ring.png';
-import earings from './../../assets/images//earings.png';
-import products from './../../assets/images/products.png';
+import Video from './Video/Video';
+import Category from './Category/Category';
+import Reasons from './Reasons/Reasons';
+import Articles from './Articles/Articles';
+import Famous from './Famouse/Famous';
 
 export default function Home() {
   const images = [
@@ -87,254 +76,20 @@ export default function Home() {
     },
   ];
 
-  const reasons = [
-    {
-      icon: express,
-      title: homelocalization.express,
-      desc: homelocalization.expresstext,
-    },
-    {
-      icon: payment,
-      title: homelocalization.payment,
-      desc: homelocalization.paymenttext,
-    },
-    {
-      icon: support,
-      title: homelocalization.support,
-      desc: homelocalization.supporttext,
-    },
-    {
-      icon: quality,
-      title: homelocalization.quality,
-      desc: homelocalization.qualitytext,
-    },
-  ];
-
-  const famouse = [
-    {
-      id: 1,
-      title: homelocalization.bracelet,
-      image: wishper,
-      link: '/products/67ff4ddaeada4d94453a7a66',
-    },
-    {
-      id: 2,
-      title: homelocalization.necklace,
-      image: necklace,
-      link: '/products/67ffef94eada4d94453a7b3b',
-    },
-    {
-      id: 3,
-      title: homelocalization.ring,
-      image: coco,
-      link: '/products/67fea70425dce380f3dc193f',
-    },
-  ];
-
-  const articles = [
-    {
-      id: 1,
-      title: homelocalization.size,
-      image: siz,
-      link: 'https://parasteh.com/blog/size-of-ring-necklace-bracelet/',
-    },
-    {
-      id: 2,
-      title: homelocalization.whatjewerly,
-      image: color,
-      link: 'https://parasteh.com/blog/jewelry-according-face-shape/',
-    },
-    {
-      id: 3,
-      title: homelocalization.whatcolor,
-      image: jewerly,
-      link: 'https://parasteh.com/blog/what-skin-tone-goes-with-gold/',
-    },
-  ];
-
   return (
     <div className="font-sahel">
       <BrandSwiper images={images} />
-
-      <section className="pt-16 px-4 bg-white rounded-2xl max-w-6xl mx-auto">
-        <h2 className="text-2xl font-bold text-center mb-8">
-          {homelocalization.whyus}
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          {reasons.map((item, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center text-center bg-custom-50 p-6 rounded-xl shadow hover:shadow-lg transition-all duration-300"
-            >
-              <Image
-                src={item.icon}
-                alt={item.title}
-                width={300}
-                height={600}
-                className="w-24 h-auto object-contain mb-4"
-              />
-              <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-              <p className="text-sm text-gray-600">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="py-10 px-6 border-2 border-custom-500 bg-custom-50 rounded-xl mt-20 m-auto w-[70rem]">
-        <h2 className="text-2xl font-bold text-center mb-6">
-          {homelocalization.famuous}
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {famouse.map(item => (
-            <Link
-              key={item.id}
-              href={item.link}
-              className="bg-white rounded-2xl overflow-hidden shadow hover:shadow-xl hover:scale-105 transition duration-300"
-            >
-              <Image
-                src={item.image}
-                alt={item.title}
-                className="w-full object-cover"
-              />
-              <div className="p-4 text-center">
-                <h3 className="text-base font-semibold">{item.title}</h3>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
+      <Reasons/>
+    <Famous/>
       <div className="border-2 border-custom-500 bg-custom-50 rounded-xl w-[70rem] m-auto py-10 my-20">
         <h2 className="text-2xl font-bold text-center mb-6">
           {homelocalization.brands}
         </h2>
         <ReusableSwiper slides={brands} />
       </div>
-      <div className="grid grid-cols-3 gap-4 w-[900px] max-w-full m-auto">
-        <Link
-          href="http://localhost:3000/products?category=67fdfc76079f27c844bfb86e"
-          className="relative row-span-2 h-[500px]"
-        >
-          <Image
-            src={necklace1}
-            alt="Neckpiece"
-            className="w-full h-[30rem] object-cover"
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-white text-lg font-medium">
-              {aboutlocalization.necklace}
-            </span>
-          </div>
-        </Link>
-
-        <Link
-          href="http://localhost:3000/products?category=67fdfc52079f27c844bfb86a"
-          className="relative h-[17rem]"
-        >
-          <Image
-            src={ring}
-            alt="Rings"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-            <span className="text-white text-lg font-medium">
-              {aboutlocalization.ring}
-            </span>
-          </div>
-        </Link>
-
-        <Link
-          href="http://localhost:3000/products?category=67fdfcac079f27c844bfb876"
-          className="relative h-[17rem]"
-        >
-          <Image
-            src={bracelet}
-            alt="Bracelet"
-            className="w-full h-full object-cover mt-[7rem]"
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-white text-lg font-medium mt-[15rem]">
-              {aboutlocalization.bracelet}
-            </span>
-          </div>
-        </Link>
-
-        <Link
-          href="http://localhost:3000/products?category=67fdfc90079f27c844bfb872"
-          className="relative h-[17rem]"
-        >
-          <Image
-            src={earings}
-            alt="Earrings"
-            className="w-full h-full object-cover bg-black/50"
-          />
-          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-            <span className="text-white text-lg font-medium">
-              {aboutlocalization.earings}
-            </span>
-          </div>
-        </Link>
-
-        <Link
-          href="http://localhost:3000/products"
-          className="relative h-[16rem] pb-12"
-        >
-          <Image
-            src={products}
-            alt="product"
-            className="w-[11rem] h-full object-cover mt-[7rem] inset-0 bg-black/50"
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-white text-lg font-medium mt-[11rem] ml-[7rem]">
-              {aboutlocalization.products}
-            </span>
-          </div>
-        </Link>
-      </div>
-
-      <section className="py-10 px-6 border-2 border-custom-500 bg-custom-50 rounded-xl mt-32 m-auto w-[70rem]">
-        <h2 className="text-2xl font-bold text-center mb-6">
-          {homelocalization.beautyblogs}
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {articles.map(article => (
-            <Link
-              key={article.id}
-              href={article.link}
-              className="bg-white rounded-2xl overflow-hidden shadow hover:shadow-xl hover:scale-105 transition duration-300"
-            >
-              <Image
-                src={article.image}
-                alt={article.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-800">
-                  {article.title}
-                </h3>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-      <div className="flex justify-center items-center gap-20 px-56 py-14">
-        <div className="leading-relaxed">
-          <h2 className="font-semibold text-2xl mb-7">
-            {homelocalization.aika1}
-          </h2>
-          <p className="mb-4">{homelocalization.aika2}</p>
-          <p className="mb-4">{homelocalization.aika3}</p>
-          <p className="mb-4">{homelocalization.aika4}</p>
-        </div>
-        <video
-          src="/videos/hero.mp4"
-          controls
-          autoPlay
-          muted
-          loop
-          className="w-[31rem] h-[36rem] rounded-xl shadow-lg"
-        ></video>
-      </div>
+      <Category />
+      <Articles/>
+      <Video />
     </div>
   );
 }
