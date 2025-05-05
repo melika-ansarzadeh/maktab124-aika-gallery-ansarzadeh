@@ -64,7 +64,7 @@ export const headerlocalization = {
   searchProducts: 'جستجوی محصول',
   search: 'جستجو',
   logout: 'خروج از حساب',
-  hi:'سلام'
+  hi:'سلام',
 };
 
 export const addproductlocalization = {
@@ -135,12 +135,18 @@ export const orderslocalization = {
   managmentordr: 'بررسی سفارش',
   statusdelivered: 'وضعیت تحویل',
   Dateofregistration: 'تاریخ سفارش',
-  price:'مجموع قیمت',
-  name:'نام کاربر',
-  managment:'مدیریت سفارش ها',
-  all :'همه سفارش ها',
-  notdelivered:'در انتظار تحویل',
-  showorder:'نمایش سفارش'
+  price: 'مجموع قیمت',
+  name: 'نام کاربر',
+  managment: 'مدیریت سفارش ها',
+  all: 'همه سفارش ها',
+  notdelivered: 'در انتظار تحویل',
+  showorder: 'نمایش سفارش',
+  number: 'عدد',
+  ordernumber: 'تعداد محصول',
+  nameproduct: 'نام محصولات',
+  date: 'زمان تحویل ',
+  deatail: 'اطلاعات تماس ',
+  address: 'آدرس',
 };
 
 export const homeadlocalization = {
@@ -295,11 +301,11 @@ export const singlelocalization = {
 };
 
 export const modaladdlocalization = {
-  stock:'وضعیت موجودی',
+  stock: 'وضعیت موجودی',
   instock: 'موجود',
   outofstock: 'ناموجود',
   commingsoon: 'به زودی',
-  stopped:'متوقف شده',
+  stopped: 'متوقف شده',
   dior: 'دیور',
   versace: 'ورساچه',
   chanel: 'شنل',
@@ -317,7 +323,11 @@ export const modaladdlocalization = {
   addproduct: 'افزودن محصول جدید',
   add: 'افزودن',
   toastsucces: 'محصول جدید با موفقیت اضافه شد',
+  toastinfo:'تعداد و وضعیت موجودی با هم هماهنگ نیستند',
   toasterror: 'خطا در اضافه کردن محصول',
+  uploadImage:'تصویر محصول',
+edit:'ویرایش',
+editProduct:'ویرایش محصول'
 };
 
 export const adproductlocalization = {
@@ -337,3 +347,4 @@ export const adpanellocalization = {
   user:'کاربر',
   product:'محصول'
 }
+

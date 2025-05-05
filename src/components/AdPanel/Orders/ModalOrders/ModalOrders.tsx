@@ -3,6 +3,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import { GetOrders } from '@/services/getOrders/getOrders';
 import axios from 'axios';
 import { BASE_URL } from '@/constants/api/api';
+import { orderslocalization } from '@/constants/localization/localization';
+import Orders from '../Orders';
 
 type User = {
   firstname: string;
@@ -31,8 +33,8 @@ export interface Iorders {
   createdAt: string;
   totalPrice: number;
   user: User;
-  deliveryStatus: boolean; // اضافه کردن `deliveryStatus`
-  _id: string; // اضافه کردن `_id`
+  deliveryStatus: boolean;
+  _id: string;
 }
 
 interface OrdersModalProps {
@@ -52,7 +54,6 @@ export default function ModalOrders({
   const [status, setStatus] = useState(order.deliveryStatus ? 'true' : 'false');
   const [loading, setLoading] = useState(false);
 
-  // تابع برای بارگذاری داده‌های سفارشات
   const fetchData = async () => {
     try {
       setLoading(true);
@@ -65,7 +66,6 @@ export default function ModalOrders({
     }
   };
 
-  // تابع برای به‌روزرسانی وضعیت تحویل سفارش
   const updateDeliveryStatus = async (newStatus: string) => {
     try {
       setLoading(true);
@@ -77,11 +77,10 @@ export default function ModalOrders({
       );
 
       if (response.status === 200) {
-        // تغییر وضعیت محلی
         setStatus(newStatus);
         toast.success('وضعیت تحویل با موفقیت تغییر کرد!');
-        onSuccess(); // callback برای انجام کارهای بعدی
-        fetchData(); // لیست سفارشات را دوباره بارگذاری می‌کنیم
+        onSuccess();
+        fetchData();
       }
     } catch (error) {
       toast.error('خطا در تغییر وضعیت تحویل');
@@ -92,12 +91,12 @@ export default function ModalOrders({
   };
 
   useEffect(() => {
-    fetchData(); // هنگام بارگذاری کامپوننت، سفارشات را بارگذاری می‌کنیم
-  }, []); // این useEffect باید فقط یک بار اجرا شود، هنگام بارگذاری کامپوننت
+    fetchData();
+  }, []);
 
   useEffect(() => {
     setStatus(order.deliveryStatus ? 'true' : 'false');
-  }, [order]); // فقط وقتی که `order` تغییر می‌کند وضعیت را به‌روزرسانی می‌کنیم
+  }, [order]);
 
   if (!isOpen) return null;
 
@@ -111,18 +110,18 @@ export default function ModalOrders({
         <h2 className="text-xl font-bold mb-4">orders</h2>
         <div className="flex flex-col gap-3 text-sm">
           <p>
-            نام : {order.user.firstname} {order.user.lastname}
+            {orderslocalization.name}: {order.user.firstname} {order.user.lastname}
           </p>
-          <p>ادرس : {order.user.address}</p>
-          <p>اطلاعات تماس : {order.user.phoneNumber}</p>
+          <p>{orderslocalization.address}: {order.user.address}</p>
+          <p>{orderslocalization.deatail} : {order.user.phoneNumber}</p>
           <p>
-            زمان سفارش : {new Date(order.createdAt).toLocaleDateString('fa-IR')}
+           {orderslocalization.Dateofregistration}: {new Date(order.createdAt).toLocaleDateString('fa-IR')}
           </p>
           <p>
-            زمان تحویل :{' '}
+            {orderslocalization.date}:{' '}
             {new Date(order.deliveryDate).toLocaleDateString('fa-IR')}
           </p>
-          <p>قیمت کل : {order.totalPrice.toLocaleString()} </p>
+          <p>{orderslocalization.price}: {order.totalPrice.toLocaleString()} </p>
         </div>
         <div className=" mt-12 text-center">
           {order.products.map((item: ProductItem) => (
@@ -130,8 +129,8 @@ export default function ModalOrders({
               key={item._id}
               className="flex justify-between items-center text-center px-20"
             >
-              <p>نام محصول :</p>
-              <p className="w-40">{item.product.name}</p>
+              <p>{orderslocalization.nameproduct} :</p>
+              <p className=''>{item.product.name}</p>
             </div>
           ))}
           <div className="h-[1px] bg-black m-5"></div>
@@ -140,8 +139,8 @@ export default function ModalOrders({
               key={item._id}
               className="flex justify-between items-start text-end px-20"
             >
-              <p>تعداد محصول :</p>
-              <p className="text-start">{item.count} عدد</p>
+              <p>{orderslocalization.ordernumber} :</p>
+              <p className="text-start">{item.count} {orderslocalization.number}</p>
             </div>
           ))}
         </div>
@@ -149,14 +148,14 @@ export default function ModalOrders({
           value={status}
           onChange={e => {
             const newStatus = e.target.value;
-            setStatus(newStatus); // بروزرسانی وضعیت
-            updateDeliveryStatus(newStatus); // ارسال تغییر وضعیت
+            setStatus(newStatus);
+            updateDeliveryStatus(newStatus);
           }}
           className="w-full p-2 border rounded appearance-none mt-5 text-center"
-          disabled={loading} // غیر فعال کردن انتخاب در هنگام بارگذاری
+          disabled={loading}
         >
-          <option value="false">در انتظار تحویل</option>
-          <option value="true">تحویل داده شده</option>
+          <option value="false">{orderslocalization.notdelivered}</option>
+          <option value="true">{orderslocalization.delivered}</option>
         </select>
       </div>
     </div>

@@ -135,7 +135,7 @@ export default function WebHeader() {
           </Link>
         </nav>
 
-        <div className="flex justify-between text-xl pb-2 items-center gap-8 ml-10">
+        <div className="flex justify-between text-xl pb-2 items-center gap-8">
           <IoMdHeartEmpty className="text-custom-400" />
           <LiaShoppingBagSolid className="text-custom-400" />
           <div className="relative group cursor-pointer w-20">

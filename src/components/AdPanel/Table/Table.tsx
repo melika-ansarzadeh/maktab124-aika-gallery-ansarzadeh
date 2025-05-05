@@ -9,16 +9,14 @@ import {
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { AiOutlineEdit } from "react-icons/ai";
-import { BASE_URL } from "@/constants/api/api";
 import { Iaddproducts } from "@/services/addProduct/addProduct";
 import ModalEdit from "./ModalEdit/ModalEdit";
 import Swal from "sweetalert2";
 import { ToastContainer } from "react-toastify";
-import axios from "axios";
 import { deleteProduct } from "@/services/deleteProduct/deleteProduct";
 
  export interface Product {
-	_id: string;
+	_id?: string ;
 	name: string;
 	price: string;
 	quantity: string;
@@ -245,8 +243,6 @@ export default function Table({
 						<FaChevronLeft className="w-3 h-3" />
 					</button>
 				</div>
-
-        
 
 				{isEditOpen && selectedProduct && (
 					<ModalEdit

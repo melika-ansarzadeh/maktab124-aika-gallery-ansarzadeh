@@ -43,29 +43,6 @@ export default function ModalEdit({
   const [selectedCategory, setSelectedCategory] = useState(
     product.category || ''
   );
-  console.log('Data being sent:', formData);
-
-useEffect(() => {
-  setFormData({ ...product });
-  setSelectedCategory(product.category || '');
-
-  const selectedCategoryOption = categoryOptions.find(
-    cat => cat._id === product.category
-  );
-
-  if (selectedCategoryOption) {
-    const foundSub = selectedCategoryOption.subcategories.find(
-      sub => sub._id === product.subcategory
-    );
-
-    setFormData(prev => ({
-      ...prev,
-      subcategory: foundSub?._id || selectedCategoryOption.subcategories[0]._id,
-    }));
-  }
-}, [product]);
-
-
 
   const categoryOptions = [
     {
@@ -102,75 +79,101 @@ useEffect(() => {
     },
   ];
 
- const handleChange = (
-   e: React.ChangeEvent<
-     HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-   >
- ) => {
-   const { name, value, files } = e.target as any;
-   const newValue = files ? files[0] : value;
+useEffect(() => {
+  const updatedFormData = { ...product };
 
-   if (name === 'category') {
-     setSelectedCategory(value);
-     const selectedCategoryOption = categoryOptions.find(
-       cat => cat._id === value
-     );
-     setFormData(prev => ({
-       ...prev,
-       category: value,
-       subcategory: selectedCategoryOption?.subcategories[0]._id || '',
-     }));
-   } else {
-     setFormData(prev => ({
-       ...prev,
-       [name]: newValue,
-     }));
-   }
- };
+  const selectedCategoryOption = categoryOptions.find(
+    cat => cat._id === product.category
+  );
 
+  if (selectedCategoryOption) {
+    const foundSub = selectedCategoryOption.subcategories.find(
+      sub => sub._id === product.subcategory
+    );
+    updatedFormData.subcategory =
+      foundSub?._id || selectedCategoryOption.subcategories[0]._id;
+  }
 
- const handleSubmit = async (e: React.FormEvent) => {
-   e.preventDefault();
-   try {
-     await editProduct(product._id, formData);
+  setFormData(updatedFormData);
+  setSelectedCategory(product.category || '');
+}, [product]);
 
-     toast.success('محصول با موفقیت ویرایش شد');
+const handleChange = (
+  e: React.ChangeEvent<
+    HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+  >
+) => {
+  const { name, value, files } = e.target as any;
+  const newValue = files ? files[0] : value;
 
-     onProductEdited(formData);
+  if (name === 'category') {
+    const selectedCategoryOption = categoryOptions.find(
+      cat => cat._id === value
+    );
+    const firstSub = selectedCategoryOption?.subcategories[0]?._id || '';
 
-     setTimeout(() => {
-       onClose();
-     }, 500);
-   } catch (err: any) {
-     console.error(err);
-     toast.error(err.response?.data?.message || 'خطا در ویرایش محصول');
-   }
- };
+    setFormData(prev => ({
+      ...prev,
+      category: value,
+      subcategory: firstSub,
+    }));
+
+    setSelectedCategory(value);
+    console.log('Updated Category:', value);
+    console.log('Updated Subcategory:', firstSub);
+    return;
+  }
+
+  setFormData(prev => ({
+    ...prev,
+    [name]: newValue,
+  }));
+};
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  try {
+    console.log('Form data before submit:', formData); // بررسی کنید که `subcategory` فقط شامل `_id` باشد
+    await editProduct(product._id, formData);
+
+    toast.success('محصول با موفقیت ویرایش شد');
+    onProductEdited(formData);
+
+    setTimeout(() => {
+      onClose();
+    }, 500);
+  } catch (err: any) {
+    console.error(err);
+    toast.error(err.response?.data?.message || 'خطا در ویرایش محصول');
+  }
+};
+
 
  useEffect(() => {
-   if (formData.category) {
-     setSelectedCategory(formData.category);
+   if (product) {
+     setFormData({
+       ...product,
+       category: product.category?._id || product.category,
+       subcategory: product.subcategory?._id || product.subcategory,
+     });
+     setSelectedCategory(product.category?._id || product.category);
    }
- }, [formData.category]);
-
- useEffect(() => {
-   if (isOpen) {
-     setFormData({ ...product });
-     setSelectedCategory(product.category || '');
-   }
- }, [isOpen, product]);
-
+ }, [product]);
 
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 font-sahel">
       <ToastContainer />
-      <div className="bg-custom-50 px-6 pt-3 pb-10 rounded shadow w-full max-w-lg">
-        <button onClick={onClose} className="pr-[28rem] text-3xl block">
-          ×
-        </button>
-        <h2 className="text-xl font-bold mb-4">ویرایش محصول</h2>
+      <div className="bg-custom-50 px-8 pt-5 rounded shadow w-full max-w-lg">
+        <div className="flex justify-between items-center">
+          <h2 className="text-lg font-bold mb-3">
+            {modaladdlocalization.editProduct}
+          </h2>
+          <button onClick={onClose} className=" text-black right-4 text-3xl">
+            ×
+          </button>
+        </div>
         <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
           {[
             ['name', 'نام محصول'],
@@ -180,6 +183,10 @@ useEffect(() => {
             ['decorations', 'تزئینات'],
             ['made', 'ساخت کشور'],
           ].map(([name, placeholder]) => (
+             <div key={name} className="flex flex-col space-y-1">
+              <label htmlFor={name} className="text-sm font-medium">
+                {placeholder} :
+              </label>
             <input
               key={name}
               name={name}
@@ -187,103 +194,138 @@ useEffect(() => {
               value={(formData as any)[name] || ''}
               onChange={handleChange}
               type={name === 'price' || name === 'quantity' ? 'number' : 'text'}
-              className="p-3 border-2 text-sm border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
+              className="p-2 border-2 text-sm border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
               required={['name', 'price', 'quantity'].includes(name)}
             />
+            </div>
           ))}
 
-          <select
-            name="stock"
-            value={formData.stock}
-            onChange={handleChange}
-            className="p-3 text-sm border-2 border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
-            required
-          >
-            <option value="">{modaladdlocalization.stock}</option>
-            <option value="موجود">{modaladdlocalization.instock}</option>
-            <option value="نا موجود">{modaladdlocalization.outofstock}</option>
-            <option value="به زودی">{modaladdlocalization.commingsoon}</option>
-            <option value="متوقف شده">{modaladdlocalization.stopped}</option>
-          </select>
-
-          <select
-            name="brand"
-            value={formData.brand}
-            onChange={handleChange}
-            className="p-3 text-sm border-2 border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
-            required
-          >
-            <option value="">{modaladdlocalization.brand}</option>
-            <option value="Bvlgari">{modaladdlocalization.bvlgari}</option>
-            <option value="Tiffani">{modaladdlocalization.tiffani}</option>
-            <option value="Cartier">{modaladdlocalization.cartier}</option>
-            <option value="Dior">{modaladdlocalization.dior}</option>
-            <option value="Chanel">{modaladdlocalization.chanel}</option>
-            <option value="Versace">{modaladdlocalization.versace}</option>
-          </select>
-
-          <select
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            className="p-3 text-sm border-2 border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
-            required
-          >
-            <option value="">{modaladdlocalization.category}</option>
-            {categoryOptions.map(cat => (
-              <option key={cat._id} value={cat._id}>
-                {cat.label}
-              </option>
-            ))}
-          </select>
-
-          {selectedCategory ? (
+          <div className="flex flex-col space-y-1">
+            <label htmlFor="stock" className="text-sm font-medium">
+              {modaladdlocalization.stock} :
+            </label>
             <select
-              name="subcategory"
-              value={formData.subcategory}
+              name="stock"
+              value={formData.stock}
               onChange={handleChange}
-              className="p-3 text-sm border-2 border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
+              className="p-2 text-sm border-2 border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
               required
             >
-              <option value="">{modaladdlocalization.subcategory}</option>
-              {categoryOptions
-                .find(cat => cat._id === selectedCategory)
-                ?.subcategories.map(sub => (
-                  <option key={sub._id} value={sub._id}>
-                    {sub.label}
-                  </option>
-                ))}
+              <option value="">{modaladdlocalization.stock}</option>
+              <option value="موجود">{modaladdlocalization.instock}</option>
+              <option value="نا موجود">
+                {modaladdlocalization.outofstock}
+              </option>
+              <option value="به زودی">
+                {modaladdlocalization.commingsoon}
+              </option>
+              <option value="متوقف شده">{modaladdlocalization.stopped}</option>
             </select>
-          ) : (
+          </div>
+
+          <div className="flex flex-col space-y-1">
+            <label htmlFor="brand" className="text-sm font-medium">
+              {modaladdlocalization.brand} :
+            </label>
             <select
-              disabled
-              className="p-3 text-sm border-2 border-custom-200 outline-none bg-gray-100 text-gray-400"
+              name="brand"
+              value={formData.brand}
+              onChange={handleChange}
+              className="p-2 text-sm border-2 border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
+              required
             >
-              <option>{modaladdlocalization.subcategory}</option>
+              <option value="">{modaladdlocalization.brand}</option>
+              <option value="Bvlgari">{modaladdlocalization.bvlgari}</option>
+              <option value="Tiffani">{modaladdlocalization.tiffani}</option>
+              <option value="Cartier">{modaladdlocalization.cartier}</option>
+              <option value="Dior">{modaladdlocalization.dior}</option>
+              <option value="Chanel">{modaladdlocalization.chanel}</option>
+              <option value="Versace">{modaladdlocalization.versace}</option>
             </select>
-          )}
+          </div>
 
-          <textarea
-            name="description"
-            placeholder={addproductlocalization.description}
-            value={formData.description}
-            onChange={handleChange}
-            className="col-span-2 p-3 text-sm border-2 border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
-          />
+          <div className="flex flex-col space-y-1">
+            <label htmlFor="category" className="text-sm font-medium">
+              {modaladdlocalization.category} :
+            </label>
+            <select
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              className="p-2 text-sm border-2 border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
+              required
+            >
+              <option value="">{modaladdlocalization.category}</option>
+              {categoryOptions.map(cat => (
+                <option key={cat._id} value={cat._id}>
+                  {cat.label}
+                </option>
+              ))}
+            </select>
+          </div>
 
-          <input
-            type="file"
-            name="images"
-            onChange={handleChange}
-            className="col-span-2 p-3 text-sm bg-white border-2 border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
-            accept="image/*"
-          />
+          <div className="flex flex-col space-y-1">
+            <label htmlFor="subcategory" className="text-sm font-medium">
+              {modaladdlocalization.subcategory} :
+            </label>
+            {selectedCategory ? (
+              <select
+                name="subcategory"
+                value={formData.subcategory}
+                onChange={handleChange}
+                className="p-2 text-sm border-2 border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
+                required
+              >
+                <option value="">{modaladdlocalization.subcategory}</option>
+                {categoryOptions
+                  .find(cat => cat._id === selectedCategory)
+                  ?.subcategories.map(sub => (
+                    <option key={sub._id} value={sub._id}>
+                      {sub.label}
+                    </option>
+                  ))}
+              </select>
+            ) : (
+              <select
+                disabled
+                className="p-2 text-sm border-2 border-custom-200 outline-none bg-gray-100 text-gray-400"
+              >
+                <option>{modaladdlocalization.subcategory}</option>
+              </select>
+            )}
+          </div>
+
+          <div className="flex flex-col space-y-1 col-span-2">
+            <label htmlFor="description" className="text-sm font-medium">
+              {addproductlocalization.description} :
+            </label>
+            <textarea
+              name="description"
+              placeholder={addproductlocalization.description}
+              value={formData.description}
+              onChange={handleChange}
+              className="col-span-2 p-3 text-sm border-2 border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
+            />
+          </div>
+
+          <div className="flex flex-col space-y-1 col-span-2">
+            <label htmlFor="images" className="text-sm font-medium">
+              {modaladdlocalization.uploadImage} :
+            </label>
+            <input
+              type="file"
+              name="images"
+              onChange={handleChange}
+              className="col-span-2 p-2 text-sm bg-white border-2 border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
+              accept="image/*"
+            />
+          </div>
 
           <button
             type="submit"
-            className="col-span-2 bg-custom-400 active:scale-95 text-white p-3 rounded"
+            className="col-span-2 bg-custom-400 active:scale-95 text-white p-2 rounded mt-1 w-28 m-auto mb-4"
           >
-            ویرایش محصول
+            {modaladdlocalization.edit}
           </button>
         </form>
       </div>

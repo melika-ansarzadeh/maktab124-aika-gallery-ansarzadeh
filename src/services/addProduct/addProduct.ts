@@ -3,7 +3,7 @@ import axios from 'axios';
 import { ReactNode } from 'react';
 
 interface Category {
-  _id: any;
+  _id: string;
   name: string;
 }
 
@@ -12,6 +12,7 @@ interface Subcategory {
 }
 
 export interface Iaddproducts {
+  [key: string]: any;
   decorations: ReactNode;
   _id?: string;
   name: string;

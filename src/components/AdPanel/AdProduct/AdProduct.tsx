@@ -12,7 +12,6 @@ import ModalAdd from './ModalAdd/ModalAdd';
 import Table from '../Table/Table';
 
 export default function AdProduct() {
-  // const [products, setProducts] = useState<any[]>([]);
   const [products, setProducts] = useState<Iaddproducts[]>([]);
   const [loading, setLoading] = useState(true);
   const [sortOption, setSortOption] = useState<string>('newest');
@@ -68,12 +67,12 @@ export default function AdProduct() {
     {
       key: 'category',
       title: addproductlocalization.category,
-      render: (_: any, row: any) => row.category?.name || '—',
+      render: (_id: any, row: any) => row.category?.name || '—',
     },
     {
       key: 'subcategory',
       title: addproductlocalization.subcategory,
-      render: (_: any, row: any) => row.subcategory?.name || '—',
+      render: (_id: any, row: any) => row.subcategory?.name || '—',
     },
     {
       key: 'images',
