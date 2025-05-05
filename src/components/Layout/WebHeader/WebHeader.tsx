@@ -11,25 +11,19 @@ import logo from '@/assets/images/logo.png';
 import { headerlocalization } from '@/constants/localization/localization';
 import Input from '@/shared/Inputs/Inputs';
 import Link from 'next/link';
-// import jwt_decode from 'jwt-decode';
-
 
 export default function WebHeader() {
   const [searchValue, setSearchValue] = useState('');
   const pathname = usePathname();
-   const [username, setUsername] = useState<string | null>(null);
-  
-    //  useEffect(() => {
-    //   const token = localStorage.getItem('token');
-    //   if (token) {
-    //     try {
-    //       const decodedToken: any = jwt_decode(token);
-    //       setUsername(decodedToken.username);
-    //     } catch (error) {
-    //       console.error('Error decoding token:', error);
-    //     }
-    //   }
-    // }, []);
+  const [username, setUsername] = useState<string | null>(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      setUsername(user.firstname);
+    }
+  }, []);
 
   return (
     <div className="w-full px-4 py-2 font-sahel">
@@ -141,18 +135,32 @@ export default function WebHeader() {
           </Link>
         </nav>
 
-        <div className="flex justify-between text-xl pb-2 items-center gap-8 mr-12">
+        <div className="flex justify-between text-xl pb-2 items-center gap-8 ml-10">
           <IoMdHeartEmpty className="text-custom-400" />
           <LiaShoppingBagSolid className="text-custom-400" />
-          <Link href="/login">
-            <FaRegUser className="text-custom-400 text-lg" />
-            {/* {username ? (
-                    <p className="text-xl font-semibold">Welcome, {username}!</p>
-                  ) : (
-                    <p>Loading user information...</p>
-                  )}
-             */}
-          </Link>
+          <div className="relative group cursor-pointer w-20">
+            {username ? (
+              <>
+                <span className="text-sm text-custom-500">{headerlocalization.hi} {username}</span>
+                <div className="absolute top-6 text-center -mr-5 mt-1 hidden group-hover:flex flex-col w-28 bg-white border shadow rounded z-50">
+                  <button
+                    onClick={() => {
+                      localStorage.removeItem('user');
+                      setUsername(null);
+                      window.location.reload();
+                    }}
+                    className="text-center ml-20 text-nowrap px-2 py-2 hover: text-sm"
+                  >
+                   {headerlocalization.logout}
+                  </button>
+                </div>
+              </>
+            ) : (
+              <Link href="/login">
+                <FaRegUser className="text-custom-400 text-lg" />
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </div>

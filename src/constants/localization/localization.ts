@@ -63,6 +63,8 @@ export const headerlocalization = {
   products: 'محصولات',
   searchProducts: 'جستجوی محصول',
   search: 'جستجو',
+  logout: 'خروج از حساب',
+  hi:'سلام'
 };
 
 export const addproductlocalization = {
