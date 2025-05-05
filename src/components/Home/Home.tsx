@@ -7,7 +7,7 @@ import banchanel from '@/assets/images/banerchanel.png';
 import banversace from '@/assets/images/banerversace.png';
 import bancartier from '@/assets/images//banercartier.png';
 import Image from 'next/image';
-import { homelocalization } from '@/constants/localization/localization';
+import { aboutlocalization, homelocalization } from '@/constants/localization/localization';
 import express from '@/assets/images/express.png';
 import payment from '@/assets/images/safepayment.png';
 import support from '@/assets/images/support2.png';
@@ -26,6 +26,11 @@ import jewerly from '@/assets/images/whatjewerly.png';
 import wishper from '@/assets/images/wishper.png';
 import coco from '@/assets/images/cococrushdiamond.png';
 import necklace from '@/assets/images/crystalbutterflies.png';
+import bracelet from './../../assets/images/bracelet.png';
+import necklace1 from './../../assets/images/necklace.png';
+import ring from './../../assets/images/ring.png';
+import earings from './../../assets/images//earings.png';
+import products from './../../assets/images/products.png';
 
 export default function Home() {
   const images = [
@@ -199,14 +204,95 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="border-2 border-custom-500 bg-custom-50 rounded-xl w-[70rem] m-auto py-10 my-10">
+      <div className="border-2 border-custom-500 bg-custom-50 rounded-xl w-[70rem] m-auto py-10 my-20">
         <h2 className="text-2xl font-bold text-center mb-6">
           {homelocalization.brands}
         </h2>
         <ReusableSwiper slides={brands} />
       </div>
+      <div className="grid grid-cols-3 gap-4 w-[900px] max-w-full m-auto">
+        <Link
+          href="http://localhost:3000/products?category=67fdfc76079f27c844bfb86e"
+          className="relative row-span-2 h-[500px]"
+        >
+          <Image
+            src={necklace1}
+            alt="Neckpiece"
+            className="w-full h-[30rem] object-cover"
+          />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="text-white text-lg font-medium">
+              {aboutlocalization.necklace}
+            </span>
+          </div>
+        </Link>
 
-      <section className="py-10 px-6 border-2 border-custom-500 bg-custom-50 rounded-xl mt-20 m-auto w-[70rem]">
+        <Link
+          href="http://localhost:3000/products?category=67fdfc52079f27c844bfb86a"
+          className="relative h-[17rem]"
+        >
+          <Image
+            src={ring}
+            alt="Rings"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+            <span className="text-white text-lg font-medium">
+              {aboutlocalization.ring}
+            </span>
+          </div>
+        </Link>
+
+        <Link
+          href="http://localhost:3000/products?category=67fdfcac079f27c844bfb876"
+          className="relative h-[17rem]"
+        >
+          <Image
+            src={bracelet}
+            alt="Bracelet"
+            className="w-full h-full object-cover mt-[7rem]"
+          />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="text-white text-lg font-medium mt-[15rem]">
+              {aboutlocalization.bracelet}
+            </span>
+          </div>
+        </Link>
+
+        <Link
+          href="http://localhost:3000/products?category=67fdfc90079f27c844bfb872"
+          className="relative h-[17rem]"
+        >
+          <Image
+            src={earings}
+            alt="Earrings"
+            className="w-full h-full object-cover bg-black/50"
+          />
+          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+            <span className="text-white text-lg font-medium">
+              {aboutlocalization.earings}
+            </span>
+          </div>
+        </Link>
+
+        <Link
+          href="http://localhost:3000/products"
+          className="relative h-[16rem] pb-12"
+        >
+          <Image
+            src={products}
+            alt="product"
+            className="w-[11rem] h-full object-cover mt-[7rem] inset-0 bg-black/50"
+          />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="text-white text-lg font-medium mt-[11rem] ml-[7rem]">
+              {aboutlocalization.products}
+            </span>
+          </div>
+        </Link>
+      </div>
+
+      <section className="py-10 px-6 border-2 border-custom-500 bg-custom-50 rounded-xl mt-32 m-auto w-[70rem]">
         <h2 className="text-2xl font-bold text-center mb-6">
           {homelocalization.beautyblogs}
         </h2>
@@ -231,7 +317,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
       <div className="flex justify-center items-center gap-20 px-56 py-14">
         <div className="leading-relaxed">
           <h2 className="font-semibold text-2xl mb-7">

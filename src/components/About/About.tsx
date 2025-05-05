@@ -49,7 +49,10 @@ export default function About() {
           {aboutlocalization.beauty}
         </h2>
         <div className="grid grid-cols-3 gap-4 w-[900px] max-w-full">
-          <Link href='' className="relative row-span-2 h-[500px]">
+          <Link
+            href="http://localhost:3000/products?category=67fdfc76079f27c844bfb86e"
+            className="relative row-span-2 h-[500px]"
+          >
             <Image
               src={necklace}
               alt="Neckpiece"
@@ -62,7 +65,10 @@ export default function About() {
             </div>
           </Link>
 
-          <Link href='' className="relative h-[17rem]">
+          <Link
+            href="http://localhost:3000/products?category=67fdfc52079f27c844bfb86a"
+            className="relative h-[17rem]"
+          >
             <Image
               src={ring}
               alt="Rings"
@@ -75,7 +81,10 @@ export default function About() {
             </div>
           </Link>
 
-          <Link href='' className="relative h-[17rem]">
+          <Link
+            href="http://localhost:3000/products?category=67fdfcac079f27c844bfb876"
+            className="relative h-[17rem]"
+          >
             <Image
               src={bracelet}
               alt="Bracelet"
@@ -88,7 +97,10 @@ export default function About() {
             </div>
           </Link>
 
-          <Link href='' className="relative h-[17rem]">
+          <Link
+            href="http://localhost:3000/products?category=67fdfc90079f27c844bfb872"
+            className="relative h-[17rem]"
+          >
             <Image
               src={earings}
               alt="Earrings"
@@ -101,7 +113,10 @@ export default function About() {
             </div>
           </Link>
 
-          <Link href='' className="relative h-[16rem] pb-12">
+          <Link
+            href="http://localhost:3000/products"
+            className="relative h-[16rem] pb-12"
+          >
             <Image
               src={products}
               alt="product"

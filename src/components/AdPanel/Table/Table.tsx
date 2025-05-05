@@ -61,16 +61,6 @@ export default function Table({
 	const [isEditOpen, setIsEditOpen] = useState(false);
 	const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-	const fetchProducts = async () => {
-		try {
-			const response = await axios.get(`${BASE_URL}/api/products`);
-			const result = response.data.data.products.records;
-			setProducts(result);
-		} catch (error) {
-			console.error(error);
-		}
-	};
-
 	useEffect(() => {
 		if (!Array.isArray(products)) {
 			console.error("Table data is not an array", products);
@@ -161,7 +151,6 @@ export default function Table({
 	return (
 		<div className="overflow-x-auto rounded-[2rem] border border-custom-500 bg-gradient-to-br from-custom-100 via-white to-custom-100 shadow-[0_8px_30px_rgba(0,0,0,0.05)] py-4 px-3 -mr-9 space-y-4 transition-all">
 			<ToastContainer />
-
 			<div className="overflow-hidden rounded-xl border border-custom-500 shadow-inner backdrop-blur-md">
 				<table className="min-w-full text-sm font-medium">
 					<thead className="bg-custom-400 text-xs uppercase font-sahel tracking-wider">

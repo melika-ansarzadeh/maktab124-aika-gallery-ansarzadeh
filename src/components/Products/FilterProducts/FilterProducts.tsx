@@ -32,7 +32,15 @@ export default function FilterProduct({ setFilters }: FilterProductProps) {
 
   return (
     <aside className="bg-custom-50 border border-custom-200 h-[54rem] p-5 shadow-sm text-sm font-sahel">
-      <h3 className="text-lg text-[#663819] font-medium mb-3 mt-7">
+      <div>
+        <button
+          onClick={resetFilters}
+          className="py-2 text-red-500 rounded"
+        >
+          {filterlocalization.reset}
+        </button>
+      </div>
+      <h3 className="text-lg text-[#663819] font-medium mb-3 mt-3">
         {filterlocalization.category}:
       </h3>
       <div className="flex flex-col gap-3 items-start text-sm">
@@ -91,15 +99,6 @@ export default function FilterProduct({ setFilters }: FilterProductProps) {
         </button>
         <button onClick={() => updateFilter('sort', 'price')}>
           {filterlocalization.cheap}
-        </button>
-      </div>
-
-      <div className="mt-5">
-        <button
-          onClick={resetFilters}
-          className="px-4 py-2 bg-red-500 text-white rounded"
-        >
-          {filterlocalization.reset}
         </button>
       </div>
     </aside>

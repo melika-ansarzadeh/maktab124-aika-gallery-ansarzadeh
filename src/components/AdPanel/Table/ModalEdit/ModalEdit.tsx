@@ -7,7 +7,6 @@ import {
   modaladdlocalization,
 } from '@/constants/localization/localization';
 import { useEffect, useState } from 'react';
-
 import { editProduct } from '@/services/editProduct/editProduct';
 
 interface Product {
