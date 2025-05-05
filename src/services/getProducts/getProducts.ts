@@ -2,9 +2,27 @@ import { BASE_URL } from '@/constants/api/api';
 import axios from 'axios';
 import { Iaddproducts } from '../addProduct/addProduct';
 
-export const GetProducts = async (): Promise<Iaddproducts[]> => {
+interface ProductFilters {
+  sort?: string;
+  brand?: string;
+  category?: string;
+  price?: string;
+  limit?: string;
+}
+
+export const GetProducts = async (
+  filters: ProductFilters
+): Promise<Iaddproducts[]> => {
   try {
-    const response = await axios.get(`${BASE_URL}/api/products?limit=all`);
+    const {
+      sort = '',
+      brand = '',
+      category = '',
+    } = filters;
+
+    const response = await axios.get(
+      `${BASE_URL}/api/products?limit=all&sort=${sort}&brand=${brand}&category=${category}`
+    );
     return response.data.data.products;
   } catch (error) {
     console.error(error);

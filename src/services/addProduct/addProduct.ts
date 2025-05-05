@@ -1,10 +1,23 @@
 import { BASE_URL } from '@/constants/api/api';
 import axios from 'axios';
+import { ReactNode } from 'react';
+import { Key } from 'readline';
+
+interface Category {
+  name: string;
+}
+
+interface Subcategory {
+  name: string;
+}
 
 export interface Iaddproducts {
+  decorations: ReactNode;
+  images: any;
+  _id: React.Key | null | undefined;
   name: string;
-  category: string;
-  subcategory: string;
+  category?: Category;
+  subcategory?: Subcategory;
   price: string;
   quantity: string;
   brand: string;

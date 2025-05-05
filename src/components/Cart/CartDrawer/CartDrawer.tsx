@@ -1,3 +1,5 @@
+'use client';
+
 import { cartlocalization } from '@/constants/localization/localization';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -5,27 +7,52 @@ import { LiaShoppingBagSolid } from 'react-icons/lia';
 import tiffani from '@/assets/images/about3.png';
 import Button from '@/shared/Button/Button';
 import { useRouter } from 'next/navigation';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '@/components/redux/store';
+import {
+  decreaseQuantity,
+  increaseQuantity,
+  removeItem,
+} from '@/components/redux/reducers/cartReducer';
 
 const CartDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
   const toggleDrawer = () => {
     setIsOpen(!isOpen);
   };
 
-  const router = useRouter();
+  const handleGoToCart = () => {
+    setIsClosing(true);
 
- const handleGoToCart = () => {
-   setIsClosing(true);
+    setTimeout(() => {
+      setIsOpen(false);
+      setIsClosing(false);
+      router.push('/cart');
+    }, 300);
+  };
 
-   setTimeout(() => {
-     setIsOpen(false);
-     setIsClosing(false);
-     router.push('/cart');
-   }, 300);
- };
+  const handleRemoveItem = (id: string) => {
+    dispatch(removeItem(id));
+  };
 
+  const handleIncreaseQuantity = (id: string) => {
+    dispatch(increaseQuantity(id));
+  };
+
+  const handleDecreaseQuantity = (id: string) => {
+    dispatch(decreaseQuantity(id));
+  };
+
+  const totalAmount = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 
   return (
     <div className="relative">
@@ -40,8 +67,8 @@ const CartDrawer = () => {
       </button>
 
       <div
-        className={`fixed top-0 right-0 h-full w-[23rem] bg-white transform transition-all duration-300 z-40 flex flex-col justify-between ${
-          isOpen && !isClosing ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed top-0 left-0 h-full w-[23rem] bg-white transform transition-all duration-300 z-40 flex flex-col justify-between ${
+          isOpen && !isClosing ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div>
@@ -54,22 +81,44 @@ const CartDrawer = () => {
           <hr />
 
           <div className="overflow-y-auto max-h-[70vh]">
-            {[1, 2].map(item => (
+            {cartItems.map(item => (
               <div
-                key={item}
+                key={item.id}
                 className="p-4 shadow-md flex items-start justify-between px-5"
               >
                 <Image
-                  src={tiffani}
-                  alt="tiffani"
+                  src={item.image || tiffani}
+                  alt={item.name}
                   width={100}
                   className="rounded-xl object-contain"
                 />
                 <div>
-                  <h3 className="text-sm font-semibold">محصول نمونه</h3>
-                  <p className="text-gray-600 text-sm">قیمت: 150,000 تومان</p>
+                  <h3 className="text-sm font-semibold">{item.name}</h3>
+                  <p className="text-gray-600 text-sm">
+                    قیمت: {item.price.toLocaleString()} تومان
+                  </p>
+                  <div className="flex items-center mt-2">
+                    <button
+                      className="text-sm"
+                      onClick={() => handleDecreaseQuantity(item.id)}
+                    >
+                      -
+                    </button>
+                    <span className="mx-2">{item.quantity}</span>
+                    <button
+                      className="text-sm"
+                      onClick={() => handleIncreaseQuantity(item.id)}
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
-                <button className="text-2xl pb-16 font-bold">×</button>
+                <button
+                  onClick={() => handleRemoveItem(item.id)}
+                  className="text-2xl font-bold"
+                >
+                  ×
+                </button>
               </div>
             ))}
           </div>
@@ -78,7 +127,7 @@ const CartDrawer = () => {
         <div className="p-4 border-t">
           <div className="flex justify-between items-center mb-4">
             <p>جمع جز:</p>
-            <p>300,000 تومان</p>
+            <p>{totalAmount.toLocaleString()} تومان</p>
           </div>
           <Button
             onClick={handleGoToCart}

@@ -3,7 +3,8 @@ import WebHeader from '@/components/Layout/WebHeader/WebHeader';
 import { Metadata } from 'next';
 import './globals.css'
 import 'leaflet/dist/leaflet.css';
-
+import CartDrawer from '@/components/Cart/CartDrawer/CartDrawer';
+import ReduxProvider from '@/components/redux/provider';
 
 export const metadata: Metadata = {
   title: 'aika gallery',
@@ -19,11 +20,14 @@ export default function SiteLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html dir='rtl' lang="fa">
+    <html dir="rtl" lang="fa">
       <body className="min-h-screen">
-        <WebHeader/>
-        <main>{children}</main>
-        <WebFooter />
+        <ReduxProvider>
+          <CartDrawer />
+          <WebHeader />
+          <main>{children}</main>
+          <WebFooter />
+        </ReduxProvider>
       </body>
     </html>
   );
