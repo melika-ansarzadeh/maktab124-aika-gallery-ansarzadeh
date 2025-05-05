@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ReactNode } from 'react';
 
 interface Category {
+  _id: any;
   name: string;
 }
 

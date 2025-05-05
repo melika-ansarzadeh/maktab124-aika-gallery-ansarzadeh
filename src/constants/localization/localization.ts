@@ -271,8 +271,8 @@ export const filterlocalization ={
   cartier:'کارتیر',
   dior:'دیور',
   price:'قیمت',
-  cheap:'ارزان ترین',
-  expensive:'گران ترین',
+  cheap:'نزولی',
+  expensive:'صعودی',
   reset:'حذف فیلترها'
 }
 
@@ -286,6 +286,10 @@ export const singlelocalization = {
   addtofavorit: 'افزودن به علاقه‌مندی',
   loading: 'در حال بارگذاری...',
   notfound: 'محصولی یافت نشد.',
+  relatedProducts:'محصولات مرتبط',
+  toman:'تومان',
+  more:'مشاهده بیشتر',
+  less:'نمایش کمتر'
 };
 
 export const modaladdlocalization = {

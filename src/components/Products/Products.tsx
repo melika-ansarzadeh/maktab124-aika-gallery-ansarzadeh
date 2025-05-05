@@ -7,6 +7,7 @@ import FilterProduct from './FilterProducts/FilterProducts';
 import { GetProducts } from '@/services/getProducts/getProducts';
 import { Iaddproducts } from '@/services/addProduct/addProduct';
 import { useSearchParams } from 'next/navigation';
+import SkeletonProductList from './Skeleton/Skeleton';
 
 
 export default function Product() {
@@ -63,7 +64,9 @@ export default function Product() {
           <h1 className="text-2xl font-bold">محصولات</h1>
 
           {loading ? (
-            <p className="text-center">در حال بارگذاری...</p>
+            <SkeletonProductList />
+          ) : products.length === 0 ? (
+            <p className="text-center text-gray-500">محصولی یافت نشد.</p>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {products

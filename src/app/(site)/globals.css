@@ -9,6 +9,15 @@
   src: url(./../../assets/fonts/Sahel.ttf);
 }
 
+@font-face {
+  font-family: number;
+  src: url(./../../assets/fonts/Dirooz-FD.woff2);
+}
+  
+*{
+  font-family: number;
+}
+
 .suppot-bg {
   background-image: url(./../../assets/images/support.png);
   background-size: cover;
