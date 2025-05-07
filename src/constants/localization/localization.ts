@@ -361,3 +361,29 @@ export const cartlocalization = {
   gocheckout: 'ادامه جهت تسویه حساب',
 };
 
+export const checkoutlocalization = {
+  checkout: 'تکمیل اطلاعات سفارش',
+  cart: 'سبد خرید',
+  nothing: 'سبد خرید شما خالی است',
+  tooman: 'تومان',
+  price: 'قیمت',
+  quantity: 'تعداد',
+  validationname: 'نام الزامی است',
+  validationlastname: 'نام خانوادگی الزامی است',
+  validationusername: 'نام کاربری الزامی است',
+  validationphone: 'شماره تماس معتبر نیست',
+  validatonaddress: 'آدرس الزامی است',
+  validationcode: 'کد پستی الزامی است',
+  validatoncodecount: 'کد پستی باید ۱۰ رقمی باشد',
+  validationdate: 'تاریخ تحویل الزامی است',
+  name: 'نام',
+  lastname: 'نام خانوادگی',
+  username: 'نام کاربری',
+  phonenumber: 'شماره تماس',
+  address: 'آدرس کامل',
+  code: 'کد پستی',
+  date: 'تاریخ تحویل',
+  payment: 'ادامه به پرداخت',
+  information:'اطلاعات کاربر'
+};
+
