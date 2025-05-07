@@ -6,12 +6,25 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import FilterProduct from './FilterProducts/FilterProducts';
 import { GetProducts } from '@/services/getProducts/getProducts';
 import { Iaddproducts } from '@/services/addProduct/addProduct';
+import { useSearchParams } from 'next/navigation';
+import SkeletonProductList from './Skeleton/Skeleton';
+
 
 export default function Product() {
   const [currentPage, setCurrentPage] = useState(1);
   const [products, setProducts] = useState<Iaddproducts[]>([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({});
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const queryFilters: Record<string, string> = {};
+    searchParams.forEach((value, key) => {
+      queryFilters[key] = value;
+    });
+    setFilters(queryFilters);
+  }, [searchParams]);
+
 
 
   const itemsPerPage = 6;
@@ -27,9 +40,9 @@ export default function Product() {
    const getProducts = async () => {
      setLoading(true);
      try {
-       const data = await GetProducts(filters); // فیلترها اینجا استفاده می‌شن
+       const data = await GetProducts(filters);
        setProducts(data);
-       setCurrentPage(1); // با هر فیلتر صفحه ۱ نمایش داده شود
+       setCurrentPage(1); 
      } catch (err) {
        console.error('خطا در گرفتن محصولات:', err);
      } finally {
@@ -51,7 +64,9 @@ export default function Product() {
           <h1 className="text-2xl font-bold">محصولات</h1>
 
           {loading ? (
-            <p className="text-center">در حال بارگذاری...</p>
+            <SkeletonProductList />
+          ) : products.length === 0 ? (
+            <p className="text-center text-gray-500">محصولی یافت نشد.</p>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {products
@@ -60,7 +75,16 @@ export default function Product() {
                   currentPage * itemsPerPage
                 )
                 .map(product => (
-                  <ProductCard key={product._id} data={product} />
+                  <ProductCard
+                    key={product._id}
+                    data={product}
+                    product={{
+                      id: product._id,
+                      name: product.name,
+                      price: product.price,
+                      image: `http://${product.images}`,
+                    }}
+                  />
                 ))}
             </div>
           )}

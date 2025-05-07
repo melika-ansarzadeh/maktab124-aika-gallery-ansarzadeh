@@ -63,6 +63,8 @@ export const headerlocalization = {
   products: 'محصولات',
   searchProducts: 'جستجوی محصول',
   search: 'جستجو',
+  logout: 'خروج از حساب',
+  hi:'سلام',
 };
 
 export const addproductlocalization = {
@@ -80,6 +82,7 @@ export const addproductlocalization = {
   image: 'تصویر',
   managmentpricestock: 'مدیریت موجودی و قیمت',
   toman: 'تومان',
+  show: 'نمایش محصول شماره',
 };
 
 export const tablelocalization = {
@@ -92,6 +95,22 @@ export const tablelocalization = {
   delete: 'حذف',
   edit: 'ویرایش',
   save: 'ذخیره',
+  toman:'تومان',
+  show:'نمایش محصول شماره'
+};
+
+export const swallLocalization = {
+  sure: 'آیا مطمئن هستید؟',
+  warninigText: 'این محصول برای همیشه حذف خواهد شد.',
+  okDelete: '!بله، حذف شود',
+  cancle: 'لغو',
+  delete: 'حذف شد',
+  deletedSuccessfully: '.محصول با موفقیت حذف شد',
+  ok: 'باشه',
+  errorHappened: 'مشکلی پیش آمد. دوباره امتحان کنید',
+  error: 'خطا',
+  editedSuccessfully: 'ویرایش موفقیت آمیز بود',
+  errorInEditing: 'خطا در ویرایش محصول',
 };
 
 export const userlocalization = {
@@ -101,6 +120,7 @@ export const userlocalization = {
   phoneNumber: 'شماره تماس',
   address: 'آدرس',
   list: 'لیست کاربران',
+  showuser:'نمایش کاربر'
 };
 
 export const notfoundlocalization = {
@@ -120,6 +140,13 @@ export const orderslocalization = {
   managment: 'مدیریت سفارش ها',
   all: 'همه سفارش ها',
   notdelivered: 'در انتظار تحویل',
+  showorder: 'نمایش سفارش',
+  number: 'عدد',
+  ordernumber: 'تعداد محصول',
+  nameproduct: 'نام محصولات',
+  date: 'زمان تحویل ',
+  deatail: 'اطلاعات تماس ',
+  address: 'آدرس',
 };
 
 export const homeadlocalization = {
@@ -227,12 +254,16 @@ export const homelocalization = {
     'ما در ایکا گالری، با دقتی بی‌نظیر در انتخاب برندها، بسته‌بندی‌های خاص، و طراحی تجربه‌ی خرید، اینجاییم تا شما بدرخشید.',
   aika4:
     'از اولین نگاه تا آخرین لمس، هر محصولی که از ما دریافت می‌کنید، حامل پیام ظرافت، کیفیت و انتخابی هوشمندانه است.',
+  beautyblogs: 'مجله های آیکا گالری',
+  size: 'چگونه سایز انگشتر، دستبند و گردنبند را بفهمیم؟',
+  whatjewerly: 'چه جواهراتی مناسب با فرم صورت و بدن شماست؟',
+  whatcolor: 'کدام رنگ طلا مناسب پوست شماست؟',
+  brands: 'برندهای معروف',
+  famuous: 'محصولات معروف',
+  bracelet: 'دستبند wishper از برند بولگاری',
+  necklace: 'گردنبند Crystal Butterflies از برند ورساچه',
+  ring: 'انگشتر B.zero1 از برند بولگاری'
 };
-
-export const cartlocalization = {
-  cart:'سبد خرید',
-  cartorder:'جمع کل سبد خرید'
-}
 
 export const filterlocalization ={
   category:'دسته بندی',
@@ -248,8 +279,9 @@ export const filterlocalization ={
   cartier:'کارتیر',
   dior:'دیور',
   price:'قیمت',
-  cheap:'ارزان ترین',
-  expensive:'گران ترین',
+  cheap:'نزولی',
+  expensive:'صعودی',
+  reset:'حذف فیلترها'
 }
 
 export const singlelocalization = {
@@ -262,4 +294,70 @@ export const singlelocalization = {
   addtofavorit: 'افزودن به علاقه‌مندی',
   loading: 'در حال بارگذاری...',
   notfound: 'محصولی یافت نشد.',
+  relatedProducts:'محصولات مرتبط',
+  toman:'تومان',
+  more:'مشاهده بیشتر',
+  less:'نمایش کمتر'
 };
+
+export const modaladdlocalization = {
+  stock: 'وضعیت موجودی',
+  instock: 'موجود',
+  outofstock: 'ناموجود',
+  commingsoon: 'به زودی',
+  stopped: 'متوقف شده',
+  dior: 'دیور',
+  versace: 'ورساچه',
+  chanel: 'شنل',
+  tiffani: 'تیفانی',
+  cartier: 'کارتیر',
+  bvlgari: 'بولگاری',
+  brand: 'برند',
+  category: 'دسته بندی محصول',
+  subcategory: 'زیردسته محصول',
+  ring: 'انگشتر',
+  necklace: 'گردنبند',
+  earrings: 'گوشواره',
+  bracelet: 'دستبند',
+  description: 'توضیحات',
+  addproduct: 'افزودن محصول جدید',
+  add: 'افزودن',
+  toastsucces: 'محصول جدید با موفقیت اضافه شد',
+  toastinfo:'تعداد و وضعیت موجودی با هم هماهنگ نیستند',
+  toasterror: 'خطا در اضافه کردن محصول',
+  uploadImage:'تصویر محصول',
+edit:'ویرایش',
+editProduct:'ویرایش محصول'
+};
+
+export const adproductlocalization = {
+  sort: 'مرتب سازی بر اساس',
+  newest: 'جدید ترین',
+  cheap: 'ارزون ترین',
+  expensive: 'گرون ترین',
+  oldest: 'قدیمی ترین',
+  addproduct: 'افزودن محصول جدید',
+};
+
+export const adpanellocalization = {
+  orders:'تعداد کل سفارشات',
+  users:'تعداد کل کاربران',
+  products:'تعداد کل محصولات',
+  order:'سفارش',
+  user:'کاربر',
+  product:'محصول'
+}
+
+export const cartlocalization = {
+  totalcart:'جمع کل سبد خرید',
+  cart: 'سبد خرید',
+  cartorder: 'جمع کل',
+  showcart: 'مشاهده سبد خرید',
+  tooman: 'تومان',
+  price: 'قیمت',
+  nothing: 'سبد خرید شما خالی است',
+  sendprice: 'هزینه ارسال',
+  total: 'مجموع نهایی',
+  gocheckout: 'ادامه جهت تسویه حساب',
+};
+

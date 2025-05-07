@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type CartItem = {
+  _id: Key | null | undefined;
   image: any;
   price: number;
   id: string;

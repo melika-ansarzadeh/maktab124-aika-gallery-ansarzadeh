@@ -1,13 +1,14 @@
 import { headerlocalization } from '@/constants/localization/localization';
 import Input from '@/shared/Inputs/Inputs';
-import Link from 'next/link';
 import React from 'react';
 import { BsBell } from 'react-icons/bs';
-import { IoMoonOutline } from 'react-icons/io5';
 import { MdLanguage } from 'react-icons/md';
-import { FaRegUserCircle } from 'react-icons/fa';
+
+
 
 export default function AdHeader() {
+ 
+
   return (
     <div className="flex justify-between items-center pl-10 pt-6 pb-3 text-custom-500 font-sahel">
       <div>
@@ -19,10 +20,9 @@ export default function AdHeader() {
           placeholder={headerlocalization.search}
         />
       </div>
-
       <div className="flex flex-row-reverse items-center justify-center text-xl gap-8">
-          <BsBell />
-          <MdLanguage />
+        <BsBell />
+        <MdLanguage />
       </div>
     </div>
   );

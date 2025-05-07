@@ -13,7 +13,7 @@ export default function Brands() {
   return (
     <div className="flex flex-col gap-6 px-56 py-10 font-sahel">
       <Link
-        href=""
+        href="http://localhost:3000/products?brand=Tiffany"
         className="flex items-center gap-6 bg-custom-50 p-6 rounded-3xl shadow-md hover:shadow-xl transition duration-300 hover:scale-[1.02] h-40"
       >
         <div className="w-32 h-32 bg-white rounded-2xl flex items-center justify-center shadow-sm overflow-hidden">
@@ -34,7 +34,7 @@ export default function Brands() {
       </Link>
 
       <Link
-        href=""
+        href="http://localhost:3000/products?brand=Cartier"
         className="flex items-center gap-6 bg-custom-50 p-6 rounded-3xl shadow-md hover:shadow-xl transition duration-300 hover:scale-[1.02] h-40"
       >
         <div className="w-32 h-32 bg-white rounded-2xl flex items-center justify-center shadow-sm overflow-hidden">
@@ -55,7 +55,7 @@ export default function Brands() {
       </Link>
 
       <Link
-        href=""
+        href="http://localhost:3000/products?brand=Bvlgari"
         className="flex items-center gap-6 bg-custom-50 p-6 rounded-3xl shadow-md hover:shadow-xl transition duration-300 hover:scale-[1.02] h-40"
       >
         <div className="w-32 h-32 bg-white rounded-2xl flex items-center justify-center shadow-sm overflow-hidden">
@@ -76,7 +76,7 @@ export default function Brands() {
       </Link>
 
       <Link
-        href=""
+        href="http://localhost:3000/products?brand=Versace"
         className="flex items-center gap-6 bg-custom-50 p-6 rounded-3xl shadow-md hover:shadow-xl transition duration-300 hover:scale-[1.02] h-40"
       >
         <div className="w-32 h-32 bg-white rounded-2xl flex items-center justify-center shadow-sm overflow-hidden">
@@ -97,7 +97,7 @@ export default function Brands() {
       </Link>
 
       <Link
-        href=""
+        href="http://localhost:3000/products?brand=Chanel"
         className="flex items-center gap-6 bg-custom-50 p-6 rounded-3xl shadow-md hover:shadow-xl transition duration-300 hover:scale-[1.02] h-40"
       >
         <div className="w-32 h-32 bg-white rounded-2xl flex items-center justify-center shadow-sm overflow-hidden">
@@ -118,7 +118,7 @@ export default function Brands() {
       </Link>
 
       <Link
-        href=""
+        href="http://localhost:3000/products?brand=Dior"
         className="flex items-center gap-6 bg-custom-50 p-6 rounded-3xl shadow-md hover:shadow-xl transition duration-300 hover:scale-[1.02] h-40"
       >
         <div className="w-32 h-32 bg-white rounded-2xl flex items-center justify-center shadow-sm overflow-hidden">

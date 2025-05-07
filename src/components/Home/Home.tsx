@@ -1,118 +1,95 @@
-
-import React from 'react'
-import BrandSwiper from './Swiper/Swiper';
-import banbvlgari from '@/assets/images/banerbvlgari.png'
-import bantiffani from '@/assets/images/banertiffani.png'
-import bandior from '@/assets/images/banerdior.png'
-import banchanel from '@/assets/images/banerchanel.png'
-import banversace from '@/assets/images/banerversace.png'
+import React from 'react';
+import BrandSwiper from './HeroBaner/HeroBaner';
+import banbvlgari from '@/assets/images/banerbvlgari.png';
+import bantiffani from '@/assets/images/banertiffani.png';
+import bandior from '@/assets/images/banerdior.png';
+import banchanel from '@/assets/images/banerchanel.png';
+import banversace from '@/assets/images/banerversace.png';
 import bancartier from '@/assets/images//banercartier.png';
 import Image from 'next/image';
-import {homelocalization} from '@/constants/localization/localization';
-import express from '@/assets/images/express.png';
-import payment from '@/assets/images/safepayment.png';
-import support from '@/assets/images/support2.png';
-import quality from '@/assets/images/quality.png';
+import { homelocalization } from '@/constants/localization/localization';
 import tiffani from '@/assets/images/tiffany.png';
 import cartier from '@/assets/images/cartier.png';
 import chanel from '@/assets/images/chanel.png';
 import bvlgari from '@/assets/images/bvlgari.png';
 import versace from '@/assets/images/versace.png';
 import dior from '@/assets/images/dior.png';
-
-
+import ReusableSwiper from './Swiper/Swiper';
+import Video from './Video/Video';
+import Category from './Category/Category';
+import Reasons from './Reasons/Reasons';
+import Articles from './Articles/Articles';
+import Famous from './Famouse/Famous';
 
 export default function Home() {
-
   const images = [
-    { src: banversace, alt: 'versace' },
     { src: bantiffani, alt: 'tiffani' },
     { src: banbvlgari, alt: 'bvlgari' },
-    { src: bandior , alt: 'dior' },
+    { src: banversace, alt: 'versace' },
+    { src: bandior, alt: 'dior' },
     { src: banchanel, alt: 'chanel' },
     { src: bancartier, alt: 'cartier' },
   ];
 
   const brands = [
-    { src: cartier, alt: 'cartier', link: '/' },
-    { src: bvlgari, alt: 'bvlgari', link: '/' },
-    { src: tiffani, alt: 'tiffani', link: '/' },
-    { src: versace, alt: 'versace', link: '/' },
-    { src: dior, alt: 'dior', link: '/' },
-    { src: chanel, alt: 'chanel', link: '/' },
+    {
+      id: 1,
+      image: cartier,
+      title: 'cartier',
+      alt: 'cartier',
+      link: 'http://localhost:3000/products?brand=Cartier',
+    },
+    {
+      id: 2,
+      image: bvlgari,
+      title: 'bvlgari',
+      alt: 'bvlgari',
+      link: 'http://localhost:3000/products?brand=Bvlgari',
+    },
+    {
+      id: 3,
+      image: tiffani,
+      title: 'tiffani',
+      alt: 'tiffani',
+      link: 'http://localhost:3000/products?brand=Tiffany',
+    },
+    {
+      id: 4,
+      image: versace,
+      title: 'versace',
+      alt: 'versace',
+      link: 'http://localhost:3000/products?brand=Versace',
+    },
+    {
+      id: 5,
+      image: dior,
+      title: 'dior',
+      alt: 'dior',
+      link: 'http://localhost:3000/products?brand=Dior',
+    },
+    {
+      id: 6,
+      image: chanel,
+      title: 'chanel',
+      alt: 'chanel',
+      link: 'http://localhost:3000/products?brand=Chanel',
+    },
   ];
-
-
-  const reasons = [
-    {
-      icon: express,
-      title: homelocalization.express ,
-      desc: homelocalization.expresstext,
-    },
-    {
-      icon: payment,
-      title:homelocalization.payment ,
-      desc: homelocalization.paymenttext ,
-    },
-    {
-      icon: support,
-      title: homelocalization.support,
-      desc: homelocalization.supporttext,
-    },
-    {
-      icon: quality,
-      title:homelocalization.quality ,
-      desc: homelocalization.qualitytext,
-    },
-  ]
 
   return (
     <div className="font-sahel">
       <BrandSwiper images={images} />
-      <section className="pt-16 px-4 bg-white rounded-2xl max-w-6xl mx-auto">
-        <h2 className="text-2xl font-bold text-center mb-8">
-          {homelocalization.whyus}
+      <Reasons />
+      <Famous />
+      <div className="border-2 border-custom-500 bg-custom-50 rounded-xl w-[70rem] m-auto py-10 my-20">
+        <h2 className="text-2xl font-bold text-center mb-6">
+          {homelocalization.brands}
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-5 gap-10">
-          {reasons.map((item, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center text-center bg-custom-50 p-6 rounded-xl shadow hover:shadow-lg transition-all duration-300"
-            >
-              <div className="w-24 h-24 mb-4">
-                <Image
-                  src={item.icon}
-                  alt={item.title}
-                  width={120}
-                  height={120}
-                  className="w-full h-full rounded-xl object-contain"
-                />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-              <p className="text-sm text-gray-600">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-      <BrandSwiper containerClassName="h-[5rem]" images={brands} />
-      <div className="flex justify-center items-center gap-20 px-56 py-14 ">
-        <div className=" leading-relaxed">
-          <h2 className="font-semibold text-2xl mb-7">
-            {homelocalization.aika1}
-          </h2>
-          <p className='mb-4'>{homelocalization.aika2}</p>
-          <p className='mb-4'>{homelocalization.aika3}</p>
-          <p className='mb-4'>{homelocalization.aika4}</p>
-        </div>
-        <video
-          src="/videos/hero.mp4"
-          controls
-          autoPlay
-          muted
-          loop
-          className="w-[31rem] h-[36rem] rounded-xl shadow-lg"
-        ></video>
+        <ReusableSwiper slides={brands} />
       </div>
+      <Category />
+      <Articles />
+      <Video />
     </div>
   );
 }

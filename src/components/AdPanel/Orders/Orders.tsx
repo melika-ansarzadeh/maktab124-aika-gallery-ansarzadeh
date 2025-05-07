@@ -7,8 +7,8 @@ import {
   addproductlocalization,
   loadinglocalization,
   orderslocalization,
-  tablelocalization,
 } from '@/constants/localization/localization';
+import ModalOrders, { Iorders } from './ModalOrders/ModalOrders';
 
 type ProductTableProps = {
   rowsPerPage?: number;
@@ -21,23 +21,23 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
   const [filter, setFilter] = useState<'all' | 'delivered' | 'notDelivered'>(
     'all'
   );
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState<Iorders | null>(null);
+
   const deliveredCount = data.filter(order => order.deliveryStatus).length;
   const notDeliveredCount = data.filter(order => !order.deliveryStatus).length;
 
   const chartData = [
-    { name: 'تحویل داده شده', value: deliveredCount },
-    { name: 'در انتظار تحویل', value: notDeliveredCount },
+    { name: orderslocalization.delivered, value: deliveredCount },
+    { name: orderslocalization.notdelivered, value: notDeliveredCount },
   ];
-
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       const orders = await GetOrders();
-      console.log('Full orders data:', orders);
       const orderData = orders;
       if (orderData) {
-        console.log('Order data:', orderData);
         setData(orderData);
       } else {
         console.log('No orders found or invalid data structure');
@@ -46,6 +46,24 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
     };
     fetchData();
   }, []);
+
+const fetchOrders = async () => {
+  setLoading(true);
+  const orders = await GetOrders();
+  setData(orders);
+  setLoading(false);
+};
+
+useEffect(() => {
+  fetchOrders();
+}, []);
+
+const handleModalSuccess = () => {
+  fetchOrders();
+  setIsModalOpen(false);
+};
+
+
 
   const totalPages = Math.ceil(data.length / rowsPerPage);
   const startIndex = (page - 1) * rowsPerPage;
@@ -60,6 +78,11 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
     startIndex,
     startIndex + rowsPerPage
   );
+
+  const handleOpenModal = (order: Iorders) => {
+    setSelectedOrder(order);
+    setIsModalOpen(true);
+  };
 
   const getPageNumbers = () => {
     const range = [];
@@ -145,7 +168,10 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
                           : 'در انتظار تحویل'}
                       </td>
                       <td className="py-4 px-1 text-center whitespace-nowrap">
-                        <button className="text-blue-500 hover:underline">
+                        <button
+                          onClick={() => handleOpenModal(order)}
+                          className="text-blue-500 hover:underline"
+                        >
                           {orderslocalization.review}
                         </button>
                       </td>
@@ -156,12 +182,11 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
             </div>
 
             <div className="flex flex-col md:flex-row font-number items-center justify-between text-sm gap-3">
-              <span className="text-xs">
-                نمایش <b>{startIndex + 1}</b> تا{' '}
+              <span className="text-xs px-2">
+                {orderslocalization.showorder} <b>{startIndex + 1}</b> تا{' '}
                 <b>
                   {Math.min(startIndex + rowsPerPage, filteredOrders.length)}
                 </b>{' '}
-                از <b>{filteredOrders.length}</b>
               </span>
 
               <div className="flex items-center gap-2">
@@ -170,35 +195,41 @@ export default function Orders({ rowsPerPage = 8 }: ProductTableProps) {
                   disabled={page === 1}
                   className="p-2 rounded-full bg-white border-2 border-custom-500 hover:bg-custom-400 disabled:opacity-40 transition-all duration-300"
                 >
-                  <FaChevronLeft className="w-3 h-3" />
+                  <FaChevronRight className="w-3 h-3" />
                 </button>
-
                 {getPageNumbers().map(pageNum => (
                   <button
                     key={pageNum}
                     onClick={() => setPage(pageNum)}
-                    className={`px-3 py-1.5 rounded-xl border-2 text-xs font-semibold shadow-md transition-all duration-300 ease-in-out
-                ${
-                  page === pageNum
-                    ? 'bg-custom-400 text-white border-custom-500 scale-105'
-                    : 'bg-white border-custom-500 hover:bg-custom-200 hover:scale-[1.05]'
-                }`}
+                    className={`px-3 py-1.5 rounded-xl border-2 text-xs font-semibold shadow-md transition-all ${
+                      pageNum === page
+                        ? 'bg-custom-400 text-white'
+                        : 'hover:bg-custom-300'
+                    }`}
                   >
                     {pageNum}
                   </button>
                 ))}
-
                 <button
                   onClick={() => setPage(p => Math.min(p + 1, totalPages))}
                   disabled={page === totalPages}
                   className="p-2 rounded-full bg-white border-2 border-custom-500 hover:bg-custom-400 disabled:opacity-40 transition-all duration-300"
                 >
-                  <FaChevronRight className="w-3 h-3" />
+                  <FaChevronLeft className="w-3 h-3" />
                 </button>
               </div>
             </div>
           </div>
         </div>
+      )}
+
+      {isModalOpen && selectedOrder && (
+        <ModalOrders
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          order={selectedOrder}
+          onSuccess={handleModalSuccess}
+        />
       )}
     </div>
   );

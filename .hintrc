@@ -9,7 +9,17 @@
         "button-name": "off"
       }
     ],
+<<<<<<< HEAD
     "axe/forms": "off",
+=======
+    "axe/forms": [
+      "default",
+      {
+        "select-name": "off",
+        "label": "off"
+      }
+    ],
+>>>>>>> hotfix/phase3-fixes
     "compat-api/css": [
       "default",
       {
