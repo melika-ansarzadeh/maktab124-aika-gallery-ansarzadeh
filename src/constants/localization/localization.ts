@@ -363,7 +363,7 @@ export const cartlocalization = {
 
 export const checkoutlocalization = {
   checkout: 'تکمیل اطلاعات سفارش',
-  cart: 'سبد خرید',
+  cart: 'سفارشات شما',
   nothing: 'سبد خرید شما خالی است',
   tooman: 'تومان',
   price: 'قیمت',
@@ -385,5 +385,22 @@ export const checkoutlocalization = {
   date: 'تاریخ تحویل',
   payment: 'ادامه به پرداخت',
   information:'اطلاعات کاربر'
+};
+
+export const paymentlocalization = {
+  date: 'تاریخ انقضا',
+  Payment: ' صفحه پرداخت',
+  name: 'نام',
+  Card: 'شماره کارت',
+  validdate: 'تاریخ انقضا',
+  send: 'پرداخت',
+  fail: ' انصراف از پرداخت',
+  cvv: 'cvv',
+  success: 'پرداخت موفقیت امیز بود',
+  fails: 'پرداخت موفقیت امیز نبود',
+  sure: 'آیا مطمئن هستید؟',
+  warning: 'این عملیات قابل بازگشت نیست!',
+  ok: 'بله',
+  no: 'خیر',
 };
 

@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import DatePicker from 'react-datepicker';
 import moment from 'moment-jalaali';
 import 'react-datepicker/dist/react-datepicker.css';
-import { cartlocalization, checkoutlocalization } from '@/constants/localization/localization';
+import { checkoutlocalization } from '@/constants/localization/localization';
 import Link from 'next/link';
 
 type CartItem = {
@@ -90,7 +90,8 @@ export default function CheckoutPage() {
     setErrors({ ...errors, [e.target.name as keyof UserInfo]: '' });
   };
 
-  const handleDateChange = (date: Date) => {
+ const handleDateChange = (date: Date | null, event?: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>) => {
+  if (!date) return;
     setUserInfo({
       ...userInfo,
       deliveryDate: moment(date).format('jYYYY/jMM/jDD'),

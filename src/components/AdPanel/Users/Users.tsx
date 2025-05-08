@@ -25,47 +25,28 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-      const fetchUsers = async () => {
-        const token = localStorage.getItem('token');
-<<<<<<< HEAD
-        const res = await axios.get(`${BASE_URL}/api/users`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setData(res.data);
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('No token found!');
         setLoading(false);
-      } catch (err) {
-        console.error('Error fetching users:', err);
+        return;
+      }
+
+      try {
+        const users = await GetUsers(token);
+        setData(users || []);
+      } catch (error) {
+        console.error('Failed to fetch users:', error);
+      } finally {
         setLoading(false);
       }
     };
-=======
-        if (!token) {
-          console.error('No token found!');
-          setLoading(false);
-          return;
-        }
->>>>>>> hotfix/phase3-fixes
 
-        try {
-          const users = await GetUsers(token);
-          setData(users);
-          console.log(users)
-        } catch (error) {
-          console.error('Failed to fetch users:', error);
-        } finally {
-          setLoading(false);
-        }
-      };
+    fetchUsers();
+  }, []);
 
-<<<<<<< HEAD
-=======
-      fetchUsers();
-    }, []);
-
->>>>>>> hotfix/phase3-fixes
   const totalPages = Math.ceil(data.length / rowsPerPage);
   const startIndex = (page - 1) * rowsPerPage;
   const paginatedData = data.slice(startIndex, startIndex + rowsPerPage);
@@ -104,7 +85,7 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
                       {userlocalization.name}
                     </th>
                     <th className="px-6 py-4 text-center whitespace-nowrap">
-                     {userlocalization.lastname}
+                      {userlocalization.lastname}
                     </th>
                     <th className="px-6 py-4 text-center whitespace-nowrap">
                       {userlocalization.username}
@@ -113,7 +94,7 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
                       {userlocalization.phoneNumber}
                     </th>
                     <th className="px-6 py-4 text-center whitespace-nowrap">
-                    {userlocalization.address}
+                      {userlocalization.address}
                     </th>
                   </tr>
                 </thead>
@@ -146,9 +127,9 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
 
             <div className="flex flex-col md:flex-row items-center font-number pr-2 justify-between text-sm gap-3">
               <span className="text-xs">
-                {userlocalization.showuser}<b>{startIndex + 1} </b> تا{' '}
+                {userlocalization.showuser}
+                <b>{startIndex + 1} </b> تا{' '}
                 <b>{Math.min(startIndex + rowsPerPage, data.length)}</b>{' '}
-                
               </span>
 
               <div className="flex items-center gap-2">

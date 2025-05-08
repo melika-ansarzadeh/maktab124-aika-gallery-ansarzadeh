@@ -157,7 +157,7 @@ export default function SingleProduct() {
       </div>
 
       {relatedProducts.length > 0 && (
-        <div className="p-8">
+        <div className="px-8 pb-8">
           <h2 className="text-xl font-bold mb-4">
             {singlelocalization.relatedProducts}
           </h2>

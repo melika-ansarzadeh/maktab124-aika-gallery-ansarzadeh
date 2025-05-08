@@ -2,9 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @font-face {
   font-family: sahel;
-  src: url(./../../assets/fonts/Sahel.ttf)
+  src: url(./../../assets/fonts/Sahel.ttf);
+}
+
+@font-face {
+  font-family: number;
+  src: url(./../../assets/fonts/Dirooz-FD.woff2);
+}
+  
+*{
+  font-family: number;
 }
 
 .background-login {
