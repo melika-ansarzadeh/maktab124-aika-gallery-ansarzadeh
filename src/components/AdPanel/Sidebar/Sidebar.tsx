@@ -15,7 +15,7 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     router.push('/');
   };
 

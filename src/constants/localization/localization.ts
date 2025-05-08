@@ -402,5 +402,6 @@ export const paymentlocalization = {
   warning: 'این عملیات قابل بازگشت نیست!',
   ok: 'بله',
   no: 'خیر',
+  back:'بازگشت به صفحه اصلی'
 };
 

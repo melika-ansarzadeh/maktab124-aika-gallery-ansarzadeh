@@ -165,9 +165,11 @@ export default function WebHeader() {
                 <div className="absolute top-6 text-center -mr-5 mt-1 hidden group-hover:flex flex-col w-28 bg-white border shadow rounded z-50">
                   <button
                     onClick={() => {
-                      localStorage.removeItem('user');
-                      setUsername(null);
-                      window.location.reload();
+                        localStorage.removeItem('user');
+                       localStorage.removeItem('persist:aika-gallery');
+                        localStorage.removeItem('token');
+                       setUsername(null);
+                       window.location.reload();
                     }}
                     className="text-center ml-20 text-nowrap px-2 py-2 hover: text-sm"
                   >

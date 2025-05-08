@@ -106,7 +106,7 @@ export default function ModalAdd({
       await AddProduct(formData);
       onProductAdded();
       setTimeout(() => {
-        toast.success(modaladdlocalization.toastinfo);
+        toast.success(modaladdlocalization.toastsucces);
       }, 100);
       onClose();
     } catch (error) {

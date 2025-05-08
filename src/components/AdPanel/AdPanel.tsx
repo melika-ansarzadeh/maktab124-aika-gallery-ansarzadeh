@@ -7,7 +7,7 @@ import Calendar from './Calendar/Calendar';
 import { adpanellocalization, loadinglocalization, orderslocalization } from '@/constants/localization/localization';
 import { FaCircle } from 'react-icons/fa';
 import { BASE_URL } from '@/constants/api/api';
-import { GetUsers } from '@/services/getAllUsers/getAllUser';
+
 export default function AdPanel() {
   const [data, setData] = useState<any[]>([]);
   const [orders, setOrders] = useState<any>([]);

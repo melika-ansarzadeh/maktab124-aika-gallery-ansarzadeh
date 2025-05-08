@@ -80,23 +80,25 @@ export default function ModalEdit({
   ];
 
 useEffect(() => {
-  const updatedFormData = { ...product };
+  if (product) {
+    const categoryId =
+      typeof product.category === 'object'
+        ? product.category._id
+        : product.category;
+    const subcategoryId =
+      typeof product.subcategory === 'object'
+        ? product.subcategory._id
+        : product.subcategory;
 
-  const selectedCategoryOption = categoryOptions.find(
-    cat => cat._id === product.category
-  );
-
-  if (selectedCategoryOption) {
-    const foundSub = selectedCategoryOption.subcategories.find(
-      sub => sub._id === product.subcategory
-    );
-    updatedFormData.subcategory =
-      foundSub?._id || selectedCategoryOption.subcategories[0]._id;
+    setFormData({
+      ...product,
+      category: categoryId,
+      subcategory: subcategoryId,
+    });
+    setSelectedCategory(categoryId);
   }
-
-  setFormData(updatedFormData);
-  setSelectedCategory(product.category || '');
 }, [product]);
+
 
 const handleChange = (
   e: React.ChangeEvent<
@@ -119,8 +121,6 @@ const handleChange = (
     }));
 
     setSelectedCategory(value);
-    console.log('Updated Category:', value);
-    console.log('Updated Subcategory:', firstSub);
     return;
   }
 
@@ -133,7 +133,7 @@ const handleChange = (
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   try {
-    console.log('Form data before submit:', formData); // بررسی کنید که `subcategory` فقط شامل `_id` باشد
+    console.log('Form data before submit:', formData); 
     await editProduct(product._id, formData);
 
     toast.success('محصول با موفقیت ویرایش شد');
@@ -183,20 +183,22 @@ const handleSubmit = async (e: React.FormEvent) => {
             ['decorations', 'تزئینات'],
             ['made', 'ساخت کشور'],
           ].map(([name, placeholder]) => (
-             <div key={name} className="flex flex-col space-y-1">
+            <div key={name} className="flex flex-col space-y-1">
               <label htmlFor={name} className="text-sm font-medium">
                 {placeholder} :
               </label>
-            <input
-              key={name}
-              name={name}
-              placeholder={placeholder}
-              value={(formData as any)[name] || ''}
-              onChange={handleChange}
-              type={name === 'price' || name === 'quantity' ? 'number' : 'text'}
-              className="p-2 border-2 text-sm border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
-              required={['name', 'price', 'quantity'].includes(name)}
-            />
+              <input
+                key={name}
+                name={name}
+                placeholder={placeholder}
+                value={(formData as any)[name] || ''}
+                onChange={handleChange}
+                type={
+                  name === 'price' || name === 'quantity' ? 'number' : 'text'
+                }
+                className="p-2 border-2 text-sm border-custom-200 outline-none focus:border-custom-500 focus:rounded-sm"
+                required={['name', 'price', 'quantity'].includes(name)}
+              />
             </div>
           ))}
 

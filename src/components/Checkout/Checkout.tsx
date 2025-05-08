@@ -41,6 +41,14 @@ export default function CheckoutPage() {
   });
   const [errors, setErrors] = useState<Errors>({});
   const router = useRouter();
+    useEffect(() => {
+      const user = localStorage.getItem('user');
+      const token = user ? JSON.parse(user).refreshToken : null;
+
+      if (!token) {
+        router.push('/login');
+      }
+    }, [router]);
 
   useEffect(() => {
     try {

@@ -5,7 +5,10 @@ import {
   adproductlocalization,
   loadinglocalization,
 } from '@/constants/localization/localization';
-import { GetProducts, ProductFilters } from '@/services/getProducts/getProducts';
+import {
+  GetProducts,
+  ProductFilters,
+} from '@/services/getProducts/getProducts';
 import { useEffect, useState } from 'react';
 import { Iaddproducts } from '@/services/addProduct/addProduct';
 import ModalAdd from './ModalAdd/ModalAdd';
@@ -67,12 +70,12 @@ export default function AdProduct() {
     {
       key: 'category',
       title: addproductlocalization.category,
-      render: (_id: any, row: any) => row.category?.name || '—',
+      render: (_: any, row: { category: { name: any; }; }) => row.category?.name || '-',
     },
     {
       key: 'subcategory',
       title: addproductlocalization.subcategory,
-      render: (_id: any, row: any) => row.subcategory?.name || '—',
+      render: (_: any, row: { subcategory: { name: any; }; }) => row.subcategory?.name || '-',
     },
     {
       key: 'images',
@@ -90,7 +93,7 @@ export default function AdProduct() {
     },
   ];
 
-  const fetchProductsWithFilter = async (filters:ProductFilters) => {
+  const fetchProductsWithFilter = async (filters: ProductFilters) => {
     try {
       setLoading(true);
       const data = await GetProducts(filters);
@@ -103,7 +106,7 @@ export default function AdProduct() {
   };
 
   useEffect(() => {
-    fetchProductsWithFilter({ sort: sortOption }); 
+    fetchProductsWithFilter({ sort: sortOption });
   }, [sortOption]);
 
   const handleProductAdded = () => {

@@ -76,7 +76,7 @@ export default function Users({ rowsPerPage = 8 }: ProductTableProps) {
           <div className="flex justify-between items-center">
             <p className="font-semibold -mr-3">{userlocalization.list}</p>
           </div>
-          <div className="overflow-x-auto rounded-[2rem] mt-10 border border-custom-500 bg-gradient-to-br from-custom-100 via-white to-custom-100 shadow-[0_8px_30px_rgba(0,0,0,0.05)] py-6 px-3 -mr-9 space-y-4 transition-all">
+          <div className="overflow-x-auto rounded-[2rem] mt-5 border border-custom-500 bg-gradient-to-br from-custom-100 via-white to-custom-100 shadow-[0_8px_30px_rgba(0,0,0,0.05)] py-6 px-3 -mr-9 space-y-4 transition-all">
             <div className="overflow-hidden rounded-xl border border-custom-500 shadow-inner backdrop-blur-md">
               <table className="min-w-full text-sm font-medium">
                 <thead className="bg-custom-400 text-xs uppercase font-sahel tracking-wider">
