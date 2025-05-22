@@ -34,8 +34,8 @@ A modern **jewelry e-commerce website** built with **Next.js**, **TypeScript**, 
 1. Clone the repository:
 
 ```bash
-git clone [https://github.com/Parisa-Esmaeilpour1993/Parmisar_Phone_shop.git]
-cd parmisar_phone_shop
+git clone [https://github.com/melika-ansar/maktab124-aika-gallery-ansarzadeh.git]
+cd aika-gallery
 ```
 
 2. Install dependencies:
