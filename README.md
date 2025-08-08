@@ -1,6 +1,6 @@
 # Aika Gallery
 
-A modern **jewelry e-commerce website** built with **Next.js**, **TypeScript**, and **Tailwind CSS**.
+A modern **jewelry e-commerce website** built with **Next.js**, **TypeScript** and **Tailwind CSS**.
 
 ## 🚀 Features
 
