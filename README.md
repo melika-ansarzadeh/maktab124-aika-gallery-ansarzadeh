@@ -13,7 +13,7 @@ A modern **jewelry e-commerce website** built with **Next.js**, **TypeScript** a
   - **Product management**
   - **User list**
   - **Order list** with **edit order** functionality
-- Pages like **About**, **Contact**, and **Brands**
+- Pages like **About**, **Contact** and **Brands**
 - Desktop-first layout
 
 ## 🛠️ Tech Stack
